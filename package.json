@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dist": "ng build --prod --aot",
-    "test-headless": "ng test --single-run --browsers=ChromeHeadless --reporters=teamcity"
+    "test-headless": "ng test --single-run --browsers=BetterChromeHeadless --reporters=teamcity"
   },
   "private": true,
   "dependencies": {

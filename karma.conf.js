@@ -32,7 +32,7 @@ module.exports = function (config) {
     singleRun: false,
     customLaunchers: {
       ChromeCanaryHeadless: {
-        base: 'ChromeHeadless',
+        base: 'BetterChromeHeadless',
         flags: [
           '--no-sandbox',
           // See https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
