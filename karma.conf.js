@@ -31,8 +31,8 @@ module.exports = function (config) {
     browsers: ['Chrome'],
     singleRun: false,
     customLaunchers: {
-      ChromeCanaryHeadless: {
-        base: 'BetterChromeHeadless',
+      BetterChromeHeadless: {
+        base: 'ChromeHeadless',
         flags: [
           '--no-sandbox',
           // See https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
