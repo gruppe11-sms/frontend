@@ -1,0 +1,23 @@
+<div *ngIf="user">
+  <h1>{{user.name}}</h1>
+  <div><label>Username: </label>{{user.username}}</div>
+  <button (click)="changePassword()" class="blueButton">Change Password</button>
+  <h2>Roles</h2>
+  <ul>
+    <li *ngFor="let role of user.roles">{{role.title}} - {{role.description}}</li>
+  </ul>
+  <button (click)="getGroups()">Click me</button>
+  <div *ngIf="groups">
+  <h2>Groups</h2>
+  <ul>
+    <li *ngFor="let group of groups">{{group.title}} - {{group.description}}</li>
+  </ul>
+  </div>
+</div>
+<!--
+<label>Username</label>
+<div>{{user1.username}}</div>
+<label>Password</label>
+<!--
+<input [(ngModel)]="user.password" placeholder="password">
+-->

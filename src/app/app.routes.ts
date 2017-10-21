@@ -1,6 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {AuthenticatedGuard} from './authenticated.guard';
 import {HomeComponent} from './home/home.component';
+import {UserComponent} from "./user/user.component";
 
 const appRoutes: Routes = [
   {
@@ -12,6 +13,10 @@ const appRoutes: Routes = [
   {
     path: 'login',
     loadChildren: 'app/login/login.module#LoginModule',
+  },
+  {
+    path: 'user',
+    component: UserComponent,
   },
   {
     path: '**',

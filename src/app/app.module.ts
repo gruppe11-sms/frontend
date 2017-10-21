@@ -9,15 +9,21 @@ import {routes} from './app.routes';
 import {HomeComponent} from './home/home.component';
 import {ServicesModule} from './services/services.module';
 import {AuthenticatedGuard} from "./authenticated.guard";
+import {UserComponent} from "./user/user.component";
+import {StartComponent} from "./start/start.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    UserComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     FlexLayoutModule,
     MdSidenavModule,
     MdListModule,
@@ -29,4 +35,5 @@ import {AuthenticatedGuard} from "./authenticated.guard";
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
