@@ -12,12 +12,12 @@ import {AuthenticatedGuard} from "./authenticated.guard";
 import {UserComponent} from "./user/user.component";
 import {StartComponent} from "./start/start.component";
 import {FormsModule} from "@angular/forms";
+import { UserDetailsComponent } from './user/user-details/user-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    UserComponent,
     StartComponent
   ],
   imports: [

@@ -3,10 +3,12 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user";
 import "rxjs/add/operator/toPromise";
 import {Observable} from "rxjs/Observable";
+import {AuthService} from "./auth.service";
+import "rxjs/add/operator/switchMap";
 
 @Injectable()
 export class UserService implements OnInit {
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
 
   }
 
@@ -14,8 +16,9 @@ export class UserService implements OnInit {
     console.log(this.getUsers());
   }
 
-  getUser(id: string): Observable<User> {
-    return this.httpClient.get('/api/users/' + id);
+  getUser(id: number): Observable<User> {
+    return this.authService.httpHeader
+      .switchMap((headers) => this.httpClient.get(`/api/users/${id}`, {headers}));
   }
 
   getUsers(): Observable<User[]> {

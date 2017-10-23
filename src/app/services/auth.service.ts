@@ -1,11 +1,9 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
-
-export const API_URL: string = "http://localhost:8462";
 
 @Injectable()
 export class AuthService {
@@ -24,8 +22,16 @@ export class AuthService {
     return this._token.map(token => !!token);
   }
 
+  public get httpHeader(): Observable<HttpHeaders> {
+    return this.token.map(token => {
+      const headers = new HttpHeaders();
+      headers.append('Authorization', token);
+      return headers;
+    });
+  }
+
   public login(username: string, password: string): Observable<void> {
-    return this.httpClient.post(API_URL + '/api/auth/login', {
+    return this.httpClient.post('/api/auth/login', {
       username, password,
     }, {observe: 'response'})
       .do(response => {

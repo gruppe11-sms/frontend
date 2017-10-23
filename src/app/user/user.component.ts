@@ -4,6 +4,7 @@ import {UserService} from "../services/user.service";
 import {GroupService} from "../services/group.service";
 import {Group} from "../models/group";
 import "rxjs/add/operator/mergeMap";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-user',
@@ -11,8 +12,8 @@ import "rxjs/add/operator/mergeMap";
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  user: User;
-  groups: Group[];
+  user: Observable<User>;
+  groups: Observable<Group[]>;
 
   constructor(private userService: UserService,
               private groupService: GroupService) {
@@ -20,12 +21,12 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUser('eddc8641-229c-4153-96cf-e2ea87e040f2').subscribe(user => this.user = user);
-
+    this.user = this.userService.getUser(1);
+    //this.groups = this.user
+      //.switchMap(user => this.groupService.getGroupsWhereUserIsIn(user.id));
   }
 
   getGroups() {
-    this.groupService.getGroupsWhereUserIsIn(this.user.id).subscribe(groups => this.groups = groups)
   }
 
   changePassword() {

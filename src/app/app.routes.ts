@@ -16,7 +16,7 @@ const appRoutes: Routes = [
   },
   {
     path: 'user',
-    component: UserComponent,
+    loadChildren: 'app/user/user.module#UserModule',
   },
   {
     path: '**',

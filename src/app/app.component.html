@@ -2,7 +2,7 @@
   <md-sidenav mode="side" opened="true" disableClose="true">
 
     <md-list>
-      <a md-list-item [routerLink]="['/login']" *ngIf="authenticated|async">Login</a>
+      <a md-list-item [routerLink]="['/login']" *ngIf="!(authenticated|async)">Login</a>
       <a md-list-item [routerLink]="['/user']">Min Side</a>
     </md-list>
 
