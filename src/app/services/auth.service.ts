@@ -9,6 +9,10 @@ import {Observable} from 'rxjs/Observable';
 export class AuthService {
 
   constructor(private httpClient: HttpClient) {
+    const token = localStorage.getItem('token');
+    if(token) {
+      this._token.next(token);
+    }
   }
 
 
@@ -24,8 +28,8 @@ export class AuthService {
 
   public get httpHeader(): Observable<HttpHeaders> {
     return this.token.map(token => {
-      const headers = new HttpHeaders();
-      headers.append('Authorization', token);
+      let headers = new HttpHeaders();
+      headers = headers.append('authorization', token);
       return headers;
     });
   }
@@ -33,12 +37,22 @@ export class AuthService {
   public login(username: string, password: string): Observable<void> {
     return this.httpClient.post('/api/auth/login', {
       username, password,
-    }, {observe: 'response'})
+    }, {observe: 'response', responseType: 'text'})
       .do(response => {
+        console.log(response.headers);
         const token = response.headers.get('authorization') || '';
         this._token.next(token);
+        console.log(token);
+
+        if(token) {
+          localStorage.setItem('token', token);
+        }
       })
       .map(() => undefined);
+  }
+
+  public logout() {
+    localStorage.removeItem('token');
   }
 
 }

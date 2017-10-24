@@ -1,0 +1,7 @@
+<div *ngFor="let pair of renderData">
+  {{pair.key}}:
+  <span *ngIf="isString(pair.value); else notString">{{pair.value}}</span>
+  <ng-template #notString>
+    <app-audit-entry-data [data]="pair.value"></app-audit-entry-data>
+  </ng-template>
+</div>

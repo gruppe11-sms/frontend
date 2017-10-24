@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import {MdListModule, MdSidenavModule} from '@angular/material';
+import {MatListModule, MatSidenavModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -25,8 +25,8 @@ import { UserDetailsComponent } from './user/user-details/user-details.component
     BrowserAnimationsModule,
     FormsModule,
     FlexLayoutModule,
-    MdSidenavModule,
-    MdListModule,
+    MatSidenavModule,
+    MatListModule,
     ServicesModule,
     routes,
   ],

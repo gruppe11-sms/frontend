@@ -1,0 +1,20 @@
+<form name="filter-form" (submit)="doSearch()">
+  <mat-form-field>
+    <input type="text" placeholder="User" matInput [matAutocomplete]="userAuto" [formControl]="userInputControl">
+    <mat-autocomplete #userAuto="matAutocomplete" [displayWith]="displayName">
+      <mat-option *ngFor="let user of filteredUsers|async" [value]="user">
+        {{user.name}} ({{user.id}})
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field>
+    <input type="text" placeholder="Action" matInput [matAutocomplete]="actionAuto" [formControl]="actionInputControl">
+    <mat-autocomplete #actionAuto="matAutocomplete">
+      <mat-option *ngFor="let action of filteredActions|async" [value]="action">
+        {{action}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button type="submit" mat-raised-button>Search</button>
+  <button type="reset" mat-raised-button> Clear</button>
+</form>

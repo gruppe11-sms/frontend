@@ -1,11 +1,12 @@
-<md-sidenav-container fxFlex>
-  <md-sidenav mode="side" opened="true" disableClose="true">
+<mat-sidenav-container fxFlex>
+  <mat-sidenav mode="side" opened="true" disableClose="true">
 
-    <md-list>
-      <a md-list-item [routerLink]="['/login']" *ngIf="!(authenticated|async)">Login</a>
-      <a md-list-item [routerLink]="['/user']">Min Side</a>
-    </md-list>
+    <mat-list>
+      <a mat-list-item [routerLink]="['/login']" *ngIf="!(authenticated|async)">Login</a>
+      <a mat-list-item [routerLink]="['/user']">Min Side</a>
+      <a mat-list-item [routerLink]="['/audit']">Audit</a>
+    </mat-list>
 
-  </md-sidenav>
+  </mat-sidenav>
   <router-outlet></router-outlet>
-</md-sidenav-container>
+</mat-sidenav-container>

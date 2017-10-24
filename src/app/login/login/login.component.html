@@ -1,16 +1,16 @@
 <div fxLayout="row" fxLayoutAlign="center center" fxFlex="">
 
   <form name="loginForm" fxLayout="column" (submit)="login()">
-    <md-input-container fxLayout="row">
-      <input fxFlex mdInput #usernameInput="ngModel" [(ngModel)]="username" name="usernameInput" required
+    <mat-input-container fxLayout="row">
+      <input fxFlex matInput #usernameInput="ngModel" [(ngModel)]="username" name="usernameInput" required
              placeholder="Username">
-      <md-error *ngIf="usernameInput.hasError('required')">This is required</md-error>
-    </md-input-container>
-    <md-input-container fxLayout="row">
-      <input fxFlex mdInput #passwordInput="ngModel" [(ngModel)]="password" name="passwordInput" required
+      <mat-error *ngIf="usernameInput.hasError('required')">This is required</mat-error>
+    </mat-input-container>
+    <mat-input-container fxLayout="row">
+      <input fxFlex matInput #passwordInput="ngModel" [(ngModel)]="password" name="passwordInput" required
              placeholder="Password">
-      <md-error *ngIf="passwordInput.hasError('required')">This is required</md-error>
-    </md-input-container>
-    <button md-button>Login</button>
+      <mat-error *ngIf="passwordInput.hasError('required')">This is required</mat-error>
+    </mat-input-container>
+    <button mat-button>Login</button>
   </form>
 </div>

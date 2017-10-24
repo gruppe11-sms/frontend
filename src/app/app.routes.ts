@@ -19,6 +19,10 @@ const appRoutes: Routes = [
     loadChildren: 'app/user/user.module#UserModule',
   },
   {
+    path: 'audit',
+    loadChildren: 'app/audit/audit.module#AuditModule'
+  },
+  { //THIS HAS TO BE LAST, DO NOT FAIL WHERE I HAVE FALLEN
     path: '**',
     redirectTo: '',
   },

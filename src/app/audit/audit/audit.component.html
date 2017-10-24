@@ -1,0 +1,14 @@
+<app-audit-entry-filter [filters]="filters|async" (search)="search($event)"></app-audit-entry-filter>
+
+<mat-accordion multi="true">
+  <mat-expansion-panel *ngFor="let entry of entries|async">
+    <mat-expansion-panel-header>
+      <span fxFlex>{{entry.name}}</span>
+      <span fxFlex>{{entry.action}}</span>
+      <span fxFlex>{{entry.timestamp}}</span>
+    </mat-expansion-panel-header>
+
+    <app-audit-entry-data [data]="entry.data"></app-audit-entry-data>
+  </mat-expansion-panel>
+
+</mat-accordion>
