@@ -5,7 +5,7 @@
     <mat-expansion-panel-header>
       <span fxFlex>{{entry.name}}</span>
       <span fxFlex>{{entry.action}}</span>
-      <span fxFlex>{{entry.timestamp}}</span>
+      <span fxFlex>{{entry.timestamp|date:"dd/MM/y - HH:mm:ss"}}</span>
     </mat-expansion-panel-header>
 
     <app-audit-entry-data [data]="entry.data"></app-audit-entry-data>

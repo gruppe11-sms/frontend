@@ -5,6 +5,7 @@ import {Observable} from "rxjs/Observable";
 import {Filters} from "../Filters";
 import {ISearchArgs} from "./audit-entry-filter/audit-entry-filter.component";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import "rxjs/add/operator/switchMap";
 
 @Component({
   selector: 'app-audit',
