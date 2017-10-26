@@ -8,7 +8,7 @@ import "rxjs/add/operator/switchMap";
 
 @Injectable()
 export class UserService implements OnInit {
-  constructor(private httpClient: HttpClient, private authService: AuthService) {
+  constructor(private httpClient: HttpClient) {
 
   }
 
@@ -17,8 +17,7 @@ export class UserService implements OnInit {
   }
 
   getUser(id: number): Observable<User> {
-    return this.authService.httpHeader
-      .switchMap((headers) => this.httpClient.get(`/api/users/${id}`, {headers}));
+    return this.httpClient.get(`/api/users/${id}`);
   }
 
   getUsers(): Observable<User[]> {

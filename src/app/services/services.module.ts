@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {AuthService} from './auth.service';
 import {UserService} from "./user.service";
 import {GroupService} from "./group.service";
+import {TokenService} from "./token.service";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import {GroupService} from "./group.service";
   providers: [
     AuthService,
     UserService,
-    GroupService
+    GroupService,
+    TokenService,
   ],
 })
 export class ServicesModule {

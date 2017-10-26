@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {AuthService} from "../services/auth.service";
 import {Observable} from "rxjs/Observable";
 import {AuditEntry} from "./AuditEntry";
@@ -14,20 +14,16 @@ export class AuditService {
   }
 
   public getEntries(args = {userId: 0, action: ""}): Observable<AuditEntry[]> {
-    return this.authService.httpHeader
-      .switchMap(headers => {
-        let params = toHttpParams(args);
+    let params = toHttpParams(args);
 
-        return this.httpClient.get<AuditEntry[]>(`/api/auditentry`, {headers, params});
-      })
+    return this.httpClient.get<AuditEntry[]>(`/api/auditentry`, {params})
       .map(entries => entries
         .map(this.convert)
       )
   }
 
   public getFilters(): Observable<Filters> {
-    return this.authService.httpHeader
-      .switchMap(headers => this.httpClient.get<Filters>("/api/auditentry/filters", {headers}));
+    return this.httpClient.get<Filters>("/api/auditentry/filters");
   }
 
   private convert(entry: AuditEntry): AuditEntry {
