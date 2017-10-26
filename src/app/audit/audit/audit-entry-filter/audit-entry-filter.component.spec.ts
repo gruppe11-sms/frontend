@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AuditEntryFilterComponent } from './audit-entry-filter.component';
+import {AuditModule} from "../../audit.module";
+import {MatAutocompleteModule, MatInputModule} from "@angular/material";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('AuditEntryFilterComponent', () => {
   let component: AuditEntryFilterComponent;
@@ -8,7 +12,8 @@ describe('AuditEntryFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuditEntryFilterComponent ]
+      declarations: [ AuditEntryFilterComponent ],
+      imports: [MatAutocompleteModule, FormsModule, MatInputModule, ReactiveFormsModule, NoopAnimationsModule]
     })
     .compileComponents();
   }));
