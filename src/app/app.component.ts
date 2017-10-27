@@ -18,4 +18,8 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.authenticated = this.authService.authenticated;
   }
+
+  public logout() {
+    this.authService.logout();
+  }
 }
