@@ -27,7 +27,6 @@ export class AuditService {
   }
 
   private convert(entry: AuditEntry): AuditEntry {
-    console.log(entry.data);
     try {
       entry.data = JSON.parse(entry.data);
       if(typeof entry.data === 'number') {

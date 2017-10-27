@@ -16,6 +16,8 @@ export class TokenService {
   private user: Observable<ITokenUser>;
 
   constructor(private jwt: JwtHelper) {
+    this.loadExistingToken();
+
     this.token.subscribe(token => {
       if (token) {
         localStorage.setItem('token', token);
@@ -30,7 +32,6 @@ export class TokenService {
         return JSON.parse(subject);
       });
 
-    this.loadExistingToken();
   }
 
   public getTokenUser(): Observable<ITokenUser> {

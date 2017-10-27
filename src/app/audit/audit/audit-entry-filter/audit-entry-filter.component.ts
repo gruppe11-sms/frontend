@@ -3,10 +3,16 @@ import {FormControl} from "@angular/forms";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/operator/startWith";
 import {Filters, User} from "../../Filters";
+import {PageEvent} from "@angular/material";
 
 export interface ISearchArgs {
   userId: number;
   action: string;
+}
+
+export interface IPageUpdate {
+  size: number;
+  page: number;
 }
 
 @Component({
@@ -21,8 +27,14 @@ export class AuditEntryFilterComponent implements OnInit {
   @Input()
   public filters: Filters;
 
+  @Input()
+  public resultLength: number;
+
   @Output()
   public search = new EventEmitter<ISearchArgs>();
+
+  @Output()
+  public page = new EventEmitter<IPageUpdate>();
 
   public filteredUsers: Observable<User[]>;
   public filteredActions: Observable<string[]>;
@@ -50,6 +62,14 @@ export class AuditEntryFilterComponent implements OnInit {
       args.action = this.actionInputControl.value;
     }
     this.search.next(args);
+  }
+
+  public updatePage(event: PageEvent) {
+    const update: IPageUpdate = {
+      page: event.pageIndex,
+      size: event.pageSize
+    };
+    this.page.next(update);
   }
 
   private filterByName(name: string) {
