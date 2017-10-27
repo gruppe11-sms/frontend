@@ -1,0 +1,23 @@
+.course-detail{
+  margin-top: 100px;
+  margin-left: 50px;
+  margin-right: 200px;
+}
+
+.course-detail-lesson{
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 200px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+

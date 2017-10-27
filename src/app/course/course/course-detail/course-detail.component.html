@@ -1,0 +1,85 @@
+<mat-card class="course-detail">
+  <mat-list>
+    <h3>Course Information</h3>
+    <!--Title-->
+    <mat-list-item>
+      <h1>{{(course|async)?.title}}</h1>
+    </mat-list-item>
+
+    <!--Description-->
+    <mat-list-item>
+      <h3>Description:</h3>
+    </mat-list-item>
+    <mat-list-item>
+      <h4>Bacon ipsum dolor amet tongue boudin cupim, tail cow chicken tri-tip. Pork belly t-bone turkey
+        frankfurter filet mignon. Porchetta capicola short ribs kielbasa shankle, strip steak salami turducken pancetta
+        pork chop turkey meatball tenderloin landjaeger.</h4>
+    </mat-list-item>
+
+    <!--Assignments-->
+    <div *ngFor="let assignment of (course|async)?.assignment" class="" course-assignment
+         style="margin-bottom: 11px;">
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{assignment.title}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <h4>{{assignment.description}}</h4>
+          <h4>Posted: {{assignment.startdate|date:"dd/MM/y - HH:mm:ss"}}</h4>
+          <h4>Due Date: {{assignment.enddate|date:"dd/MM/y - HH:mm:ss"}}</h4>
+          <h4>Time remaining: {{assignment.remainingTime|date:"dd/MM/y - HH:mm:ss"}}</h4>
+          <mat-action-row>
+            <button mat-button="handInAssignment">Hand In/Upload Assignment</button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+
+
+  </mat-list>
+</mat-card>
+
+<mat-card class="course-detail-lesson">
+  <h2>Lessons</h2>
+  <mat-list-item>
+    <mat-list>
+      <div *ngFor="let lesson of (course|async)?.lessons">
+        <mat-list-item>{{lesson.title}}</mat-list-item>
+      </div>
+    </mat-list>
+  </mat-list-item>
+</mat-card>
+
+
+
+<mat-card class="course-detail-lesson">
+  <div fxLayout="row">
+    <div fxFlex="50%">
+      <h2>Participants</h2>
+      <div *ngFor="let participant of (course|async)?.participant">
+        {{participant.id}}
+      </div>
+    </div>
+    <div fxFlex="50%">
+      <h2>Evaluations</h2>
+       <div>
+          <button mat-button="">Evaluations</button>
+          <button mat-button>Evaluation Statistics</button>
+      </div>
+    </div>
+  </div>
+
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
