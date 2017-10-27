@@ -2,7 +2,13 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AuditComponent} from './audit/audit.component';
 import {routes} from "./audit.routes";
-import {MatAutocompleteModule, MatButtonModule, MatExpansionModule, MatInputModule,} from "@angular/material";
+import {
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatExpansionModule,
+  MatInputModule,
+  MatPaginatorModule,
+} from "@angular/material";
 import {AuditService} from "./audit.service";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {AuditEntryDataComponent} from './audit/audit-entry-data/audit-entry-data.component';
@@ -20,7 +26,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatPaginatorModule
   ],
   providers: [
     AuditService

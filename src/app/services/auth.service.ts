@@ -5,10 +5,11 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import "rxjs/add/operator/take";
 import {TokenService} from "./token.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthService {
-  constructor(private httpClient: HttpClient, private tokenService: TokenService) {
+  constructor(private httpClient: HttpClient, private tokenService: TokenService, private router: Router) {
   }
 
   public get authenticated(): Observable<boolean> {
@@ -28,5 +29,6 @@ export class AuthService {
 
   public logout() {
     this.tokenService.token.next('');
+    this.router.navigate(['/login'])
   }
 }

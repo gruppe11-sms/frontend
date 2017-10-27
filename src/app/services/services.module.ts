@@ -7,6 +7,7 @@ import {GroupService} from "./group.service";
 import {RoleService} from "./role.service";
 import {TokenService} from "./token.service";
 import {JwtHelper} from "angular2-jwt";
+import {AuthenticationGuard} from "./authentication.guard";
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import {JwtHelper} from "angular2-jwt";
     RoleService,
     GroupService,
     TokenService,
-    JwtHelper
+    JwtHelper,
+    AuthenticationGuard
   ],
 })
 export class ServicesModule {

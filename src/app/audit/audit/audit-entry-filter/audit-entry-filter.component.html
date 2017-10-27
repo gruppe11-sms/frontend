@@ -17,4 +17,9 @@
   </mat-form-field>
   <button type="submit" mat-raised-button>Search</button>
   <!--  <button type="reset" mat-raised-button> Clear</button>-->
+  <mat-paginator [length]="resultLength"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[10, 25, 50]"
+                 (page)="updatePage($event)"
+  ></mat-paginator>
 </form>

@@ -16,17 +16,21 @@ export class AuditEntryDataComponent implements OnInit {
 
   ngOnInit() {
     this.renderData = [];
-    for (let key in this.data) {
-      if (this.data.hasOwnProperty(key)) {
-        this.renderData.push({
-          key,
-          value: this.data[key]
-        });
+    if (this.isSimple(this.data)) {
+      this.renderData = [{value: this.data, key: ''}];
+    } else {
+      for (let key in this.data) {
+        if (this.data.hasOwnProperty(key)) {
+          this.renderData.push({
+            key,
+            value: this.data[key]
+          });
+        }
       }
     }
   }
 
-  public isString(value: any) {
-    return typeof value === 'string';
+  public isSimple(value: any) {
+    return typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean';
   }
 }
