@@ -4,7 +4,9 @@ import {NgModule} from '@angular/core';
 import {AuthService} from './auth.service';
 import {UserService} from "./user.service";
 import {GroupService} from "./group.service";
+import {RoleService} from "./role.service";
 import {TokenService} from "./token.service";
+import {JwtHelper} from "angular2-jwt";
 
 @NgModule({
   imports: [
@@ -16,7 +18,10 @@ import {TokenService} from "./token.service";
     AuthService,
     UserService,
     GroupService,
+    RoleService,
+    GroupService,
     TokenService,
+    JwtHelper
   ],
 })
 export class ServicesModule {

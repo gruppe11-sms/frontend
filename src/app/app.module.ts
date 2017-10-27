@@ -3,7 +3,6 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatListModule, MatSidenavModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {AppComponent} from './app.component';
 import {routes} from './app.routes';
 import {HomeComponent} from './home/home.component';
@@ -18,7 +17,7 @@ import {AuthInterceptor} from "./services/auth-inteceptor";
   declarations: [
     AppComponent,
     HomeComponent,
-    StartComponent
+    StartComponent,
   ],
   imports: [
     BrowserModule,

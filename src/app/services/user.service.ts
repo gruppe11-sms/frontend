@@ -3,7 +3,6 @@ import {HttpClient} from "@angular/common/http";
 import {User} from "../models/user";
 import "rxjs/add/operator/toPromise";
 import {Observable} from "rxjs/Observable";
-import {AuthService} from "./auth.service";
 import "rxjs/add/operator/switchMap";
 
 @Injectable()
@@ -17,12 +16,14 @@ export class UserService implements OnInit {
   }
 
   getUser(id: number): Observable<User> {
-    return this.httpClient.get(`/api/users/${id}`);
+    return this.httpClient.get<User>(`/api/users/${id}`)
   }
 
   getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>('/api/users/');
   }
 
-
+  createUser(user: User) {
+    return this.httpClient.post('/api/users', user);
+  }
 }

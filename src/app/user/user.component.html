@@ -1,13 +1,2 @@
-<div *ngIf="user|async; else loading">
-  <app-user-details [user]="user|async"></app-user-details>
-</div>
-<ng-template #loading>
-  Loading..
-</ng-template>
-<!--
-<label>Username</label>
-<div>{{user1.username}}</div>
-<label>Password</label>
-<!--
-<input [(ngModel)]="user.password" placeholder="password">
--->
+<app-user-details [user]="user|async"></app-user-details>
+
