@@ -4,34 +4,17 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
+import "rxjs/add/operator/take";
+import {TokenService} from "./token.service";
 
 @Injectable()
 export class AuthService {
 
-  constructor(private httpClient: HttpClient) {
-    const token = localStorage.getItem('token');
-    if(token) {
-      this._token.next(token);
-    }
-  }
-
-
-  private _token = new BehaviorSubject<string>('');
-
-  public get token(): Observable<string> {
-    return this._token.asObservable();
+  constructor(private httpClient: HttpClient, private tokenService: TokenService) {
   }
 
   public get authenticated(): Observable<boolean> {
-    return this._token.map(token => !!token);
-  }
-
-  public get httpHeader(): Observable<HttpHeaders> {
-    return this.token.map(token => {
-      let headers = new HttpHeaders();
-      headers = headers.append('authorization', token);
-      return headers;
-    });
+    return this.tokenService.token.map(token => !!token);
   }
 
   public login(username: string, password: string): Observable<void> {
@@ -39,20 +22,14 @@ export class AuthService {
       username, password,
     }, {observe: 'response', responseType: 'text'})
       .do(response => {
-        console.log(response.headers);
         const token = response.headers.get('authorization') || '';
-        this._token.next(token);
-        console.log(token);
-
-        if(token) {
-          localStorage.setItem('token', token);
-        }
+        this.tokenService.token.next(token);
       })
       .map(() => undefined);
   }
 
   public logout() {
-    localStorage.removeItem('token');
+    this.tokenService.token.next('');
   }
 
 }

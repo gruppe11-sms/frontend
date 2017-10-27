@@ -3,22 +3,21 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {MatListModule, MatSidenavModule} from '@angular/material';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-
 import {AppComponent} from './app.component';
 import {routes} from './app.routes';
 import {HomeComponent} from './home/home.component';
 import {ServicesModule} from './services/services.module';
 import {AuthenticatedGuard} from "./authenticated.guard";
-import {UserComponent} from "./user/user.component";
 import {StartComponent} from "./start/start.component";
 import {FormsModule} from "@angular/forms";
-import { UserDetailsComponent } from './user/user-details/user-details.component';
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthInterceptor} from "./services/auth-inteceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    StartComponent
+    StartComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +30,9 @@ import { UserDetailsComponent } from './user/user-details/user-details.component
     routes,
   ],
   providers: [
-    AuthenticatedGuard
+    AuthenticatedGuard,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+
   ],
   bootstrap: [AppComponent]
 })

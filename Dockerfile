@@ -8,9 +8,9 @@ RUN yarn install
 
 # Add and build the actual project
 ADD . ./
-RUN ls src/
 RUN ng build
 
 
 FROM nginx:alpine
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist/ /usr/share/nginx/html

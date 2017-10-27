@@ -3,7 +3,8 @@
 
     <mat-list>
       <a mat-list-item [routerLink]="['/login']" *ngIf="!(authenticated|async)">Login</a>
-      <a mat-list-item [routerLink]="['/user']">Min Side</a>
+      <a mat-list-item [routerLink]="['/user']">My Page</a>
+      <a mat-list-item [routerLink]="['/administration']">Administration</a>
       <a mat-list-item [routerLink]="['/audit']">Audit</a>
     </mat-list>
 

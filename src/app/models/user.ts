@@ -1,9 +1,17 @@
 import {Role} from "./role";
+import {Group} from "./group";
 
 export class User {
-  id: string;
+  id: number;
   username: string;
   password: string;
   name: string;
-  roles: Role[]
+  roles: Role[];
+  groups: Group[];
+
+  constructor(name: string, username: string, password: string) {
+    this.name = name;
+    this.username = username;
+    this.password = password;
+  }
 }

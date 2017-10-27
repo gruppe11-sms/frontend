@@ -1,7 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {AuthenticatedGuard} from './authenticated.guard';
 import {HomeComponent} from './home/home.component';
-import {UserComponent} from "./user/user.component";
 
 const appRoutes: Routes = [
   {
@@ -21,6 +20,10 @@ const appRoutes: Routes = [
   {
     path: 'audit',
     loadChildren: 'app/audit/audit.module#AuditModule'
+  },
+  {
+    path: 'administration',
+    loadChildren: 'app/administration/administration.module#AdministrationModule'
   },
   { //THIS HAS TO BE LAST, DO NOT FAIL WHERE I HAVE FALLEN
     path: '**',
