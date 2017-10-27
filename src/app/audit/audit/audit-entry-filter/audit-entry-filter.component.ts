@@ -52,11 +52,11 @@ export class AuditEntryFilterComponent implements OnInit {
     this.search.next(args);
   }
 
-  private filterByName(name: string) {
-    return this.filters ? this.filters.users.filter(user => user.name.toLowerCase().includes(name)) : [];
-  }
-
   public displayName(user: User): string {
     return user ? user.name : user;
+  }
+
+  private filterByName(name: string) {
+    return this.filters ? this.filters.users.filter(user => user.name.toLowerCase().includes(name)) : [];
   }
 }

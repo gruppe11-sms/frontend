@@ -1,7 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AuditEntryDataComponent } from './audit-entry-data.component';
-import {AuditModule} from "../../audit.module";
+import {AuditEntryDataComponent} from './audit-entry-data.component';
 
 describe('AuditEntryDataComponent', () => {
   let component: AuditEntryDataComponent;
@@ -9,10 +8,10 @@ describe('AuditEntryDataComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuditEntryDataComponent ],
+      declarations: [AuditEntryDataComponent],
       imports: []
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

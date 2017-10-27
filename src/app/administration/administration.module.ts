@@ -6,7 +6,8 @@ import {routes} from "./administration.routes";
 import {AdministrationComponent} from './administration/administration.component';
 import {MatAutocompleteModule, MatCardModule, MatChipsModule, MatIconModule, MatInputModule} from "@angular/material";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { EditUserFilterComponent } from './edit-user-filter/edit-user-filter.component';
+import {EditUserFilterComponent} from './edit-user-filter/edit-user-filter.component';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { EditUserFilterComponent } from './edit-user-filter/edit-user-filter.com
     MatInputModule,
     MatAutocompleteModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    FlexLayoutModule
   ],
   declarations: [
     AddUserComponent,

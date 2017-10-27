@@ -5,16 +5,13 @@ import {TokenService} from "./token.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+  public constructor(private tokenService: TokenService) {
+  }
 
-  public constructor(private tokenService: TokenService) {}
+  public intercept(req: HttpRequest<any>,
+                   next: HttpHandler): Observable<HttpEvent<any>> {
 
-  public intercept(
-    req: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
-
-
-    if(req.url !== '/api/auth/login') {
+    if (req.url !== '/api/auth/login') {
       return this.tokenService.token.take(1)
         .switchMap(token => {
           req = req.clone({headers: req.headers.append('authorization', token)});
@@ -22,7 +19,6 @@ export class AuthInterceptor implements HttpInterceptor {
           return next.handle(req);
         });
     }
-
     return next.handle(req);
   }
 }

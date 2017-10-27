@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuditService} from "../audit.service";
 import {AuditEntry} from "../AuditEntry";
 import {Observable} from "rxjs/Observable";
@@ -20,7 +20,8 @@ export class AuditComponent implements OnInit {
     action: ''
   });
 
-  constructor(private auditService: AuditService) { }
+  constructor(private auditService: AuditService) {
+  }
 
   ngOnInit() {
     this.entries = this._search

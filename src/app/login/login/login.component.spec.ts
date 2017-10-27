@@ -4,7 +4,6 @@ import {LoginComponent} from './login.component';
 import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material";
 import {ServicesModule} from "../../services/services.module";
-import {RouterModule} from "@angular/router";
 import {RouterTestingModule} from "@angular/router/testing";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 
@@ -14,9 +13,9 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-        declarations: [LoginComponent],
-        imports: [FormsModule, MatInputModule, ServicesModule, RouterTestingModule, NoopAnimationsModule]
-      })
+      declarations: [LoginComponent],
+      imports: [FormsModule, MatInputModule, ServicesModule, RouterTestingModule, NoopAnimationsModule]
+    })
       .compileComponents();
   }));
 

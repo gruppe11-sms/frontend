@@ -9,14 +9,15 @@ export class AuditEntryDataComponent implements OnInit {
 
   @Input()
   public data: any;
-  public renderData: {key: string, value: any}[];
+  public renderData: { key: string, value: any }[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.renderData = [];
-    for(let key in this.data) {
-      if(this.data.hasOwnProperty(key)) {
+    for (let key in this.data) {
+      if (this.data.hasOwnProperty(key)) {
         this.renderData.push({
           key,
           value: this.data[key]

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EditUserFilterComponent } from './edit-user-filter.component';
+import {EditUserFilterComponent} from './edit-user-filter.component';
 
 describe('EditUserFilterComponent', () => {
   let component: EditUserFilterComponent;
@@ -8,9 +8,9 @@ describe('EditUserFilterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditUserFilterComponent ]
+      declarations: [EditUserFilterComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

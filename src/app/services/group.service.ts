@@ -5,11 +5,11 @@ import {Group} from "../models/group";
 
 @Injectable()
 export class GroupService {
-  constructor(private httpClient: HttpClient) {
+  public constructor(private httpClient: HttpClient) {
 
   }
 
-  getGroupsWhereUserIsIn(id: String): Observable<Group[]> {
-    return this.httpClient.get<Group[]>('/groups/a/users/' + id)
+  public getGroups(): Observable<Group[]> {
+    return this.httpClient.get<Group[]>('/api/groups')
   }
 }

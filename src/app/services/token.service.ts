@@ -15,7 +15,7 @@ export class TokenService {
   public token = new BehaviorSubject('');
   private user: Observable<ITokenUser>;
 
-  constructor(private jwt: JwtHelper) {
+  public constructor(private jwt: JwtHelper) {
     this.token.subscribe(token => {
       if (token) {
         localStorage.setItem('token', token);

@@ -5,13 +5,10 @@ import {Role} from "../models/role";
 
 @Injectable()
 export class RoleService {
-
-  constructor(private httpCLient: HttpClient) {
-
+  public constructor(private httpCLient: HttpClient) {
   }
 
-  getRoles() : Observable<Role[]> {
+  public getRoles(): Observable<Role[]> {
     return this.httpCLient.get('/api/roles')
   }
-
 }
