@@ -1,0 +1,20 @@
+<div>
+  <mat-card class="course-card">
+    <mat-card-header>
+      <mat-card-title><h2>Courses</h2></mat-card-title>
+    </mat-card-header>
+    <div *ngFor="let course of courses|async">
+      <mat-nav-list>
+        <a routerLink="{{course.id}}">
+          <mat-list-item>{{course.title}}</mat-list-item>
+          <mat-card-subtitle style="padding-left: 16px;">Start Date: {{course.startDate|date:"dd/MM/y - HH:mm:ss"}}
+          </mat-card-subtitle>
+          <mat-card-subtitle style="padding-left: 16px;">End Date: {{course.endDate|date:"dd/MM/y - HH:mm:ss"}}
+          </mat-card-subtitle>
+        </a>
+
+      </mat-nav-list>
+    </div>
+  </mat-card>
+</div>
+

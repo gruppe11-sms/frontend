@@ -28,6 +28,10 @@ const appRoutes: Routes = [
     loadChildren: 'app/administration/administration.module#AdministrationModule',
     canActivate: [AuthenticationGuard]
   },
+  {
+    path: 'courses',
+    loadChildren: 'app/course/course.module#CourseModule'
+  },
   { //THIS HAS TO BE LAST, DO NOT FAIL WHERE I HAVE FALLEN
     path: '**',
     redirectTo: '',
