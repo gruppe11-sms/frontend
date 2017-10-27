@@ -48,7 +48,7 @@ export class EditUserFilterComponent implements OnInit {
   }
 
   displayFn(user: User): string {
-    return user ? user.name + ' (' + user.username + ')' : user;
+    return user ? user.name : user;
   }
 
 

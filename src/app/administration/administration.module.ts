@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {EditUserComponent} from "./edit-user/edit-user.component";
+import {EditUserComponent} from "./edit-user-filter/edit-user/edit-user.component";
 import {AddUserComponent} from "./add_user/add-user.component";
 import {routes} from "./administration.routes";
 import {AdministrationComponent} from './administration/administration.component';
