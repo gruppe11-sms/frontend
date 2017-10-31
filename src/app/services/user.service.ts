@@ -10,10 +10,6 @@ export class UserService {
   public constructor(private httpClient: HttpClient) {
   }
 
-  public getUser(id: number): Observable<User> {
-    return this.httpClient.get<User>(`/api/users/${id}`)
-  }
-
   public getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>('/api/users/');
   }
@@ -24,5 +20,9 @@ export class UserService {
 
   public saveUser(user: User) {
     return this.httpClient.put('/api/users', user, {responseType: 'text'})
+  }
+
+  public getMe(): Observable<User> {
+    return this.httpClient.get<User>('/api/users/me')
   }
 }

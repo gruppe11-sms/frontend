@@ -20,7 +20,6 @@ const COMMA = 188;
 
 export class EditUserComponent {
 
-  public visible: boolean = true;
   public selectable: boolean = true;
   public removable: boolean = true;
   public addOnBlur: boolean = true;
@@ -41,17 +40,12 @@ export class EditUserComponent {
       let role = this.roles.find(role => role.title.toLowerCase() === value.toLowerCase());
       role ? this.user.roles.push(role) : console.log("Role not found");
     }
-
-    if (input) {
-      input.value = ''
-    }
+    if (input) input.value = ''
   }
 
- public removeRole(role: Role) {
+  public removeRole(role: Role) {
     let index = this.user.roles.indexOf(role);
-    if (index >= 0) {
-      this.user.roles.splice(index, 1);
-    }
+    if (index >= 0) this.user.roles.splice(index, 1);
   }
 
   public addGroup(event: MatChipInputEvent) {
@@ -60,23 +54,14 @@ export class EditUserComponent {
 
     if ((value || '').trim()) {
       let group = this.groups.find(group => group.title.toLowerCase() === value.toLowerCase());
-      if (group) {
-        this.user.groups.push(group);
-      } else {
-        console.log("Group not found");
-      }
+      group ? this.user.groups.push(group) : console.log("Group not found");
     }
-
-    if (input) {
-      input.value = ''
-    }
+    if (input) input.value = '';
   }
 
   public removeGroup(group: Group) {
     let index = this.user.groups.indexOf(group);
-    if (index >= 0) {
-      this.user.groups.splice(index, 1);
-    }
+    if (index >= 0) this.user.groups.splice(index, 1);
   }
 
   public saveUser() {
@@ -86,4 +71,3 @@ export class EditUserComponent {
       )
   }
 }
-

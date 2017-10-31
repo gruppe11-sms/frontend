@@ -12,6 +12,7 @@ export interface ITokenUser {
 
 @Injectable()
 export class TokenService {
+
   public token = new BehaviorSubject('');
   private user: Observable<ITokenUser>;
 
@@ -30,7 +31,6 @@ export class TokenService {
         const subject = this.jwt.decodeToken(token.replace('Bearer ', '')).sub;
         return JSON.parse(subject);
       });
-
   }
 
   public getTokenUser(): Observable<ITokenUser> {
@@ -43,5 +43,4 @@ export class TokenService {
       this.token.next(possibleToken);
     }
   }
-
 }
