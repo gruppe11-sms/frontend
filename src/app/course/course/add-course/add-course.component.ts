@@ -5,6 +5,7 @@ import {Lesson} from '../../models/lesson';
 import {Assignment} from '../../models/assignment';
 import {Evaluation} from '../../models/evaluation';
 import {Course} from "../../models/course";
+import {Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-add-course',
@@ -12,18 +13,20 @@ import {Course} from "../../models/course";
   styleUrls: ['./add-course.component.scss']
 })
 export class AddCourseComponent implements OnInit {
-  participant: Participant[];
-  lessons: Lesson[];
-  assignment: Assignment[];
-  courseEvaluations: Evaluation[];
+  public courseTitle: string;
+  public courseDescription: string;
+  public startDate: number;
+  public endDate: number;
+
   constructor(private courseService: CourseService) { }
 
   ngOnInit(
   ) {
+
   }
 
-  createCourse(title: string, description: string, startDate: number, endDate: number) {
-    this.courseService.createCourse(new Course(title, description, startDate, endDate));
+  createCourse() {
+    this.courseService.createCourse(new Course(this.courseTitle, this.courseDescription, this.startDate, this.endDate));
   }
 
 

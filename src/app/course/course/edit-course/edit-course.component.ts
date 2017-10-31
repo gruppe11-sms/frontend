@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {CourseService} from "../../course.service";
-import {Participant} from "../../models/participant";
-import {Lesson} from "../../models/lesson";
-import {Assignment} from "../../models/assignment";
-import {Evaluation} from "../../models/evaluation";
-import {Course} from "../../models/course";
-import {ActivatedRoute} from "@angular/router";
+import {CourseService} from '../../course.service';
+import {Participant} from '../../models/participant';
+import {Lesson} from '../../models/lesson';
+import {Assignment} from '../../models/assignment';
+import {Evaluation} from '../../models/evaluation';
+import {Course} from '../../models/course';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../models/user';
+
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-edit-course',
@@ -25,7 +28,12 @@ export class EditCourseComponent implements OnInit {
   private id: number;
 
   constructor(private courseService: CourseService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private userService: UserService) {
+  }
+
+  users: User[];
+
 
   ngOnInit() {
     this.route.params
