@@ -18,4 +18,5 @@ export const courseRoutes: Routes = [
   }
 ];
 
+
 export const routes = RouterModule.forChild(courseRoutes);
