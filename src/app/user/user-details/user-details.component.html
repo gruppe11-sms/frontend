@@ -2,6 +2,7 @@
   <h1>User Profile</h1>
   <div>Name: {{user.name}}</div>
   <div>Username: {{user.username}}</div>
+  <button mat-raised-button (click)="openPasswordDialog()">Change Password</button>
   <h2>Roles</h2>
   <ul>
     <li *ngFor="let role of user.roles">{{role.title}} - {{role.description}}</li>

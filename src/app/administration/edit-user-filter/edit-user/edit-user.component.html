@@ -1,16 +1,16 @@
 <div *ngIf="user" fxLayout="column">
   <div>
-    <mat-form-field class="edit-user-input" fxFlex.xs="100%" fxFlex="50%">
+    <mat-form-field class="edit-user-input" fxFlex="100%">
       <input matInput [(ngModel)]="user.name" placeholder="Name">
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field class="edit-user-input" fxFlex.xs="100%" fxFlex="50%">
+    <mat-form-field class="edit-user-input" fxFlex="100%">
       <input matInput [(ngModel)]="user.username" placeholder="Username">
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field fxFlex.xs="100%" fxFlex="50%">
+    <mat-form-field fxFlex="100%">
       <mat-chip-list #chipList>
         <mat-chip *ngFor="let role of user.roles" [selectable]="selectable"
                   [removable]="removable"
@@ -27,7 +27,7 @@
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field fxFlex.xs="100%" fxFlex="50%">
+    <mat-form-field fxFlex="100%">
       <mat-chip-list #groupChipList>
         <mat-chip *ngFor="let group of user.groups" [selectable]="selectable"
                   [removable]="removable"
@@ -43,7 +43,7 @@
       </mat-chip-list>
     </mat-form-field>
   </div>
-  <div>
+  <div fxLayout="row" fxLayoutAlign="end">
     <button mat-button (click)="saveUser()">Save</button>
   </div>
 </div>
