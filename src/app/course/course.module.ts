@@ -4,9 +4,19 @@ import {CourseComponent} from './course/course.component';
 import {routes} from './course.routes';
 import {CourseService} from './course.service';
 import {CourseDetailComponent} from './course/course-detail/course-detail.component';
-import {MatButtonModule, MatCardModule, MatExpansionModule, MatGridListModule, MatListModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule
+} from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AddCourseComponent} from './course/add-course/add-course.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {EditCourseComponent} from './course/edit-course/edit-course.component';
 
 
 @NgModule({
@@ -18,11 +28,15 @@ import {AddCourseComponent} from './course/add-course/add-course.component';
     MatExpansionModule,
     MatGridListModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [
     CourseService
   ],
-  declarations: [CourseComponent, CourseDetailComponent, AddCourseComponent]
+  declarations: [CourseComponent, CourseDetailComponent, AddCourseComponent, EditCourseComponent]
 })
 export class CourseModule { }

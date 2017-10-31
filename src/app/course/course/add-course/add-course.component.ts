@@ -4,6 +4,7 @@ import {CourseService} from '../../course.service';
 import {Lesson} from '../../models/lesson';
 import {Assignment} from '../../models/assignment';
 import {Evaluation} from '../../models/evaluation';
+import {Course} from "../../models/course";
 
 @Component({
   selector: 'app-add-course',
@@ -22,7 +23,7 @@ export class AddCourseComponent implements OnInit {
   }
 
   createCourse(title: string, description: string, startDate: number, endDate: number) {
-     //this.courseService.createCourse(new Course(title, description, startDate, endDate));
+    this.courseService.createCourse(new Course(title, description, startDate, endDate));
   }
 
 

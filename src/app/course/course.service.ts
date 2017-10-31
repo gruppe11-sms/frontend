@@ -20,16 +20,16 @@ export class CourseService {
         .forEach(assignment => assignment.remainingTime = assignment.enddate - Date.now()));
   }
 
-  createCourse(course: Course): void {
-    this.httpClient.post(`/api/courses`, {course});
+  createCourse(course: Course): Observable<Course> {
+    return this.httpClient.post(`/api/courses`, {course});
   }
 
-  updateCourse(id: number): void {
-
+  updateCourse(id: number, course: Course): Observable<Course> {
+    return this.httpClient.put(`/api/courses/${id}`, {course});
   }
 
   deleteCourse(id: number): void {
-
+    this.httpClient.delete(`/api/courses/${id}`);
   }
 
 }
