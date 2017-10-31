@@ -1,10 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {CourseService} from "../../course.service";
-import {Participant} from "../../models/participant";
-import {Lesson} from "../../models/lesson";
-import {Assignment} from "../../models/assignment";
-import {Evaluation} from "../../models/evaluation";
-import {Course} from "../../models/course";
+import {CourseService} from '../../course.service';
+import {Participant} from '../../models/participant';
+import {Lesson} from '../../models/lesson';
+import {Assignment} from '../../models/assignment';
+import {Evaluation} from '../../models/evaluation';
+import {Course} from '../../models/course';
+import {UserService} from '../../../services/user.service';
+import {User} from '../../../models/user';
+
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-edit-course',
@@ -13,15 +17,35 @@ import {Course} from "../../models/course";
 })
 export class EditCourseComponent implements OnInit {
 
-  constructor(private courseService: CourseService) { }
+  public title: string;
+  public description: string;
+  public startDate: number;
+  public endDate: number;
+  public participants: Participant[];
+  public lessons: Lesson[];
+  public assignments: Assignment[];
+  public evaluations: Evaluation[];
+  private id: number;
 
-  ngOnInit() {
+  constructor(private courseService: CourseService,
+              private route: ActivatedRoute,
+              private userService: UserService) {
   }
 
-  updateCourse(id: number, title: string, description: string, startDate: number, endDate: number,
-               participants: Participant[], lessons: Lesson[], assignments: Assignment[], evaluations: Evaluation[]): void {
-    this.courseService.updateCourse(id, new Course(title, description, startDate, endDate,
-                                                    participants, lessons, assignments, evaluations));
+  users: User[];
+
+
+  ngOnInit() {
+    this.route.params
+      .map(params => {
+        this.id = Number(params.id);
+      });
+  }
+
+  updateCourse(): void {
+    this.courseService.updateCourse(this.id, new Course(this.title, this.description, this.startDate, this.endDate,
+      this.participants, this.lessons, this.assignments, this.evaluations));
   }
 
 }
+

@@ -15,9 +15,10 @@ import {
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AddCourseComponent} from './course/add-course/add-course.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditCourseComponent} from './course/edit-course/edit-course.component';
-
+import {MatDatepickerModule} from '@angular/material';
+import {MatNativeDateModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -32,7 +33,9 @@ import {EditCourseComponent} from './course/edit-course/edit-course.component';
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     CourseService
