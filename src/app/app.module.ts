@@ -7,7 +7,6 @@ import {AppComponent} from './app.component';
 import {routes} from './app.routes';
 import {HomeComponent} from './home/home.component';
 import {ServicesModule} from './services/services.module';
-import {AuthenticatedGuard} from "./authenticated.guard";
 import {StartComponent} from "./start/start.component";
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
@@ -30,7 +29,6 @@ import {AuthInterceptor} from "./services/auth-inteceptor";
     routes,
   ],
   providers: [
-    AuthenticatedGuard,
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
 
   ],

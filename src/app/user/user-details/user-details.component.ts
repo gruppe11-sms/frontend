@@ -11,7 +11,8 @@ export class UserDetailsComponent implements OnInit {
   @Input()
   public user: User;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

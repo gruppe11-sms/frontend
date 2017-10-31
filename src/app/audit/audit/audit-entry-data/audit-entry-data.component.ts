@@ -9,9 +9,10 @@ export class AuditEntryDataComponent implements OnInit {
 
   @Input()
   public data: any;
-  public renderData: {key: string, value: any}[];
+  public renderData: { key: string, value: any }[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.renderData = [];

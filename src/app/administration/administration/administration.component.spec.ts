@@ -1,21 +1,20 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {AuditEntryDataComponent} from './audit-entry-data.component';
+import {AdministrationComponent} from './administration.component';
 
-describe('AuditEntryDataComponent', () => {
-  let component: AuditEntryDataComponent;
-  let fixture: ComponentFixture<AuditEntryDataComponent>;
+describe('AdministrationComponent', () => {
+  let component: AdministrationComponent;
+  let fixture: ComponentFixture<AdministrationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AuditEntryDataComponent],
-      imports: []
+      declarations: [AdministrationComponent]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuditEntryDataComponent);
+    fixture = TestBed.createComponent(AdministrationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

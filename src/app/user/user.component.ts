@@ -20,6 +20,6 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.user = this.tokenService.getTokenUser().switchMap(user => this.userService.getUser(user.id))
+
   }
 }

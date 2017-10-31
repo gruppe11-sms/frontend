@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { AuditService } from './audit.service';
+import {AuditService} from './audit.service';
 import {AuditModule} from "./audit.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ServicesModule} from "../services/services.module";

@@ -1,7 +1,7 @@
-<div class="container">
+<div fxLayout="column" fxLayoutGap="1rem" class="container">
   <h2>Edit User</h2>
   <form>
-    <mat-form-field class="edit-user-input">
+    <mat-form-field fxFlex.xs="100%" fxFlex="50%">
       <input matInput #searchInput type="text"
              placeholder="User"
              aria-label="Select user"
@@ -16,5 +16,5 @@
       </mat-autocomplete>
     </mat-form-field>
   </form>
-  <edit-user [user]="user|async" [roles]="roles|async"></edit-user>
+  <edit-user [user]="user|async" [roles]="roles|async" [groups]="groups|async"></edit-user>
 </div>
