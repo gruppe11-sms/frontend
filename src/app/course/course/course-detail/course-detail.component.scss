@@ -1,5 +1,5 @@
 .course-detail{
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 50px;
   margin-right: 200px;
 }
@@ -8,6 +8,12 @@
   margin-top: 20px;
   margin-left: 50px;
   margin-right: 200px;
+}
+
+.course-detail-format{
+  max-width: 1000px;
+  width: 100%;
+  padding-bottom:50px;
 }
 
 .example-headers-align .mat-expansion-panel-header-title,

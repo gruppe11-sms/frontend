@@ -1,4 +1,4 @@
-<div class="create-course-form">
+<div class="course-update-format">
   <div>
     <div>
       <form (submit)="updateCourse()">
@@ -47,21 +47,23 @@
 
                 <!--Participants-->
                 <div fxLayout="100%">
-                  <div fxFlex="40%">
-                    <mat-form-field>
-                      <mat-select placeholder="Select Participant(s)">
-                        <mat-option *ngFor="let user of users">
-                          {{user.name}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                    <div fxFlex="50%">
+                      <form class="example-form">
+                        <mat-form-field class="example-full-width">
+                          <input matInput placeholder="State" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+                          <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let user of (users|async)" [value]="user.name">
+                              <img style="vertical-align:middle;" aria-hidden src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="25" />
+                              <span>{{user.name}}</span> |
+                            </mat-option>
+                          </mat-autocomplete>
+                        </mat-form-field>
+                      </form>
                     <!--empty-->
                     <div fxFlex="60%">
                     </div>
-
                   </div>
                 </div>
-
                   <!--Submit update-->
                   <div>
                     <br>
