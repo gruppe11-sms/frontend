@@ -19,6 +19,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditCourseComponent} from './course/edit-course/edit-course.component';
 import {MatDatepickerModule} from '@angular/material';
 import {MatNativeDateModule} from '@angular/material';
+import {MatAutocompleteModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import {MatNativeDateModule} from '@angular/material';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatAutocompleteModule
   ],
   providers: [
     CourseService
