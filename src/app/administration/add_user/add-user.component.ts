@@ -1,9 +1,10 @@
-import {Component} from "@angular/core";
-import {UserService} from "../../services/user.service";
-import {User} from "../../models/user";
+import {Component} from '@angular/core';
+import {UserService} from '../../services/user.service';
+import {User} from '../../models/user';
 
 @Component({
-  templateUrl: "./add-user.component.html"
+  templateUrl: './add-user.component.html',
+  styleUrls: ['./add-user.component.scss']
 })
 export class AddUserComponent {
 
@@ -23,6 +24,6 @@ export class AddUserComponent {
           this.userCreationResponse = 'Failed to save user';
           console.error('Could not create user' + err);
         },
-      )
+      );
   }
 }
