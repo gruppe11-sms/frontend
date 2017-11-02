@@ -21,15 +21,17 @@ export class CourseService {
   }
 
   createCourse(course: Course): Observable<Course> {
-    return this.httpClient.post(`/api/courses`, {course});
+    console.log(course);
+    return this.httpClient.post(`/api/courses`, course);
   }
 
-  updateCourse(id: number, course: Course): Observable<Course> {
-    return this.httpClient.put(`/api/courses/${id}`, {course});
+  updateCourse(id: number, course: Course) {
+    console.log('updateing course' + course.title);
+    return this.httpClient.put(`/api/courses/${id}`, course);
   }
 
-  deleteCourse(id: number): void {
+  deleteCourse(id: number) {
     this.httpClient.delete(`/api/courses/${id}`);
   }
-
 }
+

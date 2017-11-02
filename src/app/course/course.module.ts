@@ -7,18 +7,21 @@ import {CourseDetailComponent} from './course/course-detail/course-detail.compon
 import {
   MatButtonModule,
   MatCardModule,
+  MatDatepickerModule,
   MatExpansionModule,
   MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule
+  MatListModule,
+  MatNativeDateModule,
+  MatSelectModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AddCourseComponent} from './course/add-course/add-course.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditCourseComponent} from './course/edit-course/edit-course.component';
-import {MatDatepickerModule} from '@angular/material';
-import {MatNativeDateModule} from '@angular/material';
+import {EditCourseFormsComponent} from "./course/edit-course/edit-course-forms/edit-course-forms.component";
+
 
 @NgModule({
   imports: [
@@ -36,10 +39,11 @@ import {MatNativeDateModule} from '@angular/material';
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
   ],
   providers: [
     CourseService
   ],
-  declarations: [CourseComponent, CourseDetailComponent, AddCourseComponent, EditCourseComponent]
+  declarations: [CourseComponent, CourseDetailComponent, AddCourseComponent, EditCourseComponent, EditCourseFormsComponent]
 })
 export class CourseModule { }

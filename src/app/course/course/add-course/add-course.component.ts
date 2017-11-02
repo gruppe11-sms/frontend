@@ -1,11 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Participant} from '../../models/participant';
 import {CourseService} from '../../course.service';
-import {Lesson} from '../../models/lesson';
-import {Assignment} from '../../models/assignment';
-import {Evaluation} from '../../models/evaluation';
 import {Course} from "../../models/course";
-import {Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-add-course',
@@ -20,13 +15,12 @@ export class AddCourseComponent implements OnInit {
 
   constructor(private courseService: CourseService) { }
 
-  ngOnInit(
-  ) {
-
+  ngOnInit() {
   }
 
   createCourse() {
-    this.courseService.createCourse(new Course(this.courseTitle, this.courseDescription, this.startDate, this.endDate));
+    console.log(this.courseTitle + this.courseDescription + this.startDate + this.endDate)
+    this.courseService.createCourse(new Course(this.courseTitle, this.courseDescription, this.startDate, this.endDate)).subscribe();
   }
 
 
