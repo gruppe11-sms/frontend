@@ -4,6 +4,7 @@ import {User} from '../models/user';
 import 'rxjs/add/operator/toPromise';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/switchMap';
+import {toHttpParams} from '../helpers/index';
 
 @Injectable()
 export class UserService {
@@ -18,8 +19,31 @@ export class UserService {
     return this.httpClient.post('/api/users', user);
   }
 
-  public saveUser(user: User) {
-    return this.httpClient.put('/api/users', user, {responseType: 'text'});
+  public saveUser(user: User): Observable<void> {
+    return this.updateUser(user)
+      .zip(this.updateGroups(user))
+      .zip(this.updateRoles(user))
+      .map(() => undefined);
+  }
+
+  private updateUser(user: User) {
+    return this.httpClient.put('/api/users', {
+      id: user.id,
+      username: user.username,
+      name: user.name,
+    }, {responseType: 'text'});
+  }
+
+  private updateGroups(user: User) {
+    const groupIds = user.groups.map(group => group.id).join(',');
+    const groupParams = toHttpParams({groups: groupIds});
+    return this.httpClient.put(`/api/users/${user.id}/groups`, {}, {params: groupParams});
+  }
+
+  private updateRoles(user: User) {
+    const roleIds = user.roles.map(role => role.id).join(',');
+    const roleParams = toHttpParams({roles: roleIds});
+    return this.httpClient.put(`/api/users/${user.id}/roles`, {}, {params: roleParams});
   }
 
   public getMe(): Observable<User> {

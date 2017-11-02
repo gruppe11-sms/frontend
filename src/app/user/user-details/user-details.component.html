@@ -1,14 +1,25 @@
-<div *ngIf="user" class="container" fxLayout="column" fxLayoutGap="2pem">
-  <h1>User Profile</h1>
-  <div>Name: {{user.name}}</div>
-  <div>Username: {{user.username}}</div>
-  <button mat-raised-button (click)="openPasswordDialog()">Change Password</button>
-  <h2>Roles</h2>
-  <ul>
-    <li *ngFor="let role of user.roles">{{role.title}} - {{role.description}}</li>
-  </ul>
-  <div *ngIf="user.groups">
-    <h2>Groups</h2>
+<div *ngIf="user" class="container" fxLayout="column">
+  <div class="element">
+    <h2>User Profile</h2>
+  </div>
+  <div class="element">
+    <label class="medium">Name: </label>{{user.name}}
+  </div>
+  <div>
+    <label class="medium">Username: </label>{{user.username}}
+  </div>
+  <div class="element">
+    <label class="medium">Password: </label>
+    <button mat-raised-button (click)="openPasswordDialog()">Change Password</button>
+  </div>
+  <div class="element">
+    <label class="medium">Roles</label>
+    <ul>
+      <li *ngFor="let role of user.roles">{{role.title}} - {{role.description}}</li>
+    </ul>
+  </div>
+  <div *ngIf="user.groups" class="element">
+    <label class="medium">Groups</label>
     <ul>
       <li *ngFor="let group of user.groups">{{group.title}} - {{group.description}}</li>
     </ul>
