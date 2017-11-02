@@ -1,14 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {CourseService} from '../../course.service';
-import {Participant} from '../../models/participant';
-import {Lesson} from '../../models/lesson';
-import {Assignment} from '../../models/assignment';
-import {Evaluation} from '../../models/evaluation';
 import {Course} from '../../models/course';
 import {UserService} from '../../../services/user.service';
 import {User} from '../../../models/user';
 
 import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {ISODates} from "../../models/ISODates";
 
 @Component({
   selector: 'app-edit-course',
@@ -16,7 +14,11 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./edit-course.component.scss']
 })
 export class EditCourseComponent implements OnInit {
-
+  public users: Observable<User[]>;
+  public course: Observable<Course>;
+  private id: number;
+  // Idk what i was thinking
+  /*
   public title: string;
   public description: string;
   public startDate: number;
@@ -25,26 +27,40 @@ export class EditCourseComponent implements OnInit {
   public lessons: Lesson[];
   public assignments: Assignment[];
   public evaluations: Evaluation[];
-  private id: number;
+  */
+
 
   constructor(private courseService: CourseService,
               private route: ActivatedRoute,
               private userService: UserService) {
   }
 
-  users: User[];
-
 
   ngOnInit() {
+    this.course = this.route.params
+      .map(params => {
+        return Number(params.id);
+      })
+      .switchMap(id => {
+        return this.courseService.getCourse(Number(id));
+      })
+      .do(course => {
+        course.isoDates = new ISODates(new Date(course.startDate).toISOString(), new Date(course.endDate).toISOString());
+      });
+
+    this.users = this.userService.getUsers();
+  }
+
+  updateCourse(course: Course): void {
+    console.log('forwarding course to service' + course.title)
+
+
     this.route.params
       .map(params => {
         this.id = Number(params.id);
       });
-  }
 
-  updateCourse(): void {
-    this.courseService.updateCourse(this.id, new Course(this.title, this.description, this.startDate, this.endDate,
-      this.participants, this.lessons, this.assignments, this.evaluations));
+    this.courseService.updateCourse(this.id, course).subscribe();
   }
 
 }

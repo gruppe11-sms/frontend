@@ -1,0 +1,80 @@
+<div class="create-course-form" *ngIf="course">
+  <div>
+    <div>
+      <form>
+        <mat-card>
+          <mat-card-title>
+            <h1>Create Course</h1>
+          </mat-card-title>
+          <div>
+            <mat-card-content>
+              <div class="example-container">
+                <!--Title-->
+                <mat-form-field>
+                  <input matInput #courseTitleInput="ngModel" [(ngModel)]="course.title" name="courseTitleInput" required
+                         placeholder="Course Title">
+                  <mat-error *ngIf="courseTitleInput.hasError('required')">This is required</mat-error>
+                </mat-form-field>
+
+                <!--Description-->
+                <mat-form-field>
+                  <textarea matInput #courseDescriptionInput="ngModel" [(ngModel)]="course.description"
+                            name="courseDescriptionInput" required placeholder="Course description"></textarea>
+                  <mat-error *ngIf="courseDescriptionInput.hasError('required')">This is required</mat-error>
+                </mat-form-field>
+
+
+                <!--Date picker-->
+                <div fxLayout="100%">
+                  <div fxFlex="50%">
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="StartDatepicker" name="courseStartDate"
+                             #courseStartDate="ngModel" [(ngModel)]="course.isoDates.startDate" required placeholder="Start date">
+                      <mat-datepicker-toggle matSuffix [for]="StartDatepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #StartDatepicker></mat-datepicker>
+                      <mat-error *ngIf="courseStartDate.hasError('required')">This is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                  <div fxFlex="50%">
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="EndDatepicker" name="courseEndDate" #courseEndDate="ngModel"
+                             [(ngModel)]="course.isoDates.endDate" required placeholder="End date">
+                      <mat-datepicker-toggle matSuffix [for]="EndDatepicker"></mat-datepicker-toggle>
+                      <mat-datepicker #EndDatepicker></mat-datepicker>
+                      <mat-error *ngIf="courseEndDate.hasError('required')">This is required</mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+
+
+                <!--Participants-->
+                <div fxLayout="100%">
+                  <div fxFlex="40%">
+                    <mat-form-field>
+                      <mat-select placeholder="Select Participant(s)">
+                        <mat-option *ngFor="let user of users" [value]="user">
+                          {{user.name}}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    <!--empty-->
+                    <div fxFlex="60%">
+                    </div>
+
+                  </div>
+                </div>
+
+                <!--Submit update-->
+                <div>
+                  <br>
+                  <button mat-raised-button color="secondary" (click)="onSave()">Update Course</button>
+                </div>
+              </div>
+            </mat-card-content>
+          </div>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
+
