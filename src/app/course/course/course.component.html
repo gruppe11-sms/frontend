@@ -1,32 +1,42 @@
 <div fxLayout="row">
   <div fxFlex="100%">
-  <mat-card class="course-card">
-    <mat-card-header>
-      <mat-card-title><h2>Courses</h2></mat-card-title>
-      <div style="margin-left:4px; margin-left:80%;"><a routerLink="new"><mat-icon>add</mat-icon></a></div>
-    </mat-card-header>
+    <mat-card class="course-card">
+      <mat-card-header fxLayout="row">
+        <mat-card-title>
+          <h1 fxFlex>Courses</h1>
+        </mat-card-title>
+      </mat-card-header>
 
-    <div fxLayout="row" *ngFor="let course of courses|async">
-      <hr>
-      <div fxFlex="70%" >
-        <mat-nav-list>
-          <a routerLink="{{course.id}}">
-            <mat-list-item>{{course.title}}</mat-list-item>
-            <mat-card-subtitle style="padding-left: 16px;">Start Date: {{course.startDate|date:"dd/MM/y - HH:mm:ss"}}
-            </mat-card-subtitle>
-            <mat-card-subtitle style="padding-left: 16px;">End Date: {{course.endDate|date:"dd/MM/y - HH:mm:ss"}}
-            </mat-card-subtitle>
+      <mat-card-content>
+        <div fxLayout="row" *ngFor="let course of courses|async">
+          <div fxFlex="70%">
+            <mat-nav-list>
+              <a routerLink="{{course.id}}">
+                <mat-list-item>{{course.title}}</mat-list-item>
+                <mat-card-subtitle>Start Date: {{course.startDate|date:"dd/MM/y - HH:mm:ss"}}
+                </mat-card-subtitle>
+                <mat-card-subtitle>End Date: {{course.endDate|date:"dd/MM/y - HH:mm:ss"}}
+                </mat-card-subtitle>
 
-          </a>
-        </mat-nav-list>
-      </div>
-      <div fxFlex="30%">
-        <div style="padding-top:15px; padding-left: 80px;"><a routerLink='update/{{course.id}}'><mat-icon>mode edit</mat-icon></a></div>
-      </div>
-    </div>
+              </a>
+            </mat-nav-list>
+          </div>
+          <div fxFlex="30%">
+            <div>
+              <a routerLink='update/{{course.id}}'>
+                <mat-icon>mode edit</mat-icon>
+              </a>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
 
-
-  </mat-card>
+      <mat-card-actions>
+        <a mat-icon-button routerLink="new">
+          <mat-icon>add</mat-icon>
+        </a>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>
 
