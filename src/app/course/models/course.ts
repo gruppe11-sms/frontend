@@ -14,7 +14,7 @@ export class Course {
   isoDates: ISODates;
   participant: Participant[];
   lessons: Lesson[];
-  assignment: Assignment[];
+  assignments: Assignment[];
   courseEvaluations: Evaluation[];
 
   constructor(title: string, description: string, startDate: number, endDate: number) {

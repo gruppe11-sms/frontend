@@ -16,7 +16,7 @@ export class CourseService {
 
   getCourse(id: number): Observable<Course> {
     return this.httpClient.get<Course>(`/api/courses/${id}`)
-      .do(course => course.assignment
+      .do(course => course.assignments
         .forEach(assignment => assignment.remainingTime = assignment.enddate - Date.now()));
   }
 
