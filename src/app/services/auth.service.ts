@@ -3,9 +3,9 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
-import "rxjs/add/operator/take";
-import {TokenService} from "./token.service";
-import {Router} from "@angular/router";
+import 'rxjs/add/operator/take';
+import {TokenService} from './token.service';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -30,6 +30,6 @@ export class AuthService {
 
   public logout() {
     this.tokenService.token.next('');
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 }

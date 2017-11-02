@@ -13,7 +13,6 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatNativeDateModule,
   MatSelectModule
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -22,6 +21,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditCourseComponent} from './course/edit-course/edit-course.component';
 import {EditCourseFormsComponent} from "./course/edit-course/edit-course-forms/edit-course-forms.component";
 
+import {MatNativeDateModule} from '@angular/material';
+import {MatAutocompleteModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import {EditCourseFormsComponent} from "./course/edit-course/edit-course-forms/e
     MatIconModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatAutocompleteModule,
     MatSelectModule,
   ],
   providers: [
