@@ -19,8 +19,14 @@ export class AddCourseComponent implements OnInit {
   }
 
   createCourse() {
-    console.log(this.courseTitle + this.courseDescription + this.startDate + this.endDate)
-    this.courseService.createCourse(new Course(this.courseTitle, this.courseDescription, this.startDate, this.endDate)).subscribe();
+    console.log(this.courseTitle + this.courseDescription + this.startDate + this.endDate);
+    const course = <Course>{
+      title: this.courseTitle,
+      description: this.courseDescription,
+      startDate: new Date(this.startDate),
+      endDate: new Date(this.endDate)
+    };
+    this.courseService.createCourse(course).subscribe();
   }
 
 

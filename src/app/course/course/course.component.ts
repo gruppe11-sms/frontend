@@ -11,7 +11,6 @@ import {Course} from '../models/course';
 })
 export class CourseComponent implements OnInit {
 
-  test: string;
   public courses: Observable<Course[]>;
 
   constructor(private courseService: CourseService) {
@@ -19,16 +18,11 @@ export class CourseComponent implements OnInit {
 
   ngOnInit() {
     this.courses = this.courseService.getCourses();
-    this.courses.subscribe(courses => courses.forEach(course => console.log(course)));
-  }
-
-
-  getCourses() {
-
-  }
-
-  getTest() {
-    return this.test;
+    // this.courses.subscribe(courses => courses.forEach(course => console.log(course)));
+    const course = this.courseService.getCourse(6);
+    course.subscribe((course) => {
+      console.log(course);
+    });
   }
 
 }

@@ -1,0 +1,98 @@
+<div class="course-detail-format" *ngIf="course">
+  <mat-card class="course-detail">
+    <mat-list>
+      <h3>Course Information</h3>
+      <!--Title-->
+      <mat-list-item>
+        <h1>{{course.title}}</h1>
+      </mat-list-item>
+
+      <!--Description-->
+      <mat-list-item>
+        <h3>Description:</h3>
+      </mat-list-item>
+      <mat-list-item>
+        <h4>Bacon ipsum dolor amet tongue boudin cupim, tail cow chicken tri-tip. Pork belly t-bone turkey
+          frankfurter filet mignon. Porchetta capicola short ribs kielbasa shankle, strip steak salami turducken pancetta
+          pork chop turkey meatball tenderloin landjaeger.</h4>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
+
+
+  <mat-card class="course-detail-lesson">
+    <!--Assignments-->
+    <h3>Assignments</h3 >
+    <div *ngFor="let assignment of course.assignments" class="" course-assignment
+         style="margin-bottom: 11px;">
+      <mat-accordion class="example-headers-align">
+        <mat-expansion-panel hideToggle="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title style="padding-top:5px;">
+              {{assignment.title}}
+            </mat-panel-title>
+            <mat-panel-description>
+              Due {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}} <button color="warn" mat-icon-button=""><mat-icon>alarm</mat-icon></button >
+            </mat-panel-description>
+
+          </mat-expansion-panel-header>
+          <h4>{{assignment.description}}</h4>
+          <br>
+          <h5>Posted: {{assignment.startdate|date:"dd/MM/y - HH:mm:ss"}}</h5>
+          <h5>Due Date: {{assignment.enddate|date:"dd/MM/y - HH:mm:ss"}}</h5>
+          <mat-action-row>
+            <div fxLayout="row">
+              <div fxFlex="50%">
+                <h5 style="margin-right:200px;">Time remaining: {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}}</h5>
+              </div>
+              <div fxFlex="50%">
+                <button color="secondary" mat-raised-button="handInAssignment">Hand In/Upload Assignment</button>
+              </div>
+            </div>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </mat-card>
+
+  <mat-card class="course-detail-lesson">
+    <h3>Lessons</h3>
+    <mat-list-item>
+      <mat-list>
+        <div *ngFor="let lesson of course.lessons">
+          <mat-list-item>{{lesson.title}}</mat-list-item>
+        </div>
+      </mat-list>
+    </mat-list-item>
+  </mat-card>
+
+
+
+  <mat-card class="course-detail-lesson">
+    <div fxLayout="row">
+      <div fxFlex="50%">
+        <h3>Participants</h3>
+        <div *ngFor="let participant of course.participants">
+          {{participant.id}}
+        </div>
+      </div>
+      <div fxFlex="50%">
+        <div>
+          <button color="secondary" mat-raised-button="evaluationLink" routerlink="">Evaluations</button>
+          <button color="secondary" mat-raised-button="evaluationStatistics" routerLink="">Evaluation Statistics</button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+</div> <!--end format class-->
+
+
+
+
+
+
+
+
+
+

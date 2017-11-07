@@ -24,13 +24,6 @@ export class EditCourseFormsComponent implements OnInit {
   }
 
   onSave() {
-    let date = new Date(this.course.isoDates.startDate);
-    this.course.startDate = date.getTime();
-    date = new Date(this.course.isoDates.endDate);
-    this.course.endDate = date.getTime();
-    console.log('course is emitted' + this.course.title);
-
     this.save.emit(this.course);
   }
-
 }

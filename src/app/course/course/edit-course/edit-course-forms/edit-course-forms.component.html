@@ -29,7 +29,7 @@
                   <div fxFlex="50%">
                     <mat-form-field>
                       <input matInput [matDatepicker]="StartDatepicker" name="courseStartDate"
-                             #courseStartDate="ngModel" [(ngModel)]="course.isoDates.startDate" required placeholder="Start date">
+                             #courseStartDate="ngModel" [(ngModel)]="course.startDate" required placeholder="Start date">
                       <mat-datepicker-toggle matSuffix [for]="StartDatepicker"></mat-datepicker-toggle>
                       <mat-datepicker #StartDatepicker></mat-datepicker>
                       <mat-error *ngIf="courseStartDate.hasError('required')">This is required</mat-error>
@@ -38,7 +38,7 @@
                   <div fxFlex="50%">
                     <mat-form-field>
                       <input matInput [matDatepicker]="EndDatepicker" name="courseEndDate" #courseEndDate="ngModel"
-                             [(ngModel)]="course.isoDates.endDate" required placeholder="End date">
+                             [(ngModel)]="course.endDate" required placeholder="End date">
                       <mat-datepicker-toggle matSuffix [for]="EndDatepicker"></mat-datepicker-toggle>
                       <mat-datepicker #EndDatepicker></mat-datepicker>
                       <mat-error *ngIf="courseEndDate.hasError('required')">This is required</mat-error>

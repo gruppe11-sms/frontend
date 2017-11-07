@@ -3,6 +3,23 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Course} from './models/course';
 import 'rxjs/add/operator/do';
+import {Participant} from "./models/participant";
+import {Lesson} from "./models/lesson";
+import {Assignment} from "./models/assignment";
+import {Evaluation} from "./models/evaluation";
+
+export interface ICourseResponse {
+  id: number;
+  title: string;
+  description: string;
+  startDate: number;
+  endDate: number;
+  participant: Participant[];
+  lessons: Lesson[];
+  assignments: Assignment[];
+  evaluations: Evaluation[];
+
+}
 
 @Injectable()
 export class CourseService {
@@ -15,9 +32,20 @@ export class CourseService {
   }
 
   getCourse(id: number): Observable<Course> {
-    return this.httpClient.get<Course>(`/api/courses/${id}`)
-      .do(course => course.assignments
-        .forEach(assignment => assignment.remainingTime = assignment.enddate - Date.now()));
+    return this.httpClient.get<ICourseResponse>(`/api/courses/${id}`)
+      .map(courseResponse => {
+        return {
+          id: courseResponse.id,
+          title: courseResponse.title,
+          description: courseResponse.description,
+          startDate: new Date(courseResponse.startDate),
+          endDate: new Date(courseResponse.endDate),
+          participants: courseResponse.participant,
+          lessons: courseResponse.lessons,
+          assignments: courseResponse.assignments,
+          evaluations: courseResponse.evaluations
+        };
+      }).do(course => course.assignments.forEach(assignment => assignment.remainingTime = assignment.enddate - Date.now()));
   }
 
   createCourse(course: Course): Observable<Course> {

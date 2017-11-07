@@ -5,6 +5,7 @@ import {routes} from './course.routes';
 import {CourseService} from './course.service';
 import {CourseDetailComponent} from './course/course-detail/course-detail.component';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
   MatDatepickerModule,
@@ -13,6 +14,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
+  MatNativeDateModule,
   MatSelectModule,
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -20,13 +22,11 @@ import {AddCourseComponent} from './course/add-course/add-course.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditCourseComponent} from './course/edit-course/edit-course.component';
 import {EditCourseFormsComponent} from './course/edit-course/edit-course-forms/edit-course-forms.component';
-
-import {MatNativeDateModule} from '@angular/material';
-import {MatAutocompleteModule} from '@angular/material';
 import {AllAssignmentsComponent} from './assignment/all-assignments/all-assignments.component';
 import {CreateAssignmentComponent} from './assignment/create-assignment/create-assignment.component';
 import {AssignmentService} from './assignment.service';
-import { AssignmentDetailComponent } from './assignment/assignment-detail/assignment-detail.component';
+import {AssignmentDetailComponent} from './assignment/assignment-detail/assignment-detail.component';
+import {CourseDetailFormsComponent} from './course/course-detail/course-detail-forms/course-detail-forms.component';
 
 @NgModule({
   imports: [
@@ -54,6 +54,7 @@ import { AssignmentDetailComponent } from './assignment/assignment-detail/assign
   declarations: [
     CourseComponent,
     CourseDetailComponent,
+    CourseDetailFormsComponent,
     AddCourseComponent,
     EditCourseComponent,
     EditCourseFormsComponent,

@@ -31,7 +31,5 @@ export class CourseDetailComponent implements OnInit {
         return this.courseService.getCourse(Number(id));
       });
   }
-
-
 }
 
