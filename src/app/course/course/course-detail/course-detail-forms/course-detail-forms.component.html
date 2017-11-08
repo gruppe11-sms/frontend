@@ -23,6 +23,11 @@
   <mat-card class="course-detail-lesson">
     <!--Assignments-->
     <h3>Assignments</h3 >
+    <mat-card-actions>
+      <a mat-icon-button routerLink="assignments/new">
+        <mat-icon>add</mat-icon>
+      </a>
+    </mat-card-actions>
     <div *ngFor="let assignment of course.assignments" class="" course-assignment
          style="margin-bottom: 11px;">
       <mat-accordion class="example-headers-align">
@@ -52,6 +57,7 @@
           </mat-action-row>
         </mat-expansion-panel>
       </mat-accordion>
+
     </div>
   </mat-card>
 
