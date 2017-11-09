@@ -1,20 +1,10 @@
 <div fxLayoutGap="1rem" class="container" fxFlex="50%" fxLayoutAlign="center" fxLayout="column">
   <h2>Edit User</h2>
-  <form>
-    <mat-form-field fxFlex="100%">
-      <input matInput #searchInput type="text"
-             placeholder="User"
-             aria-label="Select user"
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete"
-                        [displayWith]="displayFn">
-        <mat-option *ngFor="let option of filteredOptions | async"
-                    [value]="option">
-          {{ option.name }} ({{option.username}})
-        </mat-option>
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
-  <app-edit-user [user]="user|async" [roles]="roles|async" [groups]="groups|async"></app-edit-user>
+  <mat-list>
+    <a mat-list-item *ngFor="let user of users|async" routerLink="{{user.id}}">
+      <p>
+          {{user.username}} {{user.name}}
+      </p>
+    </a>
+  </mat-list>
 </div>
