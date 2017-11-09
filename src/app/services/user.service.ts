@@ -53,4 +53,8 @@ export class UserService {
   public changePassword(oldPassword: string, newPassword: string): Observable<string> {
     return this.httpClient.post('/api/users/changepassword', {oldPassword, newPassword}, {responseType: 'text'});
   }
+
+  public getUser(userId: number): Observable<User> {
+    return this.httpClient.get(`/api/users/${userId}`);
+  }
 }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/zip';
@@ -8,6 +8,9 @@ import {MatChipInputEvent} from '@angular/material';
 import {ENTER} from '@angular/cdk/keycodes';
 import {Group} from '../../../models/group';
 import {UserService} from '../../../services/user.service';
+import {ActivatedRoute} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
+
 
 const COMMA = 188;
 
@@ -18,18 +21,21 @@ const COMMA = 188;
   styleUrls: ['./edit-user.component.scss'],
 })
 
-export class EditUserComponent {
-
+export class EditUserComponent implements OnInit {
   public selectable = true;
   public removable = true;
   public addOnBlur = true;
   public separatorKeysCodes = [ENTER, COMMA];
-
   @Input() public user: User;
   @Input() public roles: Role[];
   @Input() public groups: Group[];
 
-  public constructor(private userService: UserService) {
+  public constructor(private userService: UserService, private route: ActivatedRoute) {
+  }
+
+  ngOnInit(): void {
+      const userId = Number(this.route.snapshot.paramMap.get('id'));
+      this.userService.getUser(userId).subscribe(user => this.user = user);
   }
 
   public addRole(event: MatChipInputEvent) {
