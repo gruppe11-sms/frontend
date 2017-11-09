@@ -11,26 +11,24 @@
           <input matInput #lessonTitleInput="ngModel" [(ngModel)]="lessonTitle"  name="lessonTitleInput" required placeholder="Lesson Title">
           <mat-error *ngIf="lessonTitleInput.hasError('required')">This is required</mat-error>
         </mat-form-field>
-      <mat-form-field>
-        <input matInput #lessonTitleInput="ngModel" [(ngModel)]="lessonTitle"  name="lessonTitleInput" required placeholder="Lesson Title">
-        <mat-error *ngIf="lessonTitleInput.hasError('required')">This is required</mat-error>
-      </mat-form-field>
       <!---->
       <div fxLayout="100%">
         <div fxFlex="50%">
           <mat-form-field>
-            <input matInput [matDatepicker]="StartDatepicker" name="courseStartDate" #lessonStartDate="ngModel" [(ngModel)]="lessonStartDate" required placeholder="Start date">
+            <input matInput [matDatepicker]="StartDatepicker" name="courseStartDate" #lessonStartDateInput="ngModel"
+                   [(ngModel)]="lessonStartDate" required placeholder="Start date">
             <mat-datepicker-toggle matSuffix [for]="StartDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #StartDatepicker></mat-datepicker>
-            <mat-error *ngIf="lessonStartDate.hasError('required')">This is required</mat-error>
+            <mat-error *ngIf="lessonStartDateInput.hasError('required')">This is required</mat-error>
           </mat-form-field>
         </div>
         <div fxFlex="50%">
           <mat-form-field>
-            <input matInput [matDatepicker]="EndDatepicker" name="lessonEndDate" #lessonEndDate="ngModel" [(ngModel)]="lessonEndDate" required placeholder="End date">
+            <input matInput [matDatepicker]="EndDatepicker" name="lessonEndDate" #lessonEndDateInput="ngModel"
+                   [(ngModel)]="lessonEndDate" required placeholder="End date">
             <mat-datepicker-toggle matSuffix [for]="EndDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #EndDatepicker></mat-datepicker>
-            <mat-error *ngIf="lessonEndDate.hasError('required')">This is required</mat-error>
+            <mat-error *ngIf="lessonEndDateInput.hasError('required')">This is required</mat-error>
           </mat-form-field>
         </div>
       </div>

@@ -18,11 +18,6 @@ export class CourseComponent implements OnInit {
 
   ngOnInit() {
     this.courses = this.courseService.getCourses();
-    // this.courses.subscribe(courses => courses.forEach(course => console.log(course)));
-    const course = this.courseService.getCourse(6);
-    course.subscribe((course) => {
-      console.log(course);
-    });
   }
 
 }

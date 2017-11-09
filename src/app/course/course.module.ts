@@ -8,6 +8,7 @@ import {
   MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
+  MatChipsModule,
   MatDatepickerModule,
   MatExpansionModule,
   MatGridListModule,
@@ -49,6 +50,7 @@ import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
     MatNativeDateModule,
     MatAutocompleteModule,
     MatSelectModule,
+    MatChipsModule,
   ],
   providers: [
     CourseService,
