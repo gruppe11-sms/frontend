@@ -4,12 +4,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/zip';
 import {User} from '../../../models/user';
 import {Role} from '../../../models/role';
-import {MatChipInputEvent} from '@angular/material';
+import {MatChipInputEvent, MatSnackBar} from '@angular/material';
 import {ENTER} from '@angular/cdk/keycodes';
 import {Group} from '../../../models/group';
 import {UserService} from '../../../services/user.service';
 import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import {RoleService} from "../../../services/role.service";
+import {GroupService} from "../../../services/group.service";
 
 
 const COMMA = 188;
@@ -30,15 +32,21 @@ export class EditUserComponent implements OnInit {
   @Input() public roles: Role[];
   @Input() public groups: Group[];
 
-  public constructor(private userService: UserService, private route: ActivatedRoute) {
+  public constructor(private userService: UserService,
+                     private route: ActivatedRoute,
+                     private roleService: RoleService,
+                     private groupService: GroupService,
+                     private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
-      const userId = Number(this.route.snapshot.paramMap.get('id'));
-      this.userService.getUser(userId).subscribe(user => this.user = user);
+    const userId = Number(this.route.snapshot.paramMap.get('id'));
+    this.userService.getUser(userId).subscribe(user => this.user = user);
+    this.roleService.getRoles().subscribe(roles => this.roles = roles);
+    this.groupService.getGroups().subscribe(groups => this.groups = groups);
   }
 
-  public addRole(event: MatChipInputEvent) {
+  addRole(event: MatChipInputEvent) {
     const input = event.input;
     const value = event.value;
 
@@ -52,14 +60,14 @@ export class EditUserComponent implements OnInit {
     }
   }
 
-  public removeRole(role: Role) {
+  removeRole(role: Role) {
     const index = this.user.roles.indexOf(role);
     if (index >= 0) {
       this.user.roles.splice(index, 1);
     }
   }
 
-  public addGroup(event: MatChipInputEvent) {
+  addGroup(event: MatChipInputEvent) {
     const input = event.input;
     const value = event.value;
 
@@ -72,17 +80,19 @@ export class EditUserComponent implements OnInit {
     }
   }
 
-  public removeGroup(group: Group) {
+  removeGroup(group: Group) {
     const index = this.user.groups.indexOf(group);
     if (index >= 0) {
       this.user.groups.splice(index, 1);
     }
   }
 
-  public saveUser() {
+  saveUser() {
     this.userService.saveUser(this.user)
-      .subscribe(() => console.log('User saved'),
-        err => console.error(`Error saving user`, err),
-      );
+      .subscribe(() => this.snackBar.open('User updated successfully', 'Ok', {duration: 2000}),
+        err => {
+          this.snackBar.open('User not updated', 'Ok', {duration: 2000});
+          console.error("Error updating user", err);
+        });
   }
 }

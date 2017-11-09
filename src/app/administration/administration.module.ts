@@ -5,8 +5,13 @@ import {AddUserComponent} from './add_user/add-user.component';
 import {routes} from './administration.routes';
 import {AdministrationComponent} from './administration/administration.component';
 import {
-  MatAutocompleteModule, MatButtonModule, MatCardModule, MatChipsModule, MatIconModule,
-  MatInputModule
+  MatAutocompleteModule,
+  MatButtonModule,
+  MatCardModule,
+  MatChipsModule,
+  MatIconModule,
+  MatInputModule,
+  MatSnackBarModule
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditUserFilterComponent} from './edit-user-filter/edit-user-filter.component';
@@ -24,7 +29,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatChipsModule,
     MatIconModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   declarations: [
     AddUserComponent,

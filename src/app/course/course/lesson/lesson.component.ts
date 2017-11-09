@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CourseService} from '../../course.service';
 import {Observable} from 'rxjs/Observable';
 import {Lesson} from '../../models/lesson';
@@ -11,7 +11,9 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class LessonComponent implements OnInit {
   lessons: Observable<Lesson[]>;
-  constructor(private courseService: CourseService, private route: ActivatedRoute) { }
+
+  constructor(private courseService: CourseService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.lessons = this.route.params

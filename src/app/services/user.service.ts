@@ -8,6 +8,7 @@ import {toHttpParams} from '../helpers/index';
 
 @Injectable()
 export class UserService {
+
   public constructor(private httpClient: HttpClient) {
   }
 
@@ -26,26 +27,6 @@ export class UserService {
       .map(() => undefined);
   }
 
-  private updateUser(user: User) {
-    return this.httpClient.put('/api/users', {
-      id: user.id,
-      username: user.username,
-      name: user.name,
-    }, {responseType: 'text'});
-  }
-
-  private updateGroups(user: User) {
-    const groupIds = user.groups.map(group => group.id).join(',');
-    const groupParams = toHttpParams({groups: groupIds});
-    return this.httpClient.put(`/api/users/${user.id}/groups`, {}, {params: groupParams});
-  }
-
-  private updateRoles(user: User) {
-    const roleIds = user.roles.map(role => role.id).join(',');
-    const roleParams = toHttpParams({roles: roleIds});
-    return this.httpClient.put(`/api/users/${user.id}/roles`, {}, {params: roleParams});
-  }
-
   public getMe(): Observable<User> {
     return this.httpClient.get<User>('/api/users/me');
   }
@@ -56,5 +37,26 @@ export class UserService {
 
   public getUser(userId: number): Observable<User> {
     return this.httpClient.get(`/api/users/${userId}`);
+  }
+
+  private updateUser(user: User) {
+    return this.httpClient.put('/api/users', {
+      id: user.id,
+      username: user.username,
+      password: user.password,
+      name: user.name,
+    }, {responseType: 'text'});
+  }
+
+  private updateGroups(user: User) {
+    const groupIds = user.groups.map(group => group.id).join(',');
+    const groupParams = toHttpParams({groups: groupIds});
+    return this.httpClient.put(`/api/users/${user.id}/groups`, {}, {params: groupParams, responseType: 'text'});
+  }
+
+  private updateRoles(user: User) {
+    const roleIds = user.roles.map(role => role.id).join(',');
+    const roleParams = toHttpParams({roles: roleIds});
+    return this.httpClient.put(`/api/users/${user.id}/roles`, {}, {params: roleParams, responseType: 'text'});
   }
 }
