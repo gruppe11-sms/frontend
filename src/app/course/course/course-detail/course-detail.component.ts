@@ -7,16 +7,16 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
+import {Lesson} from '../../models/lesson';
 
 @Component({
   selector: 'app-course-detail',
   templateUrl: './course-detail.component.html',
-  styleUrls: ['./course-detail.component.scss']
+  styleUrls: ['./course-detail.component.scss'],
 })
 export class CourseDetailComponent implements OnInit {
-
   public course: Observable<Course>;
-  leng: number;
+  public lessons: Observable<Lesson>;
 
   constructor(private courseService: CourseService,
               private route: ActivatedRoute) {

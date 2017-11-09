@@ -4,14 +4,15 @@
       <form>
         <mat-card>
           <mat-card-title>
-            <h1>Create Course</h1>
+            <h1>Edit Course</h1>
           </mat-card-title>
           <div>
             <mat-card-content>
               <div class="example-container">
                 <!--Title-->
                 <mat-form-field>
-                  <input matInput #courseTitleInput="ngModel" [(ngModel)]="course.title" name="courseTitleInput" required
+                  <input matInput #courseTitleInput="ngModel" [(ngModel)]="course.title" name="courseTitleInput"
+                         required
                          placeholder="Course Title">
                   <mat-error *ngIf="courseTitleInput.hasError('required')">This is required</mat-error>
                 </mat-form-field>
@@ -29,7 +30,9 @@
                   <div fxFlex="50%">
                     <mat-form-field>
                       <input matInput [matDatepicker]="StartDatepicker" name="courseStartDate"
-                             #courseStartDate="ngModel" [(ngModel)]="course.startDate" required placeholder="Start date">
+                             #courseStartDate="ngModel" [(ngModel)]="course.isoDates.startDate" required
+                             placeholder="Start date">
+                      #courseStartDate="ngModel" [(ngModel)]="course.startDate" required placeholder="Start date">
                       <mat-datepicker-toggle matSuffix [for]="StartDatepicker"></mat-datepicker-toggle>
                       <mat-datepicker #StartDatepicker></mat-datepicker>
                       <mat-error *ngIf="courseStartDate.hasError('required')">This is required</mat-error>
@@ -50,15 +53,28 @@
                 <!--Participants-->
                 <div fxLayout="100%">
                   <div fxFlex="40%">
-                    <mat-form-field>
-                      <mat-select placeholder="Select Participant(s)">
-                        <mat-option *ngFor="let user of users" [value]="user">
-                          {{user.name}}
-                        </mat-option>
-                      </mat-select>
-                    </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="participants" aria-label="State" [matAutocomplete]="auto" [formControl]="stateCtrl">
+                        <mat-autocomplete #auto="matAutocomplete">
+                          <mat-option *ngFor="let user of users|async" [value]="user.name">
+                            <span>{{user.name}}</span> |
+                          </mat-option>
+                        </mat-autocomplete>
+                      </mat-form-field>
+
+
                     <!--empty-->
                     <div fxFlex="60%">
+                      <h5>Added participants</h5>
+                      <mat-form-field>
+                        <mat-chip-list aria-orientation="vertical">
+                          <mat-chip>
+
+                          </mat-chip>
+                        </mat-chip-list>
+                      </mat-form-field>
+
+
                     </div>
 
                   </div>

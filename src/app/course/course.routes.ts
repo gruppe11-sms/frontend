@@ -5,10 +5,25 @@ import {AddCourseComponent} from './course/add-course/add-course.component';
 import {EditCourseComponent} from './course/edit-course/edit-course.component';
 import {CreateAssignmentComponent} from './assignment/create-assignment/create-assignment.component';
 import {AssignmentDetailComponent} from './assignment/assignment-detail/assignment-detail.component';
+import {LessonDetailComponent} from './course/lesson-detail/lesson-detail.component';
+import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
+import {LessonComponent} from './course/lesson/lesson.component';
 
 export const courseRoutes: Routes = [
   {
-    path: 'update/:id',
+    path: ':id/lesson/new',
+    component: AddLessonComponent,
+  },
+  {
+    path: ':courseId/lesson/:id',
+    component: LessonDetailComponent,
+  },
+  {
+    path: 'lessons',
+    component: LessonComponent,
+  },
+  {
+    path: ':id/update',
     component: EditCourseComponent,
   },
   {

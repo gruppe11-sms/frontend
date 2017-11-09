@@ -11,10 +11,8 @@
       <mat-list-item>
         <h3>Description:</h3>
       </mat-list-item>
-      <mat-list-item>
-        <h4>Bacon ipsum dolor amet tongue boudin cupim, tail cow chicken tri-tip. Pork belly t-bone turkey
-          frankfurter filet mignon. Porchetta capicola short ribs kielbasa shankle, strip steak salami turducken pancetta
-          pork chop turkey meatball tenderloin landjaeger.</h4>
+      <mat-list-item *ngFor="let description of course.description">
+        <h4>{{description}}</h4>
       </mat-list-item>
     </mat-list>
   </mat-card>
@@ -28,8 +26,7 @@
         <mat-icon>add</mat-icon>
       </a>
     </mat-card-actions>
-    <div *ngFor="let assignment of course.assignments" class="" course-assignment
-         style="margin-bottom: 11px;">
+    <div *ngFor="let assignment of course.assignments" class="course-assignment">
       <mat-accordion class="example-headers-align">
         <mat-expansion-panel hideToggle="true">
           <mat-expansion-panel-header>

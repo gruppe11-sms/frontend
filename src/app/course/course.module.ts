@@ -21,12 +21,15 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {AddCourseComponent} from './course/add-course/add-course.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditCourseComponent} from './course/edit-course/edit-course.component';
-import {EditCourseFormsComponent} from './course/edit-course/edit-course-forms/edit-course-forms.component';
 import {AllAssignmentsComponent} from './assignment/all-assignments/all-assignments.component';
 import {CreateAssignmentComponent} from './assignment/create-assignment/create-assignment.component';
 import {AssignmentService} from './assignment.service';
 import {AssignmentDetailComponent} from './assignment/assignment-detail/assignment-detail.component';
 import {CourseDetailFormsComponent} from './course/course-detail/course-detail-forms/course-detail-forms.component';
+import {EditCourseFormsComponent} from './course/edit-course/edit-course-forms/edit-course-forms.component';
+import {LessonDetailComponent} from './course/lesson-detail/lesson-detail.component';
+import {LessonComponent} from './course/lesson/lesson.component';
+import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
 
 @NgModule({
   imports: [
@@ -61,6 +64,9 @@ import {CourseDetailFormsComponent} from './course/course-detail/course-detail-f
     AllAssignmentsComponent,
     CreateAssignmentComponent,
     AssignmentDetailComponent,
+    AddLessonComponent,
+    LessonDetailComponent,
+    LessonComponent,
   ],
 })
 export class CourseModule {
