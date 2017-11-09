@@ -11,7 +11,7 @@ import {LessonComponent} from './course/lesson/lesson.component';
 
 export const courseRoutes: Routes = [
   {
-    path: ':id/lesson/new',
+    path: ':courseId/lesson/new',
     component: AddLessonComponent,
   },
   {

@@ -3,11 +3,11 @@
     <mat-card>
       <mat-card-header>
         <mat-card-title>Lesson</mat-card-title>
-        <mat-card-subtitle><h5>{{(lesson|async).lessonStartDate}} - {{(lesson|async).lessonEndDate}}</h5></mat-card-subtitle>
+        <mat-card-subtitle><h5>{{(lesson|async).startDate}} - {{(lesson|async).endDate}}</h5></mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
         <mat-list>
-          <mat-list-item><h5>{{(lesson|async).lessonTitle}}</h5></mat-list-item>
+          <mat-list-item><h5>{{(lesson|async).title}}</h5></mat-list-item>
           <mat-list-item><h5>Room nr: {{(lesson|async).lessonRoom}}</h5></mat-list-item>
           <mat-list-item><h3>Files</h3></mat-list-item>
         </mat-list>

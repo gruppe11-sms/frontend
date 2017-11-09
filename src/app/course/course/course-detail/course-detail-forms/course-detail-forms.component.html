@@ -20,7 +20,7 @@
 
   <mat-card class="course-detail-lesson">
     <!--Assignments-->
-    <h3>Assignments</h3 >
+    <h3>Assignments</h3>
     <mat-card-actions>
       <a mat-icon-button routerLink="assignments/new">
         <mat-icon>add</mat-icon>
@@ -34,7 +34,10 @@
               {{assignment.title}}
             </mat-panel-title>
             <mat-panel-description>
-              Due {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}} <button color="warn" mat-icon-button=""><mat-icon>alarm</mat-icon></button >
+              Due {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}}
+              <button color="warn" mat-icon-button="">
+                <mat-icon>alarm</mat-icon>
+              </button>
             </mat-panel-description>
 
           </mat-expansion-panel-header>
@@ -45,7 +48,8 @@
           <mat-action-row>
             <div fxLayout="row">
               <div fxFlex="50%">
-                <h5 style="margin-right:200px;">Time remaining: {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}}</h5>
+                <h5 style="margin-right:200px;">Time remaining: {{assignment.remainingTime|date:"dd/MM -
+                  HH:mm:ss"}}</h5>
               </div>
               <div fxFlex="50%">
                 <button color="secondary" mat-raised-button="handInAssignment">Hand In/Upload Assignment</button>
@@ -62,13 +66,15 @@
     <h3>Lessons</h3>
     <mat-list-item>
       <mat-list>
-        <div *ngFor="let lesson of course.lessons">
-          <mat-list-item>{{lesson.lessonTitle}}</mat-list-item>
-        </div>
+        <mat-list-item *ngFor="let lesson of course.lessons">{{lesson.lessonTitle}}</mat-list-item>
+        <mat-list-item>
+          <a md-icon-button [routerLink]="['lesson', 'new']">
+            <mat-icon>add</mat-icon>
+          </a>
+        </mat-list-item>
       </mat-list>
     </mat-list-item>
   </mat-card>
-
 
 
   <mat-card class="course-detail-lesson">

@@ -5,10 +5,11 @@
     </mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <form>
+    <form (submit)="createLesson()">
       <!--title-->
         <mat-form-field>
-          <input matInput #lessonTitleInput="ngModel" [(ngModel)]="lessonTitle"  name="lessonTitleInput" required placeholder="Lesson Title">
+          <input matInput #lessonTitleInput="ngModel" [(ngModel)]="title" name="lessonTitleInput" required
+                 placeholder="Lesson Title">
           <mat-error *ngIf="lessonTitleInput.hasError('required')">This is required</mat-error>
         </mat-form-field>
       <!---->
@@ -16,22 +17,42 @@
         <div fxFlex="50%">
           <mat-form-field>
             <input matInput [matDatepicker]="StartDatepicker" name="courseStartDate" #lessonStartDateInput="ngModel"
-                   [(ngModel)]="lessonStartDate" required placeholder="Start date">
+                   [(ngModel)]="startDate" required placeholder="Start date">
             <mat-datepicker-toggle matSuffix [for]="StartDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #StartDatepicker></mat-datepicker>
             <mat-error *ngIf="lessonStartDateInput.hasError('required')">This is required</mat-error>
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput #lessonStartTimeInput="ngModel" [(ngModel)]="startTime" pattern="\d{2}:\d{2}"
+                   name="lessonStartInput" required placeholder="Lesson Start Time">
+            <mat-error *ngIf="lessonStartTimeInput.hasError('required')">This is required</mat-error>
+            <mat-error *ngIf="lessonEndTimeInput.hasError('pattern')">Not in 24h format (e.g. 12:00 or 13:55)
+            </mat-error>
           </mat-form-field>
         </div>
         <div fxFlex="50%">
           <mat-form-field>
             <input matInput [matDatepicker]="EndDatepicker" name="lessonEndDate" #lessonEndDateInput="ngModel"
-                   [(ngModel)]="lessonEndDate" required placeholder="End date">
+                   [(ngModel)]="endDate" required placeholder="End date">
             <mat-datepicker-toggle matSuffix [for]="EndDatepicker"></mat-datepicker-toggle>
             <mat-datepicker #EndDatepicker></mat-datepicker>
             <mat-error *ngIf="lessonEndDateInput.hasError('required')">This is required</mat-error>
           </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input matInput #lessonEndTimeInput="ngModel" pattern="\d{2}:\d{2}" [(ngModel)]="endTime"
+                   name="lessonEndInput" required placeholder="Lesson End Time">
+            <mat-error *ngIf="lessonEndTimeInput.hasError('required')">This is required</mat-error>
+            <mat-error *ngIf="lessonEndTimeInput.hasError('pattern')">Not in 24h format (e.g. 12:00 or 13:55)
+            </mat-error>
+          </mat-form-field>
         </div>
       </div>
+
+
+      <br>
+      <button mat-raised-button color="primary" type="submit">Create Lesson</button>
     </form>
 
 

@@ -69,5 +69,13 @@ export class CourseService {
   deleteCourse(id: number) {
     this.httpClient.delete(`/api/courses/${id}`);
   }
+
+  createLesson(title: string, startDate: Date, endDate: Date, courseId: string): Observable<Lesson> {
+    return this.httpClient.post(`/api/courses/${courseId}/lessons`, {
+      title: title,
+      startdate: startDate,
+      enddate: endDate,
+    });
+  }
 }
 

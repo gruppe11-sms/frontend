@@ -3,7 +3,16 @@
     <mat-card class="course-card">
       <mat-card-header fxLayout="row">
         <mat-card-title>
-          <h1 fxFlex>Courses</h1>
+          <div fxLayout="row">
+            <div fxFlex="70%">
+              <h1 fxFlex>Courses</h1>
+            </div>
+            <div fxFlex="30%">
+              <a mat-icon-button [routerLink]="['new']">
+                <mat-icon>add</mat-icon>
+              </a>
+            </div>
+          </div>
         </mat-card-title>
       </mat-card-header>
 
@@ -30,12 +39,6 @@
           </div>
         </div>
       </mat-card-content>
-
-      <mat-card-actions>
-        <a mat-icon-button [routerLink]="['new']">
-          <mat-icon>add</mat-icon>
-        </a>
-      </mat-card-actions>
     </mat-card>
   </div>
 </div>

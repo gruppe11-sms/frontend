@@ -17,6 +17,7 @@ import {
   MatListModule,
   MatNativeDateModule,
   MatSelectModule,
+  MatSnackBarModule,
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {AddCourseComponent} from './course/add-course/add-course.component';
@@ -51,6 +52,7 @@ import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
     MatAutocompleteModule,
     MatSelectModule,
     MatChipsModule,
+    MatSnackBarModule,
   ],
   providers: [
     CourseService,
