@@ -29,11 +29,13 @@ export class CreateAssignmentComponent implements OnInit {
         this.assignmentService
           .createAssignment(this.title, this.description, this.startDate, this.endDate, courseId)
           .subscribe(assignment => {
-            this.router.navigate(['courses', courseId, 'assignment', assignment.id]);
+            this.router.navigate(['courses', courseId]);
           }, err => {
             console.error(err);
           }),
       );
+    this.router.navigate(['/courses', 1]);
   }
+
 
 }
