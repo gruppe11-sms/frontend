@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatDatepicker, MatDatepickerInputEvent} from '@angular/material';
 import {AssignmentService} from '../../assignment.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {courseRoutes} from '../../course.routes';
 
 @Component({
   selector: 'app-create-assignment',
@@ -29,13 +30,15 @@ export class CreateAssignmentComponent implements OnInit {
         this.assignmentService
           .createAssignment(this.title, this.description, this.startDate, this.endDate, courseId)
           .subscribe(assignment => {
-            this.router.navigate(['courses', courseId]);
+            this.router.navigate(['/courses', courseId]);
           }, err => {
             console.error(err);
           }),
       );
-    this.router.navigate(['/courses', 1]);
+    this.route.params.map(params => params.courseId)
+      .subscribe(courseId => {
+      this.router.navigate(['/courses', courseId]);
+      }
+      );
   }
-
-
 }

@@ -26,7 +26,7 @@ import {EditCourseComponent} from './course/edit-course/edit-course.component';
 import {AllAssignmentsComponent} from './assignment/all-assignments/all-assignments.component';
 import {CreateAssignmentComponent} from './assignment/create-assignment/create-assignment.component';
 import {AssignmentService} from './assignment.service';
-import {AssignmentDetailComponent} from './assignment/assignment-detail/assignment-detail.component';
+import {AssignmentDetailComponent} from './assignment/all-assignments/assignment-detail/assignment-detail.component';
 import {CourseDetailFormsComponent} from './course/course-detail/course-detail-forms/course-detail-forms.component';
 import {EditCourseFormsComponent} from './course/edit-course/edit-course-forms/edit-course-forms.component';
 import {LessonDetailComponent} from './course/lesson-detail/lesson-detail.component';
