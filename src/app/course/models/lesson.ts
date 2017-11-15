@@ -1,11 +1,11 @@
 import {Course} from './course';
 
 export class Lesson {
-  lessonId: number;
-  lessonTitle: string;
-  lesssonDescription: string;
-  lessonCourse: Course;
+  id: number;
+  title: string;
+  description: string;
+  Course: Course;
   lessonRoom: number[];
-  lessonStartDate: number;
-  lessonEndDate: number;
+  startDate: number;
+  endDate: number;
 }
