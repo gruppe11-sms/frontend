@@ -11,8 +11,8 @@
       <mat-list-item>
         <h3>Description:</h3>
       </mat-list-item>
-      <mat-list-item *ngFor="let description of course.description">
-        <h4>{{description}}</h4>
+      <mat-list-item>
+        <h4>{{course.description}}</h4>
       </mat-list-item>
     </mat-list>
   </mat-card>
@@ -66,7 +66,10 @@
     <h3>Lessons</h3>
     <mat-list-item>
       <mat-list>
-        <mat-list-item *ngFor="let lesson of course.lessons">{{lesson.lessonTitle}}</mat-list-item>
+        <mat-list-item *ngFor="let lesson of course.lessons">
+          <h4 mat-line>{{lesson.title}}</h4>
+          <p mat-line> {{lesson.startDate|date:"dd/MM/y - HH:mm:ss"}} - {{lesson.endDate|date:"HH:mm:ss"}}</p>
+        </mat-list-item>
         <mat-list-item>
           <a md-icon-button [routerLink]="['lesson', 'new']">
             <mat-icon>add</mat-icon>

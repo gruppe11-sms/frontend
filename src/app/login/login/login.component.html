@@ -8,7 +8,7 @@
     </mat-input-container>
     <mat-input-container>
       <input matInput #passwordInput="ngModel" [(ngModel)]="password" name="passwordInput" required
-             placeholder="Password">
+             placeholder="Password" type="password">
       <mat-error *ngIf="passwordInput.hasError('required')">This is required</mat-error>
     </mat-input-container>
     <button mat-button>Login</button>
