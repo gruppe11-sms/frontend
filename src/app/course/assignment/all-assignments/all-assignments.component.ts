@@ -9,7 +9,7 @@ import {Assignment} from '../../models/assignment';
 export class AllAssignmentsComponent implements OnInit {
 
   @Input()
-  public assigments: Assignment[];
+  public assignments: Assignment[];
 
   constructor() {
   }

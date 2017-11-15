@@ -26,40 +26,7 @@
         <mat-icon>add</mat-icon>
       </a>
     </mat-card-actions>
-    <div *ngFor="let assignment of course.assignments" class="course-assignment">
-      <mat-accordion class="example-headers-align">
-        <mat-expansion-panel hideToggle="true">
-          <mat-expansion-panel-header>
-            <mat-panel-title style="padding-top:5px;">
-              {{assignment.title}}
-            </mat-panel-title>
-            <mat-panel-description>
-              Due {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}}
-              <button color="warn" mat-icon-button="">
-                <mat-icon>alarm</mat-icon>
-              </button>
-            </mat-panel-description>
-
-          </mat-expansion-panel-header>
-          <h4>{{assignment.description}}</h4>
-          <br>
-          <h5>Posted: {{assignment.startdate|date:"dd/MM/y - HH:mm:ss"}}</h5>
-          <h5>Due Date: {{assignment.enddate|date:"dd/MM/y - HH:mm:ss"}}</h5>
-          <mat-action-row>
-            <div fxLayout="row">
-              <div fxFlex="50%">
-                <h5 style="margin-right:200px;">Time remaining: {{assignment.remainingTime|date:"dd/MM -
-                  HH:mm:ss"}}</h5>
-              </div>
-              <div fxFlex="50%">
-                <button color="secondary" mat-raised-button="handInAssignment">Hand In/Upload Assignment</button>
-              </div>
-            </div>
-          </mat-action-row>
-        </mat-expansion-panel>
-      </mat-accordion>
-
-    </div>
+    <app-all-assignments [assignments]="course.assignments"> </app-all-assignments>
   </mat-card>
 
   <mat-card class="course-detail-lesson">

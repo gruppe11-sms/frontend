@@ -35,10 +35,10 @@ export class CreateAssignmentComponent implements OnInit {
             console.error(err);
           }),
       );
-    this.route.params.map(params => params.courseId)
-      .subscribe(courseId => {
-      this.router.navigate(['/courses', courseId]);
-      }
-      );
+    // this.route.params.map(params => params.courseId)
+    //   .subscribe(courseId => {
+    //   this.router.navigate(['/courses', courseId]);
+    //   }
+    //   );
   }
 }

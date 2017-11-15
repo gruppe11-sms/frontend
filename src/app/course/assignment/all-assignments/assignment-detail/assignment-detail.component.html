@@ -1,3 +1,36 @@
-<p>
-  assignment-detail not works!
-</p>
+<mat-expansion-panel hideToggle="true">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{assignment.title}}
+    </mat-panel-title>
+    <div>
+
+      <div>
+
+      </div>
+      <div>
+
+      </div>
+      <mat-panel-description>
+          Due {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}}
+          <mat-icon color="warn">alarm</mat-icon>
+      </mat-panel-description>
+    </div>
+
+
+  </mat-expansion-panel-header>
+  <h4>{{assignment.description}}</h4>
+  <br>
+  <h5>Posted: {{assignment.startdate|date:"dd/MM/y - HH:mm:ss"}}</h5>
+  <h5>Due Date: {{assignment.enddate|date:"dd/MM/y - HH:mm:ss"}}</h5>
+  <mat-action-row>
+    <div fxLayout="row">
+      <div fxFlex="50%">
+      <h5>Time remaining: {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}}</h5>
+      </div>
+    </div>
+    <div fxFlex="50%">
+      <button color="secondary" mat-raised-button="handInAssignment">Hand In/Upload Assignment</button>
+    </div>
+  </mat-action-row>
+</mat-expansion-panel>

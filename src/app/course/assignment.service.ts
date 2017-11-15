@@ -13,8 +13,7 @@ export class AssignmentService {
     return this.httpClient.post<Assignment>(`/api/courses/${courseId}/assignments`, {
       title, description,
       startdate: startDate.getTime() / 1000,
-      enddate: endDate.getTime() / 1000,
-    });
+      enddate: endDate.getTime() / 1000});
   }
 
 }
