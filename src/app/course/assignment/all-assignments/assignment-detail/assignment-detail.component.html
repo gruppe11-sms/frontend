@@ -30,7 +30,7 @@
       </div>
     </div>
     <div fxFlex="50%">
-      <button color="secondary" mat-raised-button="handInAssignment">Hand In/Upload Assignment</button>
+      <input type="file" (change)="uploadedAssignment(fileInput.files)" #fileInput >
     </div>
   </mat-action-row>
 </mat-expansion-panel>

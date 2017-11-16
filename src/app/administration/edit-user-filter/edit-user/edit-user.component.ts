@@ -10,8 +10,8 @@ import {Group} from '../../../models/group';
 import {UserService} from '../../../services/user.service';
 import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import {RoleService} from "../../../services/role.service";
-import {GroupService} from "../../../services/group.service";
+import {RoleService} from '../../../services/role.service';
+import {GroupService} from '../../../services/group.service';
 
 
 const COMMA = 188;
@@ -92,7 +92,7 @@ export class EditUserComponent implements OnInit {
       .subscribe(() => this.snackBar.open('User updated successfully', 'Ok', {duration: 2000}),
         err => {
           this.snackBar.open('User not updated', 'Ok', {duration: 2000});
-          console.error("Error updating user", err);
+          console.error('Error updating user', err);
         });
   }
 }

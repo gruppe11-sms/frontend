@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Assignment} from '../../../models/assignment';
 
 @Component({
@@ -11,10 +11,17 @@ export class AssignmentDetailComponent implements OnInit {
   @Input()
   public assignment: Assignment;
 
+  @Output()
+  public handInAssignment = new EventEmitter<File>();
+
   constructor() {
+  }
+
+  public uploadedAssignment(files: File[]) {
+    const file = files[0];
+    this.handInAssignment.emit(file);
   }
 
   ngOnInit() {
   }
-
 }
