@@ -11,7 +11,8 @@ import {
   MatChipsModule,
   MatIconModule,
   MatInputModule,
-  MatSnackBarModule
+  MatListModule,
+  MatSnackBarModule,
 } from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditUserFilterComponent} from './edit-user-filter/edit-user-filter.component';
@@ -30,14 +31,15 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatIconModule,
     FlexLayoutModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatListModule,
   ],
   declarations: [
     AddUserComponent,
     EditUserComponent,
     AdministrationComponent,
-    EditUserFilterComponent
-  ]
+    EditUserFilterComponent,
+  ],
 })
 export class AdministrationModule {
 }
