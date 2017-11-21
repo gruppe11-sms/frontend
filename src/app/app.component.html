@@ -5,6 +5,7 @@
       <a mat-list-item [routerLink]="['/login']" *ngIf="!(authenticated|async)">Login</a>
       <a mat-list-item [routerLink]="['/user']" *ngIf="authenticated|async">My Page</a>
       <a mat-list-item [routerLink]="['/courses']" *ngIf="authenticated|async">Courses</a>
+      <a mat-list-item [routerLink]="['/calendar']" *ngIf="authenticated|async">Calendar</a>
       <a mat-list-item [routerLink]="['/administration']" *ngIf="authenticated|async">Administration</a>
       <a mat-list-item [routerLink]="['/audit']" *ngIf="authenticated|async">Audit</a>
       <a mat-list-item (click)="logout()" *ngIf="authenticated|async">Logout</a>

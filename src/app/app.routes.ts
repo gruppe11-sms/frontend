@@ -1,6 +1,6 @@
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
-import {AuthenticationGuard} from "./services/authentication.guard";
+import {AuthenticationGuard} from './services/authentication.guard';
 
 const appRoutes: Routes = [
   {
@@ -29,10 +29,15 @@ const appRoutes: Routes = [
     canActivate: [AuthenticationGuard]
   },
   {
+    path: 'calendar',
+    loadChildren: 'app/calendar/calendar.module#CalendarModule',
+    canActivate: [AuthenticationGuard],
+  },
+  {
     path: 'courses',
     loadChildren: 'app/course/course.module#CourseModule'
   },
-  { //THIS HAS TO BE LAST, DO NOT FAIL WHERE I HAVE FALLEN
+  { // THIS HAS TO BE LAST, DO NOT FAIL WHERE I HAVE FALLEN
     path: '**',
     redirectTo: '',
   },

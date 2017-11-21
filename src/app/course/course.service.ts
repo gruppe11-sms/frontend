@@ -67,7 +67,7 @@ export class CourseService {
   }
 
   deleteCourse(id: number) {
-    this.httpClient.delete(`/api/courses/${id}`);
+    this.httpClient.delete(`/api/courses/${id}/delete`);
   }
 
   createLesson(title: string, startDate: Date, endDate: Date, courseId: string): Observable<Lesson> {
