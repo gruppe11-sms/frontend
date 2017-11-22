@@ -6,7 +6,7 @@ import {Assignment} from './models/assignment';
 @Injectable()
 export class AssignmentService {
 
-  constructor(private httpClient: HttpClient) {
+  public constructor(private httpClient: HttpClient) {
   }
 
   public createAssignment(title: string, description: string, startDate: Date, endDate: Date, courseId: number): Observable<Assignment> {
@@ -32,5 +32,4 @@ export class AssignmentService {
       reportProgress: true,
     });
   }
-
 }
