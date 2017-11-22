@@ -4,21 +4,21 @@
     <div>
       <mat-form-field fxFlex="100%">
         <input matInput #nameInput="ngModel" [(ngModel)]="name" name="nameInput" required placeholder="Name">
-        <mat-error *ngIf="nameInput.hasError('required')">This is requiered</mat-error>
+        <mat-error *ngIf="nameInput.hasError('required')">This is required</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field fxFlex="100%">
         <input matInput #usernameInput="ngModel" [(ngModel)]="username" name="usernameInput" required
                placeholder="Username">
-        <mat-error *ngIf="usernameInput.hasError('required')">This is requiered</mat-error>
+        <mat-error *ngIf="usernameInput.hasError('required')">This is required</mat-error>
       </mat-form-field>
     </div>
     <div>
       <mat-form-field fxFlex="100%">
         <input matInput #passwordInput="ngModel" [(ngModel)]="password" name="passwordInput" required
                placeholder="Password">
-        <mat-error *ngIf="passwordInput.hasError('required')">This is requiered</mat-error>
+        <mat-error *ngIf="passwordInput.hasError('required')">This is required</mat-error>
       </mat-form-field>
     </div>
     <div fxLayout="row" fxLayoutAlign="end">

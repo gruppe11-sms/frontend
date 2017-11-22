@@ -1,36 +1,39 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/zip';
 import {User} from '../../../models/user';
 import {Role} from '../../../models/role';
-import {MatChipInputEvent, MatSnackBar} from '@angular/material';
-import {ENTER} from '@angular/cdk/keycodes';
+import {MatSnackBar} from '@angular/material';
 import {Group} from '../../../models/group';
 import {UserService} from '../../../services/user.service';
 import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/combineLatest';
+import '../../../operators/behaviorSubject';
 import {RoleService} from '../../../services/role.service';
 import {GroupService} from '../../../services/group.service';
+import {Observable} from 'rxjs/Observable';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import 'rxjs/add/operator/share';
 
-
-const COMMA = 188;
-
+interface ID {
+  id: any;
+}
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss'],
 })
-
 export class EditUserComponent implements OnInit {
-  public selectable = true;
-  public removable = true;
-  public addOnBlur = true;
-  public separatorKeysCodes = [ENTER, COMMA];
-  @Input() public user: User;
-  @Input() public roles: Role[];
-  @Input() public groups: Group[];
+  public user: Observable<User>;
+  public roles: BehaviorSubject<Role[]>;
+  public groups: BehaviorSubject<Group[]>;
+  public possibleRoles: Observable<Role[]>;
+  public possibleGroups: Observable<Group[]>;
+  public userid: string;
+  public username: string;
 
   public constructor(private userService: UserService,
                      private route: ActivatedRoute,
@@ -41,58 +44,80 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit(): void {
     const userId = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser(userId).subscribe(user => this.user = user);
-    this.roleService.getRoles().subscribe(roles => this.roles = roles);
-    this.groupService.getGroups().subscribe(groups => this.groups = groups);
+    this.user = this.userService.getUser(userId).share();
+    this.groups = this.user.map(user => user.groups).behaviorSubject([]);
+    this.roles = this.user.map(user => user.roles).behaviorSubject([]);
+    this.possibleRoles = this.removeExisting(this.roleService.getRoles(), this.roles);
+    this.possibleGroups = this.removeExisting(this.groupService.getGroups(), this.groups);
+
+    this.user.subscribe(user => {
+      this.userid = user.username;
+      this.username = user.name;
+    });
+
   }
 
-  addRole(event: MatChipInputEvent) {
-    const input = event.input;
-    const value = event.value;
-
-
-    if ((value || '').trim()) {
-      const role = this.roles.find(r => r.title.toLowerCase() === value.toLowerCase());
-      role ? this.user.roles.push(role) : console.log('Role not found');
-    }
-    if (input) {
-      input.value = '';
-    }
+  public addRole(role: Role) {
+    let roles = this.roles.value;
+    roles = [...roles, role];
+    this.roles.next(roles);
   }
 
-  removeRole(role: Role) {
-    const index = this.user.roles.indexOf(role);
-    if (index >= 0) {
-      this.user.roles.splice(index, 1);
-    }
+  public removeRole(role: Role) {
+    let roles = this.roles.value;
+    roles = roles.filter(existingRole => existingRole.id !== role.id);
+    this.roles.next(roles);
+
   }
 
-  addGroup(event: MatChipInputEvent) {
-    const input = event.input;
-    const value = event.value;
-
-    if ((value || '').trim()) {
-      const group = this.groups.find(g => g.title.toLowerCase() === value.toLowerCase());
-      group ? this.user.groups.push(group) : console.log('Group not found');
-    }
-    if (input) {
-      input.value = '';
-    }
+  public addGroups(group: Group) {
+    let groups = this.groups.value;
+    groups = [...groups, group];
+    this.groups.next(groups);
   }
 
-  removeGroup(group: Group) {
-    const index = this.user.groups.indexOf(group);
-    if (index >= 0) {
-      this.user.groups.splice(index, 1);
-    }
+  public removeGroup(group: Group) {
+    let groups = this.groups.value;
+    groups = groups.filter(existingGroup => existingGroup.id !== group.id);
+    this.groups.next(groups);
   }
 
-  saveUser() {
-    this.userService.saveUser(this.user)
+  public formatRole(role: Role): string {
+    return role ? role.title : '';
+  }
+
+  public formatGroup(group: Group): string {
+    return group ? group.title : '';
+  }
+
+  public saveUser() {
+    this.user.take(1)
+      .switchMap(existingUser => {
+        const user = {
+          ...existingUser,
+          roles: this.roles.value,
+          groups: this.groups.value,
+          name: this.username,
+          username: this.userid,
+        };
+
+        return this.userService.saveUser(user);
+      })
       .subscribe(() => this.snackBar.open('User updated successfully', 'Ok', {duration: 2000}),
         err => {
           this.snackBar.open('User not updated', 'Ok', {duration: 2000});
           console.error('Error updating user', err);
         });
+  }
+
+  private removeExisting<T extends ID>(possibleObs: Observable<T[]>, currentObs: Observable<T[]>): Observable<T[]> {
+    return possibleObs
+      .combineLatest(currentObs
+        .map(currents => currents
+          .map(current => current.id)))
+      .map(([possibles, currentIds]) => {
+        return possibles.filter(possible => !currentIds.includes(possible.id));
+      });
+
   }
 }
