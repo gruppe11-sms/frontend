@@ -18,6 +18,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditUserFilterComponent} from './edit-user-filter/edit-user-filter.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {ControlsModule} from '../controls/controls.module';
+import {AddGroupComponent} from './add-group/add-group.component';
+import {EditGroupComponent} from './edit-group/edit-group.component';
+import {EditModelListComponent} from './edit-model-list/edit-model-list.component';
+import {GroupListComponent} from './group-list/group-list.component';
 
 @NgModule({
   imports: [
@@ -41,6 +45,10 @@ import {ControlsModule} from '../controls/controls.module';
     EditUserComponent,
     AdministrationComponent,
     EditUserFilterComponent,
+    AddGroupComponent,
+    EditGroupComponent,
+    EditModelListComponent,
+    GroupListComponent,
   ],
 })
 export class AdministrationModule {

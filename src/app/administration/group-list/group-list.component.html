@@ -1,0 +1,10 @@
+<div fxLayoutGap="1rem" class="container" fxFlex="50%" fxLayoutAlign="center" fxLayout="column">
+  <h2>Edit Group</h2>
+  <mat-list>
+    <a mat-list-item *ngFor="let group of groups|async" routerLink="{{group.id}}/edit">
+      <p>
+        {{group.title}}
+      </p>
+    </a>
+  </mat-list>
+</div>

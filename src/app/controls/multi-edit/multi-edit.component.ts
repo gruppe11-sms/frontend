@@ -26,13 +26,15 @@ export class MultiEditComponent implements OnInit {
   public filteredOptions: Observable<any[]>;
 
   constructor() {
+    // HAXXING IN PROGRESS
+    this.displayWithSafe = this.displayWithSafe.bind(this);
   }
 
   ngOnInit() {
     this.filteredOptions = this.searchControl
       .valueChanges
       .startWith('')
-      .map(val => val && typeof val === 'object' ? this.displayWith(val) : val)
+      .map(val => val && typeof val === 'object' ? this.displayWithSafe(val) : val)
       .map(val => val.toLowerCase())
       .map(val => this.filter(val));
   }
@@ -48,5 +50,9 @@ export class MultiEditComponent implements OnInit {
   public select(event: MatAutocompleteSelectedEvent) {
     this.selected.emit(event.option.value);
     this.searchControl.setValue('');
+  }
+
+  public displayWithSafe(val: any): string {
+    return val ? this.displayWith(val) : '';
   }
 }

@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {Group} from "../models/group";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {Group} from '../models/group';
 
 @Injectable()
 export class GroupService {
@@ -10,6 +10,19 @@ export class GroupService {
   }
 
   public getGroups(): Observable<Group[]> {
-    return this.httpClient.get<Group[]>('/api/groups')
+    return this.httpClient.get<Group[]>('/api/groups');
+  }
+
+  public createGroup(title: string, description: string): Observable<Group> {
+    return this.httpClient.post<Group>('api/groups', {title, description});
+
+  }
+
+  public updateGroup(group: Group): Observable<Group> {
+    return this.httpClient.put<Group>(`api/groups/${group.id}`, group);
+  }
+
+  public getGroup(id: number): Observable<Group> {
+    return this.httpClient.get<Group>(`api/groups/${id}`);
   }
 }

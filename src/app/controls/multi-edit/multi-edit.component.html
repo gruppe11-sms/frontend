@@ -1,6 +1,6 @@
 <mat-list>
   <mat-list-item *ngFor="let value of (values||[])">
-    <span>{{displayWith(value)}}</span>
+    <span>{{displayWithSafe(value)}}</span>
     <!--button matListIcon mat-icon-button (click)="remove(value)">
       <mat-icon>clear</mat-icon>
     </--button!-->
@@ -12,9 +12,9 @@
 
 <mat-form-field>
   <input type="search" placeholder="Search" matInput [formControl]="searchControl" [matAutocomplete]="auto">
-  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWith" (optionSelected)="select($event)">
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWithSafe" (optionSelected)="select($event)">
     <mat-option *ngFor="let option of filteredOptions|async" [value]="option">
-      {{displayWith(option)}}
+      {{displayWithSafe(option)}}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
