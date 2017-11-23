@@ -1,13 +1,16 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {CalendarComponent} from './calendar/calendar.component';
-import {MatDatepickerModule} from '@angular/material';
+import {MatButtonModule, MatCardModule} from '@angular/material';
+import {routes} from './calendar.routes';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    MatDatepickerModule,
+    MatCardModule,
+    MatButtonModule,
+    routes,
   ],
   declarations: [
     CalendarComponent,
