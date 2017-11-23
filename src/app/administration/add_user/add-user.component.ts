@@ -1,10 +1,11 @@
 import {Component} from '@angular/core';
 import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   templateUrl: './add-user.component.html',
-  styleUrls: ['./add-user.component.scss']
+  styleUrls: ['./add-user.component.scss'],
 })
 export class AddUserComponent {
 
@@ -12,17 +13,19 @@ export class AddUserComponent {
   public username: string;
   public password: string;
 
-  public userCreationResponse: string;
-
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private snackbar: MatSnackBar) {
   }
 
   saveUser() {
     this.userService.createUser(new User(this.name, this.username, this.password))
-      .subscribe(() => this.userCreationResponse = 'Succesfully saved user',
+      .subscribe(() => this.snackbar.open('Successfully created user', '', {duration: 2000}),
         (err) => {
-          this.userCreationResponse = 'Failed to save user';
-          console.error('Could not create user' + err);
+          if (err.error && err.error.message) {
+            this.snackbar.open('Failed to create user: ' + err.error.message);
+          } else {
+            this.snackbar.open('Failed to create user', '', {duration: 2000});
+          }
+          console.error('Could not create user', err);
         },
       );
   }

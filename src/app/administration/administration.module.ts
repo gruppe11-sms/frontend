@@ -17,6 +17,7 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EditUserFilterComponent} from './edit-user-filter/edit-user-filter.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
+import {ControlsModule} from '../controls/controls.module';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatButtonModule,
     MatSnackBarModule,
     MatListModule,
+    ControlsModule,
   ],
   declarations: [
     AddUserComponent,

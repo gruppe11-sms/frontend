@@ -1,59 +1,36 @@
-<div class="container" *ngIf="user" fxLayout="column">
-  <div>
-    <label>Name</label>
-  </div>
-  <div>
-    <mat-form-field class="edit-user-input" fxFlex="100%">
-      <input matInput [(ngModel)]="user.name" >
-    </mat-form-field>
-  </div>
-  <div>
-    <label>Username</label>
-  </div>
-  <div>
-    <mat-form-field class="edit-user-input" fxFlex="100%">
-      <input matInput [(ngModel)]="user.username">
-    </mat-form-field>
-  </div>
-  <div>
-    <label>Roles</label>
-  </div>
-  <div>
-    <mat-form-field fxFlex="100%">
-      <mat-chip-list #chipList>
-        <mat-chip *ngFor="let role of user.roles" [selectable]="selectable"
-                  [removable]="removable"
-                  (remove)="removeRole(role)">
-          {{role.title}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input [matChipInputFor]="chipList"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="addOnBlur"
-               (matChipInputTokenEnd)="addRole($event)"/>
-      </mat-chip-list>
-    </mat-form-field>
-  </div>
-  <div>
-    <label>Groups</label>
-  </div>
-  <div>
-    <mat-form-field fxFlex="100%">
-      <mat-chip-list #groupChipList>
-        <mat-chip *ngFor="let group of user.groups" [selectable]="selectable"
-                  [removable]="removable"
-                  (remove)="removeGroup(group)">
-          {{group.title}}
-          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-        </mat-chip>
-        <input [matChipInputFor]="groupChipList"
-               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-               [matChipInputAddOnBlur]="addOnBlur"
-               (matChipInputTokenEnd)="addGroup($event)"/>
-      </mat-chip-list>
-    </mat-form-field>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="end">
-    <button mat-button (click)="saveUser()">Save</button>
-  </div>
-</div>
+<mat-card>
+  <mat-card-title>
+    Edit User
+  </mat-card-title>
+  <mat-card-content class="container" fxLayout="column">
+    <form name="editUserForm" id="editUserForm" (submit)="saveUser()">
+      <h5>User info</h5>
+      <mat-form-field>
+        <input matInput [(ngModel)]="username" placeholder="Name" name="nameInput">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="userid" placeholder="Username" name="usernameInput">
+      </mat-form-field>
+      <h5>Roles</h5>
+      <app-multi-edit
+        [displayWith]="formatRole"
+        [options]="possibleRoles|async"
+        [values]="roles|async"
+        (selected)="addRole($event)"
+        (removed)="removeRole($event)">
+      </app-multi-edit>
+
+      <h5>Groups</h5>
+      <app-multi-edit
+        [displayWith]="formatGroup"
+        [options]="possibleGroups|async"
+        [values]="groups|async"
+        (selected)="addGroups($event)"
+        (removed)="removeGroup($event)">
+      </app-multi-edit>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [color]="'primary'" form="editUserForm">Save</button>
+  </mat-card-actions>
+</mat-card>

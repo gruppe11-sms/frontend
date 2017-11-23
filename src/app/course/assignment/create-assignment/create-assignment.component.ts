@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MatDatepicker, MatDatepickerInputEvent} from '@angular/material';
 import {AssignmentService} from '../../assignment.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {courseRoutes} from '../../course.routes';
 
 @Component({
   selector: 'app-create-assignment',
@@ -16,7 +14,9 @@ export class CreateAssignmentComponent implements OnInit {
   public startDate: Date;
   public endDate: Date;
 
-  constructor(private assignmentService: AssignmentService, private route: ActivatedRoute, private router: Router) {
+  public constructor(private assignmentService: AssignmentService,
+                     private route: ActivatedRoute,
+                     private router: Router) {
   }
 
   ngOnInit() {
@@ -29,7 +29,7 @@ export class CreateAssignmentComponent implements OnInit {
       .subscribe(courseId =>
         this.assignmentService
           .createAssignment(this.title, this.description, this.startDate, this.endDate, courseId)
-          .subscribe(assignment => {
+          .subscribe(() => {
             this.router.navigate(['/courses', courseId]);
           }, err => {
             console.error(err);

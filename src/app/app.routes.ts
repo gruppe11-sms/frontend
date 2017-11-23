@@ -33,6 +33,11 @@ const appRoutes: Routes = [
     loadChildren: 'app/administration/administration.module#AdministrationModule',
     canActivate: [AuthenticationGuard],
   },
+  // {
+  //   path: 'calendar',
+  //   loadChildren: 'app/calendar/calendar.module#CalendarModule',
+  //   canActivate: [AuthenticationGuard],
+  // },
   {
     path: 'courses',
     loadChildren: 'app/course/course.module#CourseModule',
