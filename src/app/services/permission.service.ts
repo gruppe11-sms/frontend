@@ -22,7 +22,7 @@ export class PermissionService {
   public hasRoles(...roles: string[]): Observable<boolean> {
     return this.me
     // For each wanted role, check if the role exists
-      .map(user => roles.map(roleName => user.roles.some(role => role.key === roleName)))
+      .map(user => roles.map(roleName => user.roles.some(role => role.id === roleName)))
       // Is there any role that doesn't exists?
       .map(matches => matches.some(match => match === false))
       // And reverse it, because we want to know that all of them exists
