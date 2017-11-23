@@ -1,12 +1,25 @@
+import {animate, style, transition, trigger} from '@angular/animations';
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
 import {MatAutocompleteSelectedEvent} from '@angular/material';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-multi-edit',
   templateUrl: './multi-edit.component.html',
   styleUrls: ['./multi-edit.component.scss'],
+  animations: [
+    trigger('listElements', [
+      transition(':enter', [
+        style({opacity: 0, height: 0}),
+        animate('500ms', style({opacity: 1, height: '*'})),
+      ]),
+      transition(':leave', [
+        style({opacity: 1, height: '*'}),
+        animate('500ms', style({opacity: 0, height: 0})),
+      ]),
+    ]),
+  ],
 })
 export class MultiEditComponent implements OnInit {
 

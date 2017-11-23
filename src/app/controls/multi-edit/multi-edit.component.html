@@ -1,5 +1,5 @@
 <mat-list>
-  <mat-list-item *ngFor="let value of (values||[])">
+  <mat-list-item *ngFor="let value of (values||[])" @listElements>
     <span>{{displayWithSafe(value)}}</span>
 
     <button mat-icon-button (click)="remove(value)" type="button">

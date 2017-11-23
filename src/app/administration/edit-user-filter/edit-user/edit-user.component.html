@@ -3,7 +3,9 @@
     Edit User
   </mat-card-title>
   <mat-card-content class="container" fxLayout="column">
-    <form name="editUserForm" id="editUserForm" (submit)="saveUser()">
+    <mat-spinner *ngIf="loading|async"></mat-spinner>
+
+    <form name="editUserForm" id="editUserForm" (submit)="saveUser()" [hidden]="loading|async">
       <h5>User info</h5>
       <mat-form-field>
         <input matInput [(ngModel)]="name" placeholder="Name" name="nameInput">

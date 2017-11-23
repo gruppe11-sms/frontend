@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/zip';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
+import {Loader} from '../../../helpers/Loader';
 import {Group} from '../../../models/group';
 import {Role} from '../../../models/role';
 import {User} from '../../../models/user';
@@ -35,6 +36,9 @@ export class EditUserComponent implements OnInit {
   public username: string;
   public name: string;
 
+  public loading: Observable<boolean>;
+  private loader: Loader;
+
   public constructor(private userService: UserService,
                      private route: ActivatedRoute,
                      private roleService: RoleService,
@@ -43,14 +47,18 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loader = new Loader();
+    this.loading = this.loader.get();
     this.user = this.route.params
       .map(params => params['id'])
+      .do(this.loader.beforeRequest('getUser'))
       .switchMap(userId => this.userService.getUser(userId))
+      .do<User>(this.loader.afterRequest('getUser'))
       .behaviorSubject(new User());
     this.groups = this.user.map(user => user.groups).behaviorSubject([]);
     this.roles = this.user.map(user => user.roles).behaviorSubject([]);
-    this.possibleRoles = this.roleService.getRoles();
-    this.possibleGroups = this.groupService.getGroups();
+    this.possibleRoles = this.loader.wrapRequest(() => this.roleService.getRoles());
+    this.possibleGroups = this.loader.wrapRequest(() => this.groupService.getGroups());
 
     this.user.subscribe(user => {
       this.username = user.username;
