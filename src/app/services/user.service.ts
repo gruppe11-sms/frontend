@@ -55,7 +55,7 @@ export class UserService {
   }
 
   private updateRoles(user: User) {
-    const roleIds = user.roles.map(role => role.id).join(',');
+    const roleIds = user.roles.map(role => role.key).join(',');
     const roleParams = toHttpParams({roles: roleIds});
     return this.httpClient.put(`/api/users/${user.id}/roles`, {}, {params: roleParams, responseType: 'text'});
   }
