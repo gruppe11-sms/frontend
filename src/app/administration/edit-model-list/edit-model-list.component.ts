@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
 
 interface IModel {
   id: number;
@@ -45,7 +45,7 @@ export class EditModelListComponent implements OnInit {
   private removeExisting<T extends IModel>(possibleObs: Observable<T[]>, currentObs: Observable<T[]>): Observable<T[]> {
     return possibleObs
       .combineLatest(currentObs
-        .map(currents => currents
+        .map(currents => (currents || [])
           .map(current => current.id)))
       .map(([possibles, currentIds]) => {
         return possibles.filter(possible => !currentIds.includes(possible.id));

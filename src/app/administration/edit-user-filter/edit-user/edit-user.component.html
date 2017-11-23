@@ -6,28 +6,28 @@
     <form name="editUserForm" id="editUserForm" (submit)="saveUser()">
       <h5>User info</h5>
       <mat-form-field>
-        <input matInput [(ngModel)]="username" placeholder="Name" name="nameInput">
+        <input matInput [(ngModel)]="name" placeholder="Name" name="nameInput">
       </mat-form-field>
       <mat-form-field>
-        <input matInput [(ngModel)]="userid" placeholder="Username" name="usernameInput">
+        <input matInput [(ngModel)]="username" placeholder="Username" name="usernameInput">
       </mat-form-field>
+
       <h5>Roles</h5>
-      <app-multi-edit
-        [displayWith]="formatRole"
-        [options]="possibleRoles|async"
-        [values]="roles|async"
-        (selected)="addRole($event)"
-        (removed)="removeRole($event)">
-      </app-multi-edit>
+      <app-edit-model-list
+        [available]="possibleRoles"
+        [current]="roles"
+        [displayWith]="displayWith"
+      >
+      </app-edit-model-list>
 
       <h5>Groups</h5>
-      <app-multi-edit
-        [displayWith]="formatGroup"
-        [options]="possibleGroups|async"
-        [values]="groups|async"
-        (selected)="addGroups($event)"
-        (removed)="removeGroup($event)">
-      </app-multi-edit>
+      <app-edit-model-list
+        [displayWith]="displayWith"
+        [available]="possibleGroups"
+        [current]="groups"
+      >
+
+      </app-edit-model-list>
     </form>
   </mat-card-content>
   <mat-card-actions>

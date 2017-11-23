@@ -1,10 +1,8 @@
 <mat-list>
   <mat-list-item *ngFor="let value of (values||[])">
     <span>{{displayWithSafe(value)}}</span>
-    <!--button matListIcon mat-icon-button (click)="remove(value)">
-      <mat-icon>clear</mat-icon>
-    </--button!-->
-    <button mat-icon-button (click)="remove(value)">
+
+    <button mat-icon-button (click)="remove(value)" type="button">
       <mat-icon matListIcon>clear</mat-icon>
     </button>
   </mat-list-item>
