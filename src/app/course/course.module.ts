@@ -32,7 +32,6 @@ import {EditCourseFormsComponent} from './course/edit-course/edit-course-forms/e
 import {LessonDetailComponent} from './course/lesson-detail/lesson-detail.component';
 import {LessonComponent} from './course/lesson/lesson.component';
 import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
-import {CalendarComponent} from '../calendar/calendar/calendar.component';
 
 @NgModule({
   imports: [
@@ -71,8 +70,7 @@ import {CalendarComponent} from '../calendar/calendar/calendar.component';
     AssignmentDetailComponent,
     AddLessonComponent,
     LessonDetailComponent,
-    LessonComponent,
-    CalendarComponent,
+    LessonComponent
   ],
 })
 export class CourseModule {

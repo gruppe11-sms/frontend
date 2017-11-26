@@ -62,7 +62,7 @@ export class CourseService {
   }
 
   updateCourse(id: number, course: Course) {
-    console.log('updateing course' + course.title);
+    console.log('updating course' + course.title);
     return this.httpClient.put(`/api/courses/${id}`, course);
   }
 

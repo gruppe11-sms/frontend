@@ -20,7 +20,7 @@ function behaviorSubject<T>(this: Observable<T>, initialValue: T): BehaviorSubje
 
 Observable.prototype.behaviorSubject = behaviorSubject;
 
-declare module 'rxjs/observable' {
+declare module 'rxjs/Observable' {
   // noinspection TsLint
   interface Observable<T> {
     behaviorSubject: typeof behaviorSubject;
