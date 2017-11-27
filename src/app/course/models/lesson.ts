@@ -1,6 +1,8 @@
 import {Course} from './course';
+import {IActivity} from './iactivity';
 
-export class Lesson {
+export class Lesson implements IActivity {
+  activityId: number;
   id: number;
   title: string;
   description: string;

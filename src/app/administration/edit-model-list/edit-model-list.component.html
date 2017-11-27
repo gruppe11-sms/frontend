@@ -1,0 +1,9 @@
+<app-multi-edit
+  (selected)="add($event)"
+  (removed)="remove($event)"
+  [displayWith]="displayWith"
+  [values]="current|async"
+  [options]="options|async"
+>
+
+</app-multi-edit>

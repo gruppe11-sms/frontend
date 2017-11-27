@@ -7,10 +7,10 @@ import {AppComponent} from './app.component';
 import {routes} from './app.routes';
 import {HomeComponent} from './home/home.component';
 import {ServicesModule} from './services/services.module';
-import {StartComponent} from "./start/start.component";
-import {FormsModule} from "@angular/forms";
-import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {AuthInterceptor} from "./services/auth-inteceptor";
+import {StartComponent} from './start/start.component';
+import {FormsModule} from '@angular/forms';
+import {HTTP_INTERCEPTORS} from '@angular/common/http';
+import {AuthInterceptor} from './services/auth-inteceptor';
 
 @NgModule({
   declarations: [
@@ -29,10 +29,10 @@ import {AuthInterceptor} from "./services/auth-inteceptor";
     routes,
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

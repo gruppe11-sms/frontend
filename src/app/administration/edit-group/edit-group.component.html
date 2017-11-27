@@ -1,0 +1,54 @@
+<mat-card>
+  <mat-card-title>Edit Group</mat-card-title>
+  <mat-card-content>
+    <form name="editGroupForm" id="editGroupForm" (submit)="save()">
+      <mat-form-field>
+        <input matInput required placeholder="Title"
+               id="titleInput"
+               name="titleInput"
+               [formControl]="titleControl">
+        <mat-error *ngIf="titleControl.hasError('required')">This is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Description"
+               id="descriptionInput"
+               name="descriptionInput"
+               [formControl]="descriptionControl">
+        <mat-error *ngIf="descriptionControl.hasError('required')">This is required</mat-error>
+      </mat-form-field>
+
+      <h3>Members</h3>
+      <app-edit-model-list
+        [displayWith]="formatName"
+        [available]="availableUsers"
+        [current]="members"
+      ></app-edit-model-list>
+
+      <h3>Roles</h3>
+      <app-edit-model-list
+        [displayWith]="formatTitle"
+        [available]="availableRoles"
+        [current]="roles"
+      ></app-edit-model-list>
+
+      <h3>Member of groups</h3>
+      <app-edit-model-list
+        [displayWith]="formatTitle"
+        [available]="availableGroups"
+        [current]="groupsIn"
+      ></app-edit-model-list>
+
+      <h3>Groups</h3>
+      <app-edit-model-list
+        [displayWith]="formatTitle"
+        [available]="availableGroups"
+        [current]="inGroups"
+      ></app-edit-model-list>
+
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-button form="editGroupForm">Save</button>
+  </mat-card-actions>
+</mat-card>

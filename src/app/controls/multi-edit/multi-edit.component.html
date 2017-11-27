@@ -1,0 +1,18 @@
+<mat-list>
+  <mat-list-item *ngFor="let value of (values||[])" @listElements>
+    <span>{{displayWithSafe(value)}}</span>
+
+    <button mat-icon-button (click)="remove(value)" type="button">
+      <mat-icon matListIcon>clear</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+
+<mat-form-field>
+  <input type="search" placeholder="Search" matInput [formControl]="searchControl" [matAutocomplete]="auto">
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayWithSafe" (optionSelected)="select($event)">
+    <mat-option *ngFor="let option of filteredOptions|async" [value]="option">
+      {{displayWithSafe(option)}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

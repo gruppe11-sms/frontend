@@ -1,10 +1,12 @@
-import {Role} from "./role";
-import {User} from "./user";
+import {Role} from './role';
+import {User} from './user';
 
 export class Group {
-  public id: string;
-  public title: string;
-  public description: string;
-  public members: User[];
-  public roles: Role[];
+  public id = 0;
+  public title = '';
+  public description = '';
+  public members: User[] = [];
+  public roles: Role[] = [];
+  public groupsIn: Group[] = [];
+  public inGroups: Group[] = [];
 }

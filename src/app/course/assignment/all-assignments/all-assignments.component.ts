@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Assignment} from '../../models/assignment';
+import {AssignmentService, UploadTask} from '../../assignment.service';
 
 @Component({
   selector: 'app-all-assignments',
@@ -11,7 +12,11 @@ export class AllAssignmentsComponent implements OnInit {
   @Input()
   public assignments: Assignment[];
 
-  constructor() {
+  public uploadAssignment(task: UploadTask) {
+  this.assignmentService.uploadAssignment(task);
+}
+
+  constructor(private assignmentService: AssignmentService) {
   }
 
   ngOnInit() {

@@ -1,0 +1,13 @@
+<div fxLayoutGap="1rem" class="container" fxFlex="50%" fxLayoutAlign="center" fxLayout="column">
+  <h2>Edit Group</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let group of groups|async">
+      <a routerLink="{{group.id}}/edit">
+        {{group.title}}
+      </a>
+      <button mat-icon-button (click)="remove(group)" type="button">
+        <mat-icon matListIcon>clear</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>

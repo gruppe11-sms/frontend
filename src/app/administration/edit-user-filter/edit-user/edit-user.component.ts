@@ -1,36 +1,43 @@
-import {Component, Input, OnInit} from '@angular/core';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/zip';
-import {User} from '../../../models/user';
-import {Role} from '../../../models/role';
-import {MatChipInputEvent, MatSnackBar} from '@angular/material';
-import {ENTER} from '@angular/cdk/keycodes';
-import {Group} from '../../../models/group';
-import {UserService} from '../../../services/user.service';
+import {Component, OnInit} from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 import {ActivatedRoute} from '@angular/router';
+import 'rxjs/add/operator/combineLatest';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/share';
+import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
-import {RoleService} from "../../../services/role.service";
-import {GroupService} from "../../../services/group.service";
+import 'rxjs/add/operator/zip';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import {Loader} from '../../../helpers/Loader';
+import {Group} from '../../../models/group';
+import {Role} from '../../../models/role';
+import {User} from '../../../models/user';
+import '../../../operators/behaviorSubject';
+import {GroupService} from '../../../services/group.service';
+import {RoleService} from '../../../services/role.service';
+import {UserService} from '../../../services/user.service';
 
-
-const COMMA = 188;
-
+interface ID {
+  id: any;
+}
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss'],
 })
-
 export class EditUserComponent implements OnInit {
-  public selectable = true;
-  public removable = true;
-  public addOnBlur = true;
-  public separatorKeysCodes = [ENTER, COMMA];
-  @Input() public user: User;
-  @Input() public roles: Role[];
-  @Input() public groups: Group[];
+  public user: BehaviorSubject<User>;
+  public roles: BehaviorSubject<Role[]>;
+  public groups: BehaviorSubject<Group[]>;
+  public possibleRoles: Observable<Role[]>;
+  public possibleGroups: Observable<Group[]>;
+  public username: string;
+  public name: string;
+
+  public loading: Observable<boolean>;
+  private loader: Loader;
 
   public constructor(private userService: UserService,
                      private route: ActivatedRoute,
@@ -40,59 +47,46 @@ export class EditUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const userId = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.getUser(userId).subscribe(user => this.user = user);
-    this.roleService.getRoles().subscribe(roles => this.roles = roles);
-    this.groupService.getGroups().subscribe(groups => this.groups = groups);
+    this.loader = new Loader();
+    this.loading = this.loader.get();
+    this.user = this.route.params
+      .map(params => params['id'])
+      .do(this.loader.beforeRequest('getUser'))
+      .switchMap(userId => this.userService.getUser(userId))
+      .do<User>(this.loader.afterRequest('getUser'))
+      .behaviorSubject(new User());
+    this.groups = this.user.map(user => user.groups).behaviorSubject([]);
+    this.roles = this.user.map(user => user.roles).behaviorSubject([]);
+    this.possibleRoles = this.loader.wrapRequest(() => this.roleService.getRoles());
+    this.possibleGroups = this.loader.wrapRequest(() => this.groupService.getGroups());
+
+    this.user.subscribe(user => {
+      this.username = user.username;
+      this.name = user.name;
+    });
+
   }
 
-  addRole(event: MatChipInputEvent) {
-    const input = event.input;
-    const value = event.value;
-
-
-    if ((value || '').trim()) {
-      const role = this.roles.find(r => r.title.toLowerCase() === value.toLowerCase());
-      role ? this.user.roles.push(role) : console.log('Role not found');
-    }
-    if (input) {
-      input.value = '';
-    }
+  public displayWith({title}: { title: string }) {
+    return title;
   }
 
-  removeRole(role: Role) {
-    const index = this.user.roles.indexOf(role);
-    if (index >= 0) {
-      this.user.roles.splice(index, 1);
-    }
-  }
+  public saveUser() {
+    const existingUser = this.user.value;
 
-  addGroup(event: MatChipInputEvent) {
-    const input = event.input;
-    const value = event.value;
+    const user = {
+      ...existingUser,
+      roles: this.roles.value,
+      groups: this.groups.value,
+      name: this.name,
+      username: this.username,
+    };
 
-    if ((value || '').trim()) {
-      const group = this.groups.find(g => g.title.toLowerCase() === value.toLowerCase());
-      group ? this.user.groups.push(group) : console.log('Group not found');
-    }
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  removeGroup(group: Group) {
-    const index = this.user.groups.indexOf(group);
-    if (index >= 0) {
-      this.user.groups.splice(index, 1);
-    }
-  }
-
-  saveUser() {
-    this.userService.saveUser(this.user)
+    this.userService.saveUser(user)
       .subscribe(() => this.snackBar.open('User updated successfully', 'Ok', {duration: 2000}),
         err => {
           this.snackBar.open('User not updated', 'Ok', {duration: 2000});
-          console.error("Error updating user", err);
+          console.error('Error updating user', err);
         });
   }
 }

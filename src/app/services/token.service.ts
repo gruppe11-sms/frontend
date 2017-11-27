@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs/BehaviorSubject";
-import {Observable} from "rxjs/Observable";
-import {JwtHelper} from "angular2-jwt";
-import "rxjs/add/operator/filter";
-import "rxjs/add/operator/map";
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {Observable} from 'rxjs/Observable';
+import {JwtHelper} from 'angular2-jwt';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
 
 export interface ITokenUser {
   id: number,
@@ -22,7 +22,7 @@ export class TokenService {
       if (token) {
         localStorage.setItem('token', token);
       } else {
-        localStorage.removeItem('token')
+        localStorage.removeItem('token');
       }
     });
 
@@ -31,6 +31,7 @@ export class TokenService {
         const subject = this.jwt.decodeToken(token.replace('Bearer ', '')).sub;
         return JSON.parse(subject);
       });
+
   }
 
   public getTokenUser(): Observable<ITokenUser> {
