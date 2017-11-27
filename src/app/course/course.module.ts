@@ -70,7 +70,7 @@ import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
     AssignmentDetailComponent,
     AddLessonComponent,
     LessonDetailComponent,
-    LessonComponent
+    LessonComponent,
   ],
 })
 export class CourseModule {

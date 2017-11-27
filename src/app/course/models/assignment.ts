@@ -1,6 +1,4 @@
-import {IActivity} from './iactivity';
-
-export class Assignment implements IActivity {
+export class Assignment {
   activityId: number;
   id: number;
   description: string;

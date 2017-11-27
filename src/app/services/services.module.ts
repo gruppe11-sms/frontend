@@ -10,6 +10,7 @@ import {JwtHelper} from 'angular2-jwt';
 import {AuthenticationGuard} from './authentication.guard';
 import {RoleGuard} from './role.guard';
 import {PermissionService} from './permission.service';
+import {ActivityService} from './activity.service';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {PermissionService} from './permission.service';
     AuthenticationGuard,
     RoleGuard,
     PermissionService,
+    ActivityService
   ],
 })
 export class ServicesModule {
