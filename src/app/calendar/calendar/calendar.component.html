@@ -1,38 +1,38 @@
-<div fxLayout="row">
-  <div fxFlex="100%">
-    <div>
-      <mat-card>
-        <mat-card-header>
-          <mat-card-title>
-            <h1>Calendar</h1>
-          </mat-card-title>
-          <mat-card-subtitle>
-            your timetable
-          </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <mat-list *ngFor="let activity of activities|async">
-              <mat-list-item>
-                <mat-card>
-                  <mat-card-header>
-                    <mat-card-title>
-                      {{activity.title}}
-                    </mat-card-title>
-                  </mat-card-header>
-                  <mat-card-content>
-                    {{activity.startDate}} -
-                    {{activity.endDate}}
-                  </mat-card-content>
-                </mat-card>
-              </mat-list-item>
-            </mat-list>
-        </mat-card-content>
-        <mat-card-footer>
-          <mat-card-actions>
-            <button mat-raised-button>Create Event</button>
-          </mat-card-actions>
-        </mat-card-footer>
-      </mat-card>
+<mat-card xmlns="http://www.w3.org/1999/html">
+  <mat-card-header>
+    <mat-card-title>
+      <h1>Calendar</h1>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <button mat-raised-button (click)="decrementWeek()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <label>{{week|async}}</label>
+      <button mat-raised-button (click)="incrementWeek()">
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div fxFlex="column">
+      <div fxFlex *ngFor="let day of daysOfWeek" class="calendarDays">
+        <label>{{day.name}}</label>
+        <mat-list *ngFor="let activity of weekActivities|async|dayfilter:day.number">
+          <mat-list-item>
+            <mat-card class="calendarEntry">
+              <mat-card-header>
+                {{activity.title}}
+              </mat-card-header>
+            </mat-card>
+          </mat-list-item>
+        </mat-list>
+      </div>
     </div>
-  </div>
-</div>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-card-actions>
+      <button mat-raised-button>Create Event</button>
+    </mat-card-actions>
+  </mat-card-footer>
+</mat-card>
+
