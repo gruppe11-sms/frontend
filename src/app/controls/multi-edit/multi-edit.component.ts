@@ -1,8 +1,7 @@
 import {animate, style, transition, trigger} from '@angular/animations';
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {MatAutocompleteSelectedEvent} from '@angular/material';
-import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-multi-edit',
@@ -21,7 +20,7 @@ import {Observable} from 'rxjs/Observable';
     ]),
   ],
 })
-export class MultiEditComponent implements OnInit {
+export class MultiEditComponent implements OnInit, OnChanges {
 
   @Input()
   public values: any[];
@@ -36,7 +35,8 @@ export class MultiEditComponent implements OnInit {
   public removed = new EventEmitter();
 
   public searchControl = new FormControl();
-  public filteredOptions: Observable<any[]>;
+  public filteredOptions: any[];
+  private lastSearchValue = '';
 
   constructor() {
     // HAXXING IN PROGRESS
@@ -44,12 +44,23 @@ export class MultiEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.filteredOptions = this.searchControl
+    this.searchControl
       .valueChanges
       .startWith('')
       .map(val => val && typeof val === 'object' ? this.displayWithSafe(val) : val)
       .map(val => val.toLowerCase())
-      .map(val => this.filter(val));
+      .subscribe(val => {
+        this.lastSearchValue = val;
+        this.updateAvailableOptions();
+      });
+  }
+
+  ngOnChanges() {
+    this.updateAvailableOptions();
+  }
+
+  private updateAvailableOptions() {
+    this.filteredOptions = this.filter(this.lastSearchValue);
   }
 
   filter(val: string): any[] {

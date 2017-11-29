@@ -1,9 +1,8 @@
 export class Assignment {
-  activityId: number;
   id: number;
   description: string;
   title: string;
-  startdate: number;
-  enddate: number;
+  startDate: number;
+  endDate: number;
   remainingTime: number;
 }

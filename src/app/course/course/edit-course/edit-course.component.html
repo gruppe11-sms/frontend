@@ -1,1 +1,65 @@
-<app-edit-course-forms [course]="course|async" [users]="users|async" (save)="updateCourse($event)"></app-edit-course-forms>
+<div fxLayoutAlign="center center" fxFlex="100" class="container">
+  <mat-card fxFlex="100" fxFlex.gt-sm="50">
+    <mat-card-title>
+      <h1>Edit Course</h1>
+    </mat-card-title>
+    <mat-card-content>
+      <form (submit)="updateCourse()" name="editCourseForm" id="editCourseForm" fxLayout="column">
+        <!--Title-->
+        <div>
+          <mat-form-field fxFlex="100">
+            <input matInput name="courseTitleInput" [formControl]="courseTitleInput"
+                   required placeholder="Course Title" fxFlex="100">
+            <mat-error *ngIf="courseTitleInput.hasError('required')">This is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--Description-->
+        <div>
+          <mat-form-field fxFlex="100">
+                    <textarea matInput [formControl]="courseDescriptionInput"
+                              name="courseDescriptionInput" required placeholder="Course description"
+                              fxFlex="100"></textarea>
+            <mat-error *ngIf="courseDescriptionInput.hasError('required')">This is required</mat-error>
+          </mat-form-field>
+        </div>
+
+
+        <!--Date picker-->
+        <div fxLayout="row" fxLayoutAlign="space-between">
+          <mat-form-field fxFlex="49">
+            <input matInput [matDatepicker]="StartDatepicker" name="courseStartDate"
+                   [formControl]="courseStartDate" required
+                   placeholder="Start date">
+            <mat-datepicker-toggle matSuffix [for]="StartDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #StartDatepicker></mat-datepicker>
+            <mat-error *ngIf="courseStartDate.hasError('required')">This is required</mat-error>
+          </mat-form-field>
+          <mat-form-field fxFlex="49">
+            <input matInput [matDatepicker]="EndDatepicker" name="courseEndDate" [formControl]="courseEndDate" required
+                   placeholder="End date">
+            <mat-datepicker-toggle matSuffix [for]="EndDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker #EndDatepicker></mat-datepicker>
+            <mat-error *ngIf="courseEndDate.hasError('required')">This is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <app-multi-edit
+          [displayWith]="formatName"
+          (selected)="addParticipant($event)"
+          (removed)="removeParticipant($event)"
+          [options]="filteredUsers|async"
+          [values]="participants|async"
+        >
+
+        </app-multi-edit>
+
+
+        <!--Submit update-->
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="secondary" form="editCourseForm">Update Course</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

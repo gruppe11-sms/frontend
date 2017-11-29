@@ -1,9 +1,7 @@
-import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {CourseComponent} from './course/course.component';
-import {routes} from './course.routes';
-import {CourseService} from './course.service';
-import {CourseDetailComponent} from './course/course-detail/course-detail.component';
+import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -19,19 +17,21 @@ import {
   MatSelectModule,
   MatSnackBarModule,
 } from '@angular/material';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {AddCourseComponent} from './course/add-course/add-course.component';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {EditCourseComponent} from './course/edit-course/edit-course.component';
-import {AllAssignmentsComponent} from './assignment/all-assignments/all-assignments.component';
-import {CreateAssignmentComponent} from './assignment/create-assignment/create-assignment.component';
+import {ControlsModule} from '../controls/controls.module';
 import {AssignmentService} from './assignment.service';
+import {AllAssignmentsComponent} from './assignment/all-assignments/all-assignments.component';
 import {AssignmentDetailComponent} from './assignment/all-assignments/assignment-detail/assignment-detail.component';
+import {CreateAssignmentComponent} from './assignment/create-assignment/create-assignment.component';
+import {routes} from './course.routes';
+import {CourseService} from './course.service';
+import {AddCourseComponent} from './course/add-course/add-course.component';
+import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
 import {CourseDetailFormsComponent} from './course/course-detail/course-detail-forms/course-detail-forms.component';
-import {EditCourseFormsComponent} from './course/edit-course/edit-course-forms/edit-course-forms.component';
+import {CourseDetailComponent} from './course/course-detail/course-detail.component';
+import {CourseComponent} from './course/course.component';
+import {EditCourseComponent} from './course/edit-course/edit-course.component';
 import {LessonDetailComponent} from './course/lesson-detail/lesson-detail.component';
 import {LessonComponent} from './course/lesson/lesson.component';
-import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
 
 @NgModule({
   imports: [
@@ -53,6 +53,7 @@ import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
     MatSelectModule,
     MatChipsModule,
     MatSnackBarModule,
+    ControlsModule,
   ],
   providers: [
     CourseService,
@@ -64,7 +65,6 @@ import {AddLessonComponent} from './course/add-lesson/add-lesson.component';
     CourseDetailFormsComponent,
     AddCourseComponent,
     EditCourseComponent,
-    EditCourseFormsComponent,
     AllAssignmentsComponent,
     CreateAssignmentComponent,
     AssignmentDetailComponent,

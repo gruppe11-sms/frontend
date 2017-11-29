@@ -1,17 +1,17 @@
-import {Participant} from './participant';
-import {Lesson} from './lesson';
 import {Assignment} from './assignment';
 import {Evaluation} from './evaluation';
+import {Lesson} from './lesson';
+import {Participant} from './participant';
 
-export interface Course {
+export class Course {
 
-  id: number;
-  title: string;
-  description: string;
-  startDate: Date;
-  endDate: Date;
-  participants: Participant[];
-  lessons: Lesson[];
-  assignments: Assignment[];
-  evaluations: Evaluation[];
+  id = 0;
+  title = '';
+  description = '';
+  startDate: Date = new Date();
+  endDate: Date = new Date();
+  participants: Participant[] = [];
+  lessons: Lesson[] = [];
+  assignments: Assignment[] = [];
+  evaluations: Evaluation[] = [];
 }
