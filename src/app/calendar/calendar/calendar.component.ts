@@ -24,6 +24,8 @@ export class CalendarComponent implements OnInit {
     return Math.ceil(((( d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
   }
 
+
+
   constructor(private activityService: ActivityService) {
   }
 
@@ -34,6 +36,8 @@ export class CalendarComponent implements OnInit {
         return activities.filter(activity => Number(activity.endDate) === CalendarComponent.getWeek(activity.endDate));
       });
     console.log('Current week' + CalendarComponent.getWeek(new Date(Date.now())));
+    const date = new Date();
+    console.log('Current Day' + date.getDay().toString())
   }
 
 
