@@ -10,18 +10,26 @@
             your timetable
           </mat-card-subtitle>
         </mat-card-header>
-        <!--*ngFor="(let activity of calendarEntry|async)"-->
         <mat-card-content>
-          <mat-list>
-            <mat-list-item>
-
-
-            </mat-list-item>
-          </mat-list>
+            <mat-list *ngFor="let activity of activities|async">
+              <mat-list-item>
+                <mat-card>
+                  <mat-card-header>
+                    <mat-card-title>
+                      {{activity.title}}
+                    </mat-card-title>
+                  </mat-card-header>
+                  <mat-card-content>
+                    {{activity.startDate}} -
+                    {{activity.endDate}}
+                  </mat-card-content>
+                </mat-card>
+              </mat-list-item>
+            </mat-list>
         </mat-card-content>
         <mat-card-footer>
           <mat-card-actions>
-            <mat-raised-button>Create Event</mat-raised-button>
+            <button mat-raised-button>Create Event</button>
           </mat-card-actions>
         </mat-card-footer>
       </mat-card>

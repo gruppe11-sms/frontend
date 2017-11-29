@@ -3,12 +3,16 @@ import {HttpClient, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {Assignment} from './models/assignment';
 
+export interface UploadTask {
+  file: File;
+  assignmentId: number;
+}
+
 @Injectable()
 export class AssignmentService {
 
   public constructor(private httpClient: HttpClient) {
   }
-
   public createAssignment(title: string, description: string, startDate: Date, endDate: Date, courseId: number): Observable<Assignment> {
     return this.httpClient.post<Assignment>(`/api/courses/${courseId}/assignments`, {
       title, description,
@@ -17,18 +21,14 @@ export class AssignmentService {
     });
   }
 
-  public uploadAssignment(file: File) {
-    console.log(file.size);
+  public uploadAssignment(task: UploadTask) {
+    console.log(task.assignmentId);
+    const {file, assignmentId} = task;
+    // TODO valider bruger rettigheder smid ex hvis denne er falsk
     const data = new FormData();
     data.append('file', file);
-    // const reader = new FileReader();
-    /*reader.readAsText(file);
-    reader.addEventListener('loadend', e => {
-      const text = e.srcElement ? e.srcElement.textContent : '';
-      console.log('Text is ' + text);
-    });
-    */
-    const request = new HttpRequest('POST', '/api/file', data, {
+    data.append('assignmentId', assignmentId.toString());
+    const request = new HttpRequest('POST', '/api/courses/assignments/uploadAssignments', data, {
       reportProgress: true,
     });
   }
