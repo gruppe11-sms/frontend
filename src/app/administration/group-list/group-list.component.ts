@@ -4,11 +4,28 @@ import {Observable} from 'rxjs/Observable';
 import {GroupService} from '../../services/group.service';
 import {MatSnackBar} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import {animate, query, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-group-list',
   templateUrl: './group-list.component.html',
   styleUrls: ['./group-list.component.scss'],
+  animations: [
+    trigger('listAnimation', [
+      transition(':leave', [
+        query(':leave', [
+          style({opacity: 1, height: '*'}),
+          animate('500ms', style({opacity: 0, height: 0})),
+        ], {optional: true}),
+      ]),
+      transition(':enter', [
+        query(':enter', [
+          style({opacity: 0, height: 0}),
+          animate('500ms', style({opacity: 1, height: '*'})),
+        ], {optional: true}),
+      ]),
+    ]),
+  ],
 })
 export class GroupListComponent implements OnInit {
 

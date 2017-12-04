@@ -1,5 +1,8 @@
-.course-update-format{
-  width:100%;
-  max-width: 1250px;
-  padding: 50px 200px 50px 50px;
+mat-card {
+  margin: 1rem;
+}
+
+.container, :host {
+  height: 100%;
+  width: 100%;
 }

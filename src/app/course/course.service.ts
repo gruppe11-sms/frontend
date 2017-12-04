@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
-import {Course} from './models/course';
+import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/do';
-import {Participant} from './models/participant';
-import {Lesson} from './models/lesson';
+import {Observable} from 'rxjs/Observable';
 import {Assignment} from './models/assignment';
+import {Course} from './models/course';
 import {Evaluation} from './models/evaluation';
+import {Lesson} from './models/lesson';
+import {Participant} from './models/participant';
 
 export interface ICourseResponse {
   id: number;
@@ -14,7 +14,7 @@ export interface ICourseResponse {
   description: string;
   startDate: number;
   endDate: number;
-  participant: Participant[];
+  participants: Participant[];
   lessons: Lesson[];
   assignments: Assignment[];
   evaluations: Evaluation[];
@@ -36,17 +36,11 @@ export class CourseService {
     return this.httpClient.get<ICourseResponse>(`/api/courses/${id}`)
       .map(courseResponse => {
         return {
-          id: courseResponse.id,
-          title: courseResponse.title,
-          description: courseResponse.description,
+          ...courseResponse,
           startDate: new Date(courseResponse.startDate),
           endDate: new Date(courseResponse.endDate),
-          participants: courseResponse.participant,
-          lessons: courseResponse.lessons,
-          assignments: courseResponse.assignments,
-          evaluations: courseResponse.evaluations,
         };
-      }).do(course => course.assignments.forEach(assignment => assignment.remainingTime = assignment.enddate - Date.now()));
+      }).do(course => course.assignments.forEach(assignment => assignment.remainingTime = assignment.endDate - Date.now()));
   }
 
   getLessons(id: number): Observable<Lesson[]> {
@@ -61,9 +55,12 @@ export class CourseService {
     return this.httpClient.post(`/api/courses`, course);
   }
 
-  updateCourse(id: number, course: Course) {
-    console.log('updating course' + course.title);
-    return this.httpClient.put(`/api/courses/${id}`, course);
+  updateCourse(course: Course) {
+    return this.httpClient.put(`/api/courses/${course.id}`, {
+      ...course,
+      startDate: course.startDate.getTime(),
+      endDate: course.endDate.getTime(),
+    });
   }
 
   deleteCourse(id: number) {

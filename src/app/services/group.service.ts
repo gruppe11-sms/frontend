@@ -5,8 +5,8 @@ import {Group} from '../models/group';
 
 @Injectable()
 export class GroupService {
-  public constructor(private httpClient: HttpClient) {
 
+  public constructor(private httpClient: HttpClient) {
   }
 
   public getGroups(): Observable<Group[]> {
@@ -15,7 +15,6 @@ export class GroupService {
 
   public createGroup(title: string, description: string): Observable<Group> {
     return this.httpClient.post<Group>('api/groups', {title, description});
-
   }
 
   public updateGroup(group: Group): Observable<Group> {
@@ -28,6 +27,5 @@ export class GroupService {
 
   public removeGroup(group: Group): Observable<string> {
     return this.httpClient.delete(`api/groups/${group.id}`, {responseType: 'text'});
-
   }
 }
