@@ -1,11 +1,8 @@
-import {IActivity} from './iactivity';
-
-export class Assignment implements IActivity {
-  activityId: number;
+export class Assignment {
   id: number;
   description: string;
   title: string;
-  startdate: number;
-  enddate: number;
+  startDate: number;
+  endDate: number;
   remainingTime: number;
 }

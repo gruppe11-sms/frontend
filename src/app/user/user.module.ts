@@ -3,9 +3,16 @@ import {CommonModule} from '@angular/common';
 import {UserComponent} from './user.component';
 import {UserDetailsComponent} from './user-details/user-details.component';
 import {routes} from './user.routes';
-import {MatButtonModule, MatDialog, MatDialogModule, MatFormFieldModule, MatInputModule} from '@angular/material';
-import { UserDetailChangePasswordComponent } from './user-details/user-detail-change-password/user-detail-change-password.component';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatListModule,
+} from '@angular/material';
+import {UserDetailChangePasswordComponent} from './user-details/user-detail-change-password/user-detail-change-password.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -16,7 +23,9 @@ import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule,
+    MatListModule,
   ],
   declarations: [
     UserComponent,
