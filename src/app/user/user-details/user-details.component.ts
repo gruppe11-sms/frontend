@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../../models/user';
-import {MatDialog, MatDialogRef} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {UserDetailChangePasswordComponent} from './user-detail-change-password/user-detail-change-password.component';
-import {UserService} from '../../services/user.service';
+import {RoleService} from '../../services/role.service';
 
 @Component({
   selector: 'app-user-details',
@@ -14,7 +14,7 @@ export class UserDetailsComponent implements OnInit {
   @Input()
   public user: User;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private roleService: RoleService) {
   }
 
   ngOnInit() {
@@ -24,5 +24,9 @@ export class UserDetailsComponent implements OnInit {
     this.dialog.open(UserDetailChangePasswordComponent, {
       data: this.user
     });
+  }
+
+  public displayWith({title}: { title: string }) {
+    return title;
   }
 }

@@ -1,3 +1,40 @@
+<mat-card>
+  <mat-card-title>
+    My Page
+  </mat-card-title>
+  <mat-card-content>
+    <form *ngIf="user" name="userProfileForm" id="userProfileForm" (submit)="openPasswordDialog()">
+      <h4>Name</h4>
+      <p>{{user.name}}</p>
+
+      <h4>Username</h4>
+      <p>{{user.username}}</p>
+
+      <h4>Password</h4>
+      <mat-card-actions>
+        <button mat-raised-button form="userProfileForm">Change Password</button>
+      </mat-card-actions>
+
+      <h4>Roles</h4>
+      <mat-list>
+        <mat-list-item *ngFor="let role of user.roles">
+          <span>{{role.title}} - {{role.description}}</span>
+        </mat-list-item>
+      </mat-list>
+
+      <h4>Groups</h4>
+      <mat-list>
+        <mat-list-item *ngFor="let group of user.groups">
+          <span>{{group.title}} - {{group.description}}</span>
+        </mat-list-item>
+
+      </mat-list>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+
+<!--
 <div *ngIf="user" class="container" fxLayout="column">
   <div class="element">
     <h2>User Profile</h2>
@@ -25,3 +62,4 @@
     </ul>
   </div>
 </div>
+-->
