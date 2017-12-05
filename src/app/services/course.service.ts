@@ -2,11 +2,11 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/do';
 import {Observable} from 'rxjs/Observable';
-import {Assignment} from './models/assignment';
-import {Course} from './models/course';
-import {Evaluation} from './models/evaluation';
-import {Lesson} from './models/lesson';
-import {Participant} from './models/participant';
+import {Assignment} from '../course/models/assignment';
+import {Course} from '../course/models/course';
+import {Evaluation} from '../course/models/evaluation';
+import {Lesson} from '../course/models/lesson';
+import {Participant} from '../course/models/participant';
 
 export interface ICourseResponse {
   id: number;

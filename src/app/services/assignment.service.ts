@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Assignment} from './models/assignment';
+import {Assignment} from '../course/models/assignment';
 import 'rxjs/add/operator/share';
 
 export interface UploadTask {
@@ -21,6 +21,10 @@ export class AssignmentService {
       startdate: startDate.getTime() / 1000,
       enddate: endDate.getTime() / 1000,
     });
+  }
+
+  public getComingAssignments(): Observable<Assignment[]> {
+    return this.httpClient.get<Assignment[]>(`/api/courses/home/assignments`);
   }
 
   public uploadAssignment(task: UploadTask): Observable<HttpEvent<UploadTask>> {

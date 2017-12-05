@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Assignment} from '../../../models/assignment';
-import {AssignmentService, UploadTask} from '../../../assignment.service';
+
 import {MatSnackBar} from '@angular/material';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
+import {Assignment} from '../../../course/models/assignment';
+import {AssignmentService, UploadTask} from '../../../services/assignment.service';
 
 
 @Component({

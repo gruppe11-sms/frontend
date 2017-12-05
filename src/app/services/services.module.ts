@@ -11,6 +11,9 @@ import {AuthenticationGuard} from './authentication.guard';
 import {RoleGuard} from './role.guard';
 import {PermissionService} from './permission.service';
 import {ActivityService} from './activity.service';
+import {AssignmentService} from './assignment.service';
+import {MeService} from './me.service';
+import {CourseService} from './course.service';
 
 @NgModule({
   imports: [
@@ -29,7 +32,10 @@ import {ActivityService} from './activity.service';
     AuthenticationGuard,
     RoleGuard,
     PermissionService,
-    ActivityService
+    ActivityService,
+    AssignmentService,
+    MeService,
+    CourseService,
   ],
 })
 export class ServicesModule {

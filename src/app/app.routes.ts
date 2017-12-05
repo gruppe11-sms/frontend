@@ -41,6 +41,7 @@ const appRoutes: Routes = [
   {
     path: 'courses',
     loadChildren: 'app/course/course.module#CourseModule',
+    canActivate: [AuthenticationGuard],
   },
   { // THIS HAS TO BE LAST, DO NOT FAIL WHERE I HAVE FALLEN
     path: '**',

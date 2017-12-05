@@ -1,7 +1,7 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {Injectable} from "@angular/core";
-import {TokenService} from "./token.service";
+import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {TokenService} from './token.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -11,7 +11,6 @@ export class AuthInterceptor implements HttpInterceptor {
 
   public intercept(req: HttpRequest<any>,
                    next: HttpHandler): Observable<HttpEvent<any>> {
-
     if (req.url !== '/api/auth/login') {
       return this.tokenService.token.take(1)
         .switchMap(token => {

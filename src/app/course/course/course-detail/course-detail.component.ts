@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Course} from '../../models/course';
-import {CourseService} from '../../course.service';
+import {CourseService} from '../../../services/course.service';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
