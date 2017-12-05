@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {AuthService} from './auth.service';
 import {UserService} from './user.service';
@@ -14,6 +14,7 @@ import {ActivityService} from './activity.service';
 import {AssignmentService} from './assignment.service';
 import {MeService} from './me.service';
 import {CourseService} from './course.service';
+import {AuthInterceptor} from './auth-inteceptor';
 
 @NgModule({
   imports: [
@@ -36,6 +37,7 @@ import {CourseService} from './course.service';
     AssignmentService,
     MeService,
     CourseService,
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
 })
 export class ServicesModule {

@@ -9,8 +9,6 @@ import {HomeComponent} from './home/home.component';
 import {ServicesModule} from './services/services.module';
 import {StartComponent} from './start/start.component';
 import {FormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS} from '@angular/common/http';
-import {AuthInterceptor} from './services/auth-inteceptor';
 import {HomeUserdetailComponent} from './home/home-userdetail/home-userdetail.component';
 import {ControlsModule} from './controls/controls.module';
 import {HomeCourseDetailComponent} from './home/home-course-detail/home-course-detail.component';
@@ -34,9 +32,6 @@ import {HomeCourseDetailComponent} from './home/home-course-detail/home-course-d
     ServicesModule,
     ControlsModule,
     routes,
-  ],
-  providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
   ],
   bootstrap: [AppComponent],
 })
