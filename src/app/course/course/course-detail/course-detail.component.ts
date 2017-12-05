@@ -7,7 +7,9 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
-import {Lesson} from '../../models/lesson';
+import 'rxjs/add/operator/startWith';
+import {Participant} from '../../models/participant';
+import {UserService} from '../../../services/user.service';
 
 @Component({
   selector: 'app-course-detail',
@@ -16,10 +18,11 @@ import {Lesson} from '../../models/lesson';
 })
 export class CourseDetailComponent implements OnInit {
   public course: Observable<Course>;
-  public lessons: Observable<Lesson>;
+  public participants: Observable<Participant[]>;
 
   constructor(private courseService: CourseService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private userService: UserService) {
   }
 
   ngOnInit() {
@@ -30,6 +33,11 @@ export class CourseDetailComponent implements OnInit {
       .switchMap(id => {
         return this.courseService.getCourse(Number(id));
       });
+
+    this.participants = this.course
+      .map(course => course.participants)
+      .switchMap(participants => this.userService.getParticipantsWithNames(participants))
+      .startWith([]);
   }
 }
 

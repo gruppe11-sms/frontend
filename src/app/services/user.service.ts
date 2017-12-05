@@ -4,6 +4,12 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../models/user';
+import {toHttpParams} from '../helpers';
+import {Participant} from '../course/models/participant';
+
+export interface IUsersNames {
+  [id: number]: string;
+}
 
 @Injectable()
 export class UserService {
@@ -33,5 +39,19 @@ export class UserService {
 
   public getUser(userId: number): Observable<User> {
     return this.httpClient.get(`/api/users/${userId}`);
+  }
+
+  public getNames(userIds: number[]): Observable<IUsersNames> {
+    const params = toHttpParams({userIds});
+
+    return this.httpClient.get<IUsersNames>(`/api/users/names`, {params});
+  }
+
+  public getParticipantsWithNames(participants: Participant[]): Observable<Participant[]> {
+    return this.getNames(participants.map(participant => participant.userId))
+      .map(names => participants.map(participant => ({
+        ...participant,
+        name: names[participant.userId] || 'unnamed'
+      })));
   }
 }
