@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AssignmentService} from '../../../services/assignment.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl} from '@angular/forms';
+import {fixMissingTimeStampHere} from '../../../helpers';
 
 @Component({
   selector: 'app-create-assignment',
@@ -13,6 +15,8 @@ export class CreateAssignmentComponent implements OnInit {
   public description: string;
   public startDate: Date;
   public endDate: Date;
+  public startTimeControl: FormControl;
+  public endTimeControl: FormControl;
 
   public constructor(private assignmentService: AssignmentService,
                      private route: ActivatedRoute,
@@ -20,9 +24,14 @@ export class CreateAssignmentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.startTimeControl = new FormControl('');
+    this.endTimeControl = new FormControl('');
   }
 
   public save() {
+    this.startDate = fixMissingTimeStampHere(this.startDate, this.startTimeControl.value);
+    this.endDate = fixMissingTimeStampHere(this.endDate, this.endTimeControl.value);
+    console.log(this.endDate);
     this.route.params
       .take(1)
       .map(params => params.courseId)
@@ -35,10 +44,5 @@ export class CreateAssignmentComponent implements OnInit {
             console.error(err);
           }),
       );
-    // this.route.params.map(params => params.courseId)
-    //   .subscribe(courseId => {
-    //   this.router.navigate(['/courses', courseId]);
-    //   }
-    //   );
   }
 }

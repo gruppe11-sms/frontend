@@ -18,8 +18,8 @@ export class AssignmentService {
   public createAssignment(title: string, description: string, startDate: Date, endDate: Date, courseId: number): Observable<Assignment> {
     return this.httpClient.post<Assignment>(`/api/courses/${courseId}/assignments`, {
       title, description,
-      startdate: startDate.getTime() / 1000,
-      enddate: endDate.getTime() / 1000,
+      startDate: startDate.getTime(),
+      endDate: endDate.getTime(),
     });
   }
 

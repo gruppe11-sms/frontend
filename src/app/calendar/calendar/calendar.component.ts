@@ -23,9 +23,9 @@ export class CalendarComponent implements OnInit {
     {name: 'Sunday', number: 7}
   ];
 
-  private weekActivities: Observable<object[]>;
-  private activities: Observable<Activity[]>;
-  private week: BehaviorSubject<number> = new BehaviorSubject(CalendarComponent.getWeek(new Date(Date.now())));
+  public weekActivities: Observable<object[]>;
+  public activities: Observable<Activity[]>;
+  public week: BehaviorSubject<number> = new BehaviorSubject(CalendarComponent.getWeek(new Date(Date.now())));
 
   public constructor(private activityService: ActivityService) {
   }

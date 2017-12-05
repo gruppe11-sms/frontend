@@ -10,3 +10,13 @@ export function toHttpParams(o: { [key: string]: any }) {
   }
   return params;
 }
+
+
+export function fixMissingTimeStampHere(date: Date, timestamp: string): Date {
+  const [hourS, minuteS] = timestamp.split(':');
+  const hour = Number(hourS);
+  const minutes = Number(minuteS);
+
+  date.setHours(hour, minutes);
+  return date;
+}

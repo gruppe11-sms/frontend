@@ -11,20 +11,35 @@
                   [(ngModel)]="description" matInput></textarea>
       </mat-form-field>
       <div fxLayout="row" fxLayoutAlign="space-between">
-        <mat-form-field fxFlex="48">
-          <input name="startDateInput" matInput [matDatepicker]="startDatePicker" placeholder="Start Date" required
-                 #startDateInput="ngModel" [(ngModel)]="startDate">
-          <mat-error *ngIf="startDateInput.hasError('required')">Start date is required</mat-error>
-          <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #startDatePicker></mat-datepicker>
-        </mat-form-field>
-        <mat-form-field fxFlex="48">
-          <input name="endDateInput" matInput [matDatepicker]="endDatePicker" placeholder="End Date" required
-                 #endDateInput="ngModel" [(ngModel)]="endDate">
-          <mat-error *ngIf="endDateInput.hasError('required')">End date is required</mat-error>
-          <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
-          <mat-datepicker #endDatePicker></mat-datepicker>
-        </mat-form-field>
+        <div fxFlex="48">
+          <mat-form-field>
+            <input name="startDateInput" matInput [matDatepicker]="startDatePicker" placeholder="Start Date" required
+                   #startDateInput="ngModel" [(ngModel)]="startDate">
+            <mat-error *ngIf="startDateInput.hasError('required')">Start date is required</mat-error>
+            <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #startDatePicker></mat-datepicker>
+          </mat-form-field>
+          <br>
+          <app-time-stamp-input
+            placeholder="Start time"
+            [inputControl]="startTimeControl"
+          ></app-time-stamp-input>
+        </div>
+        <div fxFlex="48">
+          <mat-form-field>
+            <input name="endDateInput" matInput [matDatepicker]="endDatePicker" placeholder="End Date" required
+                   #endDateInput="ngModel" [(ngModel)]="endDate">
+            <mat-error *ngIf="endDateInput.hasError('required')">End date is required</mat-error>
+            <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #endDatePicker></mat-datepicker>
+          </mat-form-field>
+          <br>
+          <app-time-stamp-input
+            placeholder="End time"
+            [inputControl]="endTimeControl"
+          >
+          </app-time-stamp-input>
+        </div>
       </div>
     </form>
   </mat-card-content>

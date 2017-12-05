@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {CourseService} from '../../../services/course.service';
 import {ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
+import {FormControl} from '@angular/forms';
+import {fixMissingTimeStampHere} from '../../../helpers';
 
 @Component({
   selector: 'app-add-lesson',
@@ -12,8 +14,8 @@ export class AddLessonComponent implements OnInit {
   public title: string;
   public startDate: Date;
   public endDate: Date;
-  public startTime: string;
-  public endTime: string;
+  public startTimeControl = new FormControl('00:00');
+  public endTimeControl = new FormControl('00:00');
 
   constructor(private courseservice: CourseService, private route: ActivatedRoute, private snackbar: MatSnackBar) {
   }
@@ -22,8 +24,8 @@ export class AddLessonComponent implements OnInit {
   }
 
   public createLesson(): void {
-    this.startDate = this.fixMissingTimeStampHere(this.startDate, this.startTime);
-    this.endDate = this.fixMissingTimeStampHere(this.endDate, this.endTime);
+    this.startDate = fixMissingTimeStampHere(this.startDate, this.startTimeControl.value);
+    this.endDate = fixMissingTimeStampHere(this.endDate, this.endTimeControl.value);
     const courseId = this.route.snapshot.params.courseId;
     this.courseservice.createLesson(this.title, this.startDate, this.endDate, courseId)
       .subscribe(() => {
@@ -33,12 +35,4 @@ export class AddLessonComponent implements OnInit {
       });
   }
 
-  public fixMissingTimeStampHere(date: Date, timestamp: string): Date {
-    const [hourS, minuteS] = timestamp.split(':');
-    const hour = Number(hourS);
-    const minutes = Number(minuteS);
-
-    date.setHours(hour, minutes);
-    return date;
-  }
 }

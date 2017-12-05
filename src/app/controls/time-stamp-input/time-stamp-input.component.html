@@ -1,0 +1,8 @@
+<div fxLayout="row" fxFlex="100">
+  <mat-form-field fxFlex="100">
+    <input matInput pattern="\d{2}:\d{2}" [formControl]="inputControl"
+           name="timeInput" required [placeholder]="placeholder" fxFlex="100">
+    <mat-error *ngIf="inputControl.hasError('required')">This is required</mat-error>
+    <mat-error *ngIf="inputControl.hasError('pattern')">Not in 24h format (e.g. 12:00 or 13:55)</mat-error>
+  </mat-form-field>
+</div>

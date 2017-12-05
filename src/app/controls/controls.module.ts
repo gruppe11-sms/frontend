@@ -15,6 +15,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AllAssignmentsComponent} from './all-assignments/all-assignments.component';
 import {AssignmentDetailComponent} from './all-assignments/assignment-detail/assignment-detail.component';
 import {ServicesModule} from '../services/services.module';
+import {TimeStampInputComponent} from './time-stamp-input/time-stamp-input.component';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -30,16 +32,19 @@ import {ServicesModule} from '../services/services.module';
     MatExpansionModule,
     MatSnackBarModule,
     ServicesModule,
+    FlexLayoutModule,
   ],
   declarations: [
     AssignmentDetailComponent,
     AllAssignmentsComponent,
     MultiEditComponent,
+    TimeStampInputComponent,
   ],
   exports: [
     AssignmentDetailComponent,
     AllAssignmentsComponent,
     MultiEditComponent,
+    TimeStampInputComponent
   ],
 })
 export class ControlsModule {

@@ -23,13 +23,12 @@
             <mat-error *ngIf="lessonStartDateInput.hasError('required')">This is required</mat-error>
           </mat-form-field>
           <br>
-          <mat-form-field>
-            <input matInput #lessonStartTimeInput="ngModel" [(ngModel)]="startTime" pattern="\d{2}:\d{2}"
-                   name="lessonStartInput" required placeholder="Lesson Start Time">
-            <mat-error *ngIf="lessonStartTimeInput.hasError('required')">This is required</mat-error>
-            <mat-error *ngIf="lessonEndTimeInput.hasError('pattern')">Not in 24h format (e.g. 12:00 or 13:55)
-            </mat-error>
-          </mat-form-field>
+          <app-time-stamp-input
+            [formControl]="startTimeControl"
+            placeholder="Lesson start time"
+          >
+
+          </app-time-stamp-input>
         </div>
         <div fxFlex="50%">
           <mat-form-field>
@@ -40,13 +39,12 @@
             <mat-error *ngIf="lessonEndDateInput.hasError('required')">This is required</mat-error>
           </mat-form-field>
           <br>
-          <mat-form-field>
-            <input matInput #lessonEndTimeInput="ngModel" pattern="\d{2}:\d{2}" [(ngModel)]="endTime"
-                   name="lessonEndInput" required placeholder="Lesson End Time">
-            <mat-error *ngIf="lessonEndTimeInput.hasError('required')">This is required</mat-error>
-            <mat-error *ngIf="lessonEndTimeInput.hasError('pattern')">Not in 24h format (e.g. 12:00 or 13:55)
-            </mat-error>
-          </mat-form-field>
+          <app-time-stamp-input
+            [formControl]="endTimeControl"
+            placeholder="Lesson end time"
+          >
+
+          </app-time-stamp-input>
         </div>
       </div>
 
