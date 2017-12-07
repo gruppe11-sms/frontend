@@ -11,6 +11,18 @@ export function toHttpParams(o: { [key: string]: any }) {
   return params;
 }
 
+export function toQueryParameters(o: { [key: string]: any }): string {
+  let params = [];
+
+  for (const key in o) {
+    if (o.hasOwnProperty(key)) {
+      params.push(`${key}=${o[key]}`);
+    }
+  }
+
+  return params.join('&');
+}
+
 
 export function fixMissingTimeStampHere(date: Date, timestamp: string): Date {
   const [hourS, minuteS] = timestamp.split(':');

@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/combineLatest';
 import 'rxjs/add/operator/switchMap';
+import {toQueryParameters} from '../../helpers';
 
 @Component({
   selector: 'app-calendar',
@@ -26,6 +27,7 @@ export class CalendarComponent implements OnInit {
   public weekActivities: Observable<object[]>;
   public activities: Observable<Activity[]>;
   public week: BehaviorSubject<number> = new BehaviorSubject(CalendarComponent.getWeek(new Date(Date.now())));
+  public exportUrl = '';
 
   public constructor(private activityService: ActivityService) {
   }
@@ -35,22 +37,39 @@ export class CalendarComponent implements OnInit {
     const d: Date = new Date(Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate()));
     d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
     const yearStart = new Date(Date.UTC(d.getFullYear(), 0, 1));
-    return Math.ceil(((( d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+    return Math.ceil((((d.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
   }
 
   public ngOnInit() {
-    this.activities = this.activityService.getActivities();
+    this.activities = this.activityService.getActivities().share();
     this.weekActivities = this.activities.combineLatest(this.week)
       .map(([activities, week]) => {
-        return activities.filter(activity => week === CalendarComponent.getWeek(activity.endDate))
-      })
+        return activities.filter(activity => week === CalendarComponent.getWeek(activity.endDate));
+      });
   }
 
   public decrementWeek() {
-    if (this.week.value > 0) this.week.next(this.week.value - 1);
+    if (this.week.value > 0) {
+      this.week.next(this.week.value - 1);
+    }
   }
 
   public incrementWeek() {
-    if (this.week.value < 53) this.week.next(this.week.value + 1);
+    if (this.week.value < 53) {
+      this.week.next(this.week.value + 1);
+    }
+  }
+
+
+  public exportCalender() {
+    this.activityService.createExport()
+      .map(calender => ({
+        tokenId: calender.id,
+        token: calender.token,
+        userId: calender.userId
+      }))
+      .map(calender => `${location.origin}/api/exports?${toQueryParameters(calender)}`)
+      .do(url => console.log(url))
+      .subscribe(url => this.exportUrl = url);
   }
 }

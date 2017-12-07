@@ -28,10 +28,16 @@
         </mat-list>
       </div>
     </div>
+
+    <div *ngIf="exportUrl !== ''">
+      <mat-form-field>
+        <textarea matInput placeholder="Url for calender applications" readonly [(ngModel)]="exportUrl"></textarea>
+      </mat-form-field>
+    </div>
   </mat-card-content>
   <mat-card-footer>
     <mat-card-actions>
-      <button mat-raised-button>Create Event</button>
+      <button mat-raised-button *ngIf="exportUrl === ''" (click)="exportCalender()">Export calender</button>
     </mat-card-actions>
   </mat-card-footer>
 </mat-card>

@@ -31,7 +31,6 @@ export class CreateAssignmentComponent implements OnInit {
   public save() {
     this.startDate = fixMissingTimeStampHere(this.startDate, this.startTimeControl.value);
     this.endDate = fixMissingTimeStampHere(this.endDate, this.endTimeControl.value);
-    console.log(this.endDate);
     this.route.params
       .take(1)
       .map(params => params.courseId)
