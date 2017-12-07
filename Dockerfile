@@ -8,7 +8,7 @@ RUN yarn install
 
 # Add and build the actual project
 ADD . ./
-RUN ng build
+RUN ng build --aot --prod
 
 
 FROM nginx:alpine

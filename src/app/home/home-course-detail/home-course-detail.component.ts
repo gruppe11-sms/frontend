@@ -9,7 +9,7 @@ import {Course} from '../../course/models/course';
 export class HomeCourseDetailComponent implements OnInit {
 
   @Input()
-  private course: Course;
+  public course: Course;
   constructor() { }
 
   ngOnInit() {
