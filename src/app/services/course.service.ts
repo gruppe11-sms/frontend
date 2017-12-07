@@ -2,11 +2,11 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/do';
 import {Observable} from 'rxjs/Observable';
-import {Assignment} from '../course/models/assignment';
 import {Course} from '../course/models/course';
 import {Evaluation} from '../course/models/evaluation';
 import {Lesson} from '../course/models/lesson';
 import {Participant} from '../course/models/participant';
+import {IAssignmentResponse} from './assignment.service';
 
 export interface ICourseResponse {
   id: number;
@@ -16,7 +16,7 @@ export interface ICourseResponse {
   endDate: number;
   participants: Participant[];
   lessons: Lesson[];
-  assignments: Assignment[];
+  assignments: IAssignmentResponse[];
   evaluations: Evaluation[];
 
 }
@@ -39,8 +39,16 @@ export class CourseService {
           ...courseResponse,
           startDate: new Date(courseResponse.startDate),
           endDate: new Date(courseResponse.endDate),
+          assignments: courseResponse.assignments.map(assignmentResponse => {
+            return {
+              ...assignmentResponse,
+              startDate: new Date(assignmentResponse.startDate),
+              endDate: new Date(assignmentResponse.endDate),
+              remainingTime: (assignmentResponse.endDate) - (Date.now()),
+            };
+          })
         };
-      }).do(course => course.assignments.forEach(assignment => assignment.remainingTime = assignment.endDate - Date.now()));
+      });
   }
 
   getLessons(id: number): Observable<Lesson[]> {

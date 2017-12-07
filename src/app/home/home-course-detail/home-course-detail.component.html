@@ -1,1 +1,6 @@
-<h3>{{course.title}}</h3>
+<a [routerLink]="['courses',course.id]" style="">
+  <mat-card style="margin-bottom: 10px">
+    <mat-card-header>{{course.title}}</mat-card-header>
+  </mat-card>
+</a>
+

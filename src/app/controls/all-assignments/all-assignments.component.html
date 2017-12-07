@@ -1,7 +1,6 @@
 <mat-card-content>
-  <div *ngFor="let assignment of assignments">
-    <mat-accordion>
-      <app-assignment-detail [assignment]="assignment" (handInAssignment)="uploadAssignment($event)"></app-assignment-detail>
-    </mat-accordion>
-  </div>
+  <mat-accordion>
+    <app-assignment-detail *ngFor="let assignment of assignments" [assignment]="assignment"
+                           (handInAssignment)="uploadAssignment($event)"></app-assignment-detail>
+  </mat-accordion>
 </mat-card-content>

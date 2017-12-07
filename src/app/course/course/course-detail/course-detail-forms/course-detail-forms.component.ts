@@ -20,6 +20,5 @@ export class CourseDetailFormsComponent implements OnInit {
 
   ngOnInit(
   ) {
-    console.log();
   }
 }

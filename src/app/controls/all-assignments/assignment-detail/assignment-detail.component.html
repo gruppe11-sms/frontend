@@ -1,4 +1,4 @@
-<mat-expansion-panel hideToggle="true">
+<mat-expansion-panel hideToggle="true" (opened)="openedPanel()">
   <mat-expansion-panel-header>
     <mat-panel-title>
       {{assignment.title}}
@@ -12,26 +12,41 @@
 
       </div>
       <mat-panel-description>
-        Due {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}}
-        <mat-icon color="warn">alarm</mat-icon>
+        {{assignment.remainingTime|remainingTime}}
+        <mat-icon *ngIf="assignment.remainingTime > 0" style="color: dodgerblue">alarm</mat-icon>
+        <mat-icon *ngIf="assignment.remainingTime < 0" style="color: red">alarm</mat-icon>
+        <mat-icon *ngIf="assignment.remainingTime > 0 && assignment.remainingTime< 259200000" style="color: yellow">alarm</mat-icon>
       </mat-panel-description>
+
     </div>
 
 
   </mat-expansion-panel-header>
-  <h4>{{assignment.description}}</h4>
+  <h4>Description:</h4>
+  <h5> {{assignment.description}}</h5>
   <br>
   <h5>Posted: {{assignment.startDate|date:"dd/MM/y - HH:mm:ss"}}</h5>
   <h5>Due Date: {{assignment.endDate|date:"dd/MM/y - HH:mm:ss"}}</h5>
-  <mat-action-row>
-    <div fxLayout="row">
-      <div fxFlex="50%">
-        <h5>Time remaining: {{assignment.remainingTime|date:"dd/MM - HH:mm:ss"}}</h5>
+  <h4>Uploads</h4>
+  <mat-list>
+    <div *ngFor="let handIns of assignment.handinAssignments">
+      <div *ngFor="let name of handIns.fileNames">
+        <mat-list-item>{{name}}</mat-list-item>
       </div>
+    </div>
+  </mat-list>
+
+  <mat-action-row>
+    <div>
+      <h5>Time remaining: {{assignment.remainingTime|remainingTime}}</h5>
+    </div>
+    <div fxLayout="row">
     </div>
     <div fxFlex="50%">
       <button mat-raised-button (click)="fileInput.click()">Upload assignment</button>
       <input type="file" multiple style="display: none" (change)="uploadedAssignment(fileInput.files)" #fileInput>
     </div>
   </mat-action-row>
+
+
 </mat-expansion-panel>

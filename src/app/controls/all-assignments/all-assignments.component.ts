@@ -21,6 +21,8 @@ export class AllAssignmentsComponent implements OnInit {
     this.assignmentService.uploadAssignment(task);
   }
 
+
+
   ngOnInit() {
   }
 

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CourseService} from '../../../services/course.service';
 import {Course} from '../../models/course';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -13,7 +14,10 @@ export class AddCourseComponent implements OnInit {
   public startDate: number;
   public endDate: number;
 
-  constructor(private courseService: CourseService) { }
+  constructor(private courseService: CourseService,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit() {
   }
@@ -26,8 +30,8 @@ export class AddCourseComponent implements OnInit {
       startDate: new Date(this.startDate),
       endDate: new Date(this.endDate)
     };
-    this.courseService.createCourse(course).subscribe();
+    this.courseService.createCourse(course).subscribe(course => {
+      this.router.navigate(['/courses', course.id]);
+    });
   }
-
-
 }

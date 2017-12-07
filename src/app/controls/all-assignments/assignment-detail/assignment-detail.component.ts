@@ -17,6 +17,8 @@ export class AssignmentDetailComponent implements OnInit {
   @Output()
   public handInAssignment = new EventEmitter<UploadTask>();
 
+  private loaded = false;
+
   public constructor(private assignmentService: AssignmentService,
                      private snackBar: MatSnackBar) {
   }
@@ -26,29 +28,34 @@ export class AssignmentDetailComponent implements OnInit {
 
   public uploadedAssignment(files: File[]) {
     const task = {
-      file: files[0],
+      file: files[files.length - 1],
       assignmentId: this.assignment.id,
     };
     this.handInAssignment.emit(task);
 
     this.assignmentService.uploadAssignment(task)
       .subscribe(event => {
-          console.log(event);
           if (event.type === HttpEventType.UploadProgress) {
             if (event.total) {
               // TODO Progressbar
             }
           } else if (event instanceof HttpResponse) {
             if (event.body) {
-              // TODO somthing
+              // TODO something
             }
             this.snackBar.open('Assignment was uploaded', 'ok', {duration: 2000});
           }
         },
         err => {
-          this.snackBar.open('Assignment was no uploaded', 'ok', {duration: 2000});
-          console.error('Error uploading assignment', err);
+          this.snackBar.open('Assignment was not uploaded', 'ok', {duration: 2000});
         });
+  }
+
+  public openedPanel() {
+    if (!this.loaded) {
+      this.loaded = !this.loaded;
+      this.assignmentService.getOneAssignment(this.assignment.id).subscribe(assignment => this.assignment = assignment);
+    }
   }
 }
 

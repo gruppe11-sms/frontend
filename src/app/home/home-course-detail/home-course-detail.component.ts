@@ -13,6 +13,7 @@ export class HomeCourseDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }
