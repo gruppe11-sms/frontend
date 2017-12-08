@@ -13,9 +13,17 @@
       </div>
       <mat-panel-description>
         {{assignment.remainingTime|remainingTime}}
-        <mat-icon *ngIf="assignment.remainingTime > 0" style="color: dodgerblue">alarm</mat-icon>
-        <mat-icon *ngIf="assignment.remainingTime < 0" style="color: red">alarm</mat-icon>
-        <mat-icon *ngIf="assignment.remainingTime > 0 && assignment.remainingTime< 259200000" style="color: yellow">alarm</mat-icon>
+
+        <mat-icon *ngIf="assignment.remainingTime > 0 && assignment.remainingTime < 259200000; else goodTime"
+                  class="close">
+          alarm
+        </mat-icon>
+        <ng-template #goodTime>
+          <mat-icon *ngIf="assignment.remainingTime > 0; else dead" class="good-time">alarm</mat-icon>
+        </ng-template>
+        <ng-template #dead>
+          <mat-icon *ngIf="assignment.remainingTime < 0" class="dead">alarm</mat-icon>
+        </ng-template>
       </mat-panel-description>
 
     </div>
