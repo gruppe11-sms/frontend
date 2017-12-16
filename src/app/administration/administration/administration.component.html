@@ -3,28 +3,28 @@
 <mat-card-content>
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutWrap>
     <a [routerLink]="['users','new']" *ngIf="isUserManager|async">
-      <mat-card>
+      <mat-card class="card" fxFlex="160px">
         <mat-card-title>Add User</mat-card-title>
         <mat-icon class="icon">person_add</mat-icon>
       </mat-card>
     </a>
 
     <a [routerLink]="['users']" *ngIf="isUserManager|async">
-      <mat-card>
+      <mat-card class="card" fxFlex="160px">
         <mat-card-title>Edit User</mat-card-title>
         <mat-icon class="icon">edit</mat-icon>
       </mat-card>
     </a>
 
     <a [routerLink]="['groups','new']" *ngIf="isGroupManager|async">
-      <mat-card>
+      <mat-card class="card" fxFlex="160px">
         <mat-card-title>Add Group</mat-card-title>
         <mat-icon class="icon">group_add</mat-icon>
       </mat-card>
     </a>
 
     <a [routerLink]="['groups']" *ngIf="isGroupManager|async">
-      <mat-card>
+      <mat-card class="card" fxFlex="160px">
         <mat-card-title>Edit Group</mat-card-title>
         <mat-icon class="icon">group</mat-icon>
       </mat-card>

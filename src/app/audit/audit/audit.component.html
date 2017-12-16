@@ -1,18 +1,24 @@
-<app-audit-entry-filter [filters]="filters|async"
-                        (search)="search($event)"
-                        (page)="updatePage($event)"
-                        [resultLength]="resultCount|async"
-></app-audit-entry-filter>
+<mat-card-content>
+  <div fxFlex="700px">
+    <app-audit-entry-filter [filters]="filters|async"
+                            (search)="search($event)"
+                            (page)="updatePage($event)"
+                            [resultLength]="resultCount|async"
+    ></app-audit-entry-filter>
 
-<mat-accordion multi="true">
-  <mat-expansion-panel *ngFor="let entry of entries|async">
-    <mat-expansion-panel-header>
-      <span fxFlex>{{entry.name}} ({{entry.userId}})</span>
-      <span fxFlex>{{entry.action}}</span>
-      <span fxFlex>{{entry.timestamp|date:"dd/MM/y - HH:mm:ss"}}</span>
-    </mat-expansion-panel-header>
+    <div id="audit-entries-list">
+      <mat-accordion multi="true">
+        <mat-expansion-panel *ngFor="let entry of entries|async">
+          <mat-expansion-panel-header>
+            <span fxFlex class="title-part">{{entry.name}} ({{entry.userId}})</span>
+            <span fxFlex class="title-part">{{entry.action}}</span>
+            <span fxFlex class="title-part">{{entry.timestamp|date:"dd/MM/y - HH:mm:ss"}}</span>
+          </mat-expansion-panel-header>
 
-    <app-audit-entry-data [data]="entry.data"></app-audit-entry-data>
-  </mat-expansion-panel>
+          <app-audit-entry-data [data]="entry.data"></app-audit-entry-data>
+        </mat-expansion-panel>
 
-</mat-accordion>
+      </mat-accordion>
+    </div>
+  </div>
+</mat-card-content>

@@ -21,8 +21,8 @@ import {RouterOutlet} from '@angular/router';
           style({height: 0, opacity: 0, width: 0}),
         ], {optional: true}),
         query(':leave', [
-          animate('200ms', style({opacity: 0})),
           style({height: '*', width: '*'}),
+          animate('200ms', style({opacity: 0})),
           animate('500ms', style({height: 0, width: 0})),
         ], {optional: true}),
         query(':enter', [
@@ -30,28 +30,7 @@ import {RouterOutlet} from '@angular/router';
           animate('500ms', style({opacity: 1})),
           animateChild(),
         ], {optional: true}),
-
-        // animate('500ms', style({opacity: 0})),
-        // animate('500ms', style({opacity: 1}))
       ]),
-      // transition('* => *', [
-      //   // query(':enter', [
-      //   //   style({opacity: '0'}),
-      //     // animate('500ms', style({height: '*'}))
-      //   // ], {optional: true}),
-      //   query(':self', [
-      //     style({opacity: 0}),
-      //     animate('250ms', style({height: 0, width: 0})),
-      //     animate('250ms', style({height: '*', width: '*'})),
-      //     animate('250ms', style({opacity: 1}))
-      //     // style({opacity: 0}),
-      //     // animate('500ms', style({opacity: 1}))
-      //   ], {optional: true}),
-      //   // query(':enter', [
-      //   //   style({opacity: '0'}),
-      //   //   animate('500ms', style({opacity: 1}))
-      //   // ], {optional: true}),
-      // ]),
     ]),
   ],
 })
@@ -87,8 +66,6 @@ export class AppComponent implements OnInit {
   }
 
   public prepareRoute(outlet: RouterOutlet) {
-    const animation = outlet.activatedRouteData['animation'] || '';
-    console.log({animation});
-    return animation;
+    return outlet.activatedRouteData['animation'] || '';
   }
 }

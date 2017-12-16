@@ -4,6 +4,14 @@
   display: block;
 }
 
-#main-outlet-container ::ng-deep > * {
-  display: block;
+#main-outlet-container {
+  width: calc(100% + 1px);
+  max-height: 90vh;
+  ::ng-deep > * {
+    display: block;
+  }
+}
+
+.container {
+  overflow: hidden;
 }

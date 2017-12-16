@@ -2,3 +2,12 @@
   padding: 1rem;
   display: block;
 }
+
+.title-part {
+  text-overflow: ellipsis;
+}
+
+#audit-entries-list {
+  max-height: 70rem;
+  overflow: auto;
+}

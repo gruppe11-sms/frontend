@@ -1,6 +1,8 @@
-<div fxLayoutGap="1rem" class="container" fxFlex="50%" fxLayoutAlign="center" fxLayout="column">
+<mat-card-header>
   <h2>Edit Group</h2>
-  <mat-list>
+</mat-card-header>
+<mat-card-content>
+  <mat-list class="list">
     <mat-list-item *ngFor="let group of groups|async" @listAnimation>
       <a routerLink="{{group.id}}/edit">
         {{group.title}}
@@ -10,4 +12,4 @@
       </button>
     </mat-list-item>
   </mat-list>
-</div>
+</mat-card-content>

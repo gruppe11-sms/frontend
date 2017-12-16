@@ -18,10 +18,16 @@ export const administrationRoutes: Routes = [
   {
     path: 'users/:id',
     component: EditUserComponent,
+    data: {
+      animation: 'edituser',
+    },
   },
   {
     path: 'users',
     component: EditUserFilterComponent,
+    data: {
+      animation: 'userlist',
+    },
   },
   {
     path: '',
@@ -33,14 +39,23 @@ export const administrationRoutes: Routes = [
   {
     path: 'groups/new',
     component: AddGroupComponent,
+    data: {
+      animation: 'addgroup',
+    },
   },
   {
     path: 'groups/:id/edit',
     component: EditGroupComponent,
+    data: {
+      animation: 'editgroup',
+    },
   },
   {
     path: 'groups',
     component: GroupListComponent,
+    data: {
+      animation: 'grouplist',
+    },
   },
 
 ];

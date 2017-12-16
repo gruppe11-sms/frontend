@@ -17,7 +17,7 @@
 
   </mat-sidenav>
   <mat-sidenav-content fxFlex>
-    <div fxFlex fxLayoutAlign="center center">
+    <div fxFlex fxLayoutAlign="center center" class="container">
       <mat-card>
         <div [@routeAnimations]="prepareRoute(outlet)" id="main-outlet-container">
           <router-outlet #outlet="outlet"></router-outlet>
