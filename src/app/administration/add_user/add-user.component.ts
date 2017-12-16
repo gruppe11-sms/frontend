@@ -4,6 +4,7 @@ import {User} from '../../models/user';
 import {MatSnackBar} from '@angular/material';
 
 @Component({
+  selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.scss'],
 })

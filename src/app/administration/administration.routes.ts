@@ -9,20 +9,26 @@ import {GroupListComponent} from './group-list/group-list.component';
 
 export const administrationRoutes: Routes = [
   {
-    path: 'users/edit/:id',
+    path: 'users/new',
+    component: AddUserComponent,
+    data: {
+      animation: 'adduser',
+    },
+  },
+  {
+    path: 'users/:id',
     component: EditUserComponent,
   },
   {
-    path: 'users/new',
-    component: AddUserComponent,
-  },
-  {
-    path: 'users/edit',
+    path: 'users',
     component: EditUserFilterComponent,
   },
   {
     path: '',
     component: AdministrationComponent,
+    data: {
+      animation: 'administration',
+    },
   },
   {
     path: 'groups/new',

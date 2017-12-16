@@ -1,5 +1,8 @@
-.container {
-  padding: 1rem;
+.container, :host {
+  height: 100%;
 }
 
-
+.list {
+  max-height: 500px;
+  overflow-y: auto;
+}

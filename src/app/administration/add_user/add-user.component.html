@@ -1,6 +1,9 @@
-<div class="container" fxLayout="column" fxFlex="50%">
-  <form name="addUserForm" (submit)="saveUser()">
-    <h2>Add User</h2>
+<mat-card-header>
+  <h2>Add User</h2>
+</mat-card-header>
+<mat-card-content>
+  <form name="addUserForm" id="addUserForm" (submit)="saveUser()">
+
     <div>
       <mat-form-field fxFlex="100%">
         <input matInput #nameInput="ngModel" [(ngModel)]="name" name="nameInput" required placeholder="Name">
@@ -17,12 +20,13 @@
     <div>
       <mat-form-field fxFlex="100%">
         <input matInput #passwordInput="ngModel" [(ngModel)]="password" name="passwordInput" required
-               placeholder="Password">
+               placeholder="Password" type="password">
         <mat-error *ngIf="passwordInput.hasError('required')">This is required</mat-error>
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxLayoutAlign="end">
-      <button mat-button>Save</button>
-    </div>
   </form>
-</div>
+</mat-card-content>
+<mat-card-actions>
+  <a [routerLink]="['..']" mat-button color="warn">Cancel</a>
+  <button mat-button form="addUserForm" color="primary">Save</button>
+</mat-card-actions>

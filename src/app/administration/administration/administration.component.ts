@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {PermissionService} from '../../services/permission.service';
+import {Observable} from 'rxjs/Observable';
+import {GroupManagerRole, UserManagerRole} from '../../consts';
 
 @Component({
   selector: 'app-administration',
@@ -7,10 +10,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AdministrationComponent implements OnInit {
 
-  constructor() {
+  public isUserManager: Observable<boolean>;
+  public isGroupManager: Observable<boolean>;
+
+  constructor(private permissionService: PermissionService) {
   }
 
   ngOnInit() {
+    this.isUserManager = this.permissionService.hasAllRoles(UserManagerRole);
+    this.isGroupManager = this.permissionService.hasAllRoles(GroupManagerRole);
   }
 
 }

@@ -1,10 +1,14 @@
-<div fxLayoutGap="1rem" class="container" fxFlex="50%" fxLayoutAlign="center" fxLayout="column">
-  <h2>Edit User</h2>
-  <mat-list>
-    <a mat-list-item *ngFor="let user of users|async" routerLink="{{user.id}}">
-      <p>
-          {{user.username}} {{user.name}}
-      </p>
-    </a>
-  </mat-list>
+<div class="container" fxFlex="100" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-header>
+      <h2>Edit User</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list class="list">
+        <a mat-list-item *ngFor="let user of users|async" routerLink="{{user.id}}">
+          {{user.name}} ({{user.username}})
+        </a>
+      </mat-list>
+    </mat-card-content>
+  </mat-card>
 </div>

@@ -9,13 +9,20 @@
       <a mat-list-item [routerLink]="['/']" *ngIf="(authenticated|async)">Home</a>
       <a mat-list-item [routerLink]="['/calendar']" *ngIf="authenticated|async">Calendar</a>
       <a mat-list-item [routerLink]="['/courses']" *ngIf="authenticated|async">Courses</a>
-      <a mat-list-item [routerLink]="['/administration']" *ngIf="authenticated|async">Administration</a>
+      <a mat-list-item [routerLink]="['/administration']"
+         *ngIf="(authenticated|async) && (hasAnyAdministrationRole|async)">Administration</a>
       <a mat-list-item [routerLink]="['/audit']" *ngIf="(authenticated|async) && (hasAuditViewRole|async)">Audit</a>
       <a mat-list-item (click)="logout()" *ngIf="authenticated|async">Logout</a>
     </mat-nav-list>
 
   </mat-sidenav>
   <mat-sidenav-content fxFlex>
-    <router-outlet></router-outlet>
+    <div fxFlex fxLayoutAlign="center center">
+      <mat-card>
+        <div [@routeAnimations]="prepareRoute(outlet)" id="main-outlet-container">
+          <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+      </mat-card>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

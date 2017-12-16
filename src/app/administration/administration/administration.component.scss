@@ -1,13 +1,11 @@
-.card {
-  width: 100px;
-  height: 100px;
-  float: left;
-  margin: 10px;
-}
-
 .icon {
   font-size: 5em;
 }
-.container {
-  padding: 1rem;
+
+.container, :host {
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
 }

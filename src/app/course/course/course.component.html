@@ -8,7 +8,7 @@
               <h1 fxFlex>Courses</h1>
             </div>
             <div fxFlex="30%">
-              <a mat-icon-button [routerLink]="['new']">
+              <a mat-icon-button *ngIf="isCourseManager|async" [routerLink]="['new']">
                 <mat-icon>add</mat-icon>
               </a>
             </div>
@@ -30,12 +30,10 @@
               </a>
             </mat-nav-list>
           </div>
-          <div fxFlex="30%">
-            <div>
-              <a [routerLink]="[course.id, 'update']">
-                <mat-icon>mode edit</mat-icon>
-              </a>
-            </div>
+          <div fxFlex="30%" *ngIf="isCourseManager|async">
+            <a [routerLink]="[course.id, 'update']">
+              <mat-icon>mode edit</mat-icon>
+            </a>
           </div>
         </div>
       </mat-card-content>
