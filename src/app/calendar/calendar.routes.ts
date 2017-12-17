@@ -5,6 +5,9 @@ const calendarRoutes: Routes = [
   {
     path: '',
     component: CalendarComponent,
+    data: {
+      animation: 'calender',
+    },
   },
 ];
 

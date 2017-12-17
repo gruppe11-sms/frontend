@@ -32,3 +32,16 @@ export function fixMissingTimeStampHere(date: Date, timestamp: string): Date {
   date.setHours(hour, minutes);
   return date;
 }
+
+export function equals(o1: { [key: string]: any }, o2: { [key: string]: any }): boolean {
+  return compareEntries(o1, o2) && compareEntries(o2, o1);
+}
+
+function compareEntries(o1: { [key: string]: any }, o2: { [key: string]: any }) {
+  for (const [key, value] of Object.entries(o1)) {
+    if (o2[key] !== value) {
+      return false;
+    }
+  }
+  return true;
+}

@@ -1,19 +1,15 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {AuditComponent} from './audit/audit.component';
-import {routes} from "./audit.routes";
-import {
-  MatAutocompleteModule,
-  MatButtonModule,
-  MatExpansionModule,
-  MatInputModule,
-  MatPaginatorModule,
-} from "@angular/material";
-import {AuditService} from "./audit.service";
-import {FlexLayoutModule} from "@angular/flex-layout";
+import {routes} from './audit.routes';
+import {MatAutocompleteModule, MatButtonModule, MatExpansionModule, MatInputModule, MatPaginatorModule,} from '@angular/material';
+import {AuditService} from './audit.service';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {AuditEntryDataComponent} from './audit/audit-entry-data/audit-entry-data.component';
 import {AuditEntryFilterComponent} from './audit/audit-entry-filter/audit-entry-filter.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AuditResolve} from './audit.resolver';
+import {AuditFilterResolver} from './audit-filter.resolver';
 
 
 @NgModule({
@@ -27,16 +23,18 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     FormsModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   providers: [
-    AuditService
+    AuditService,
+    AuditResolve,
+    AuditFilterResolver,
   ],
   declarations: [
     AuditComponent,
     AuditEntryDataComponent,
-    AuditEntryFilterComponent
-  ]
+    AuditEntryFilterComponent,
+  ],
 })
 export class AuditModule {
 }
