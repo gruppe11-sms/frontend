@@ -11,9 +11,9 @@ import {fixMissingTimeStampHere} from '../../../helpers';
   styleUrls: ['./add-lesson.component.scss'],
 })
 export class AddLessonComponent implements OnInit {
-  public title: string;
-  public startDate: Date;
-  public endDate: Date;
+  public titleControl = new FormControl('');
+  public startDateControl = new FormControl(new Date());
+  public endDateControl = new FormControl(new Date());
   public startTimeControl = new FormControl('00:00');
   public endTimeControl = new FormControl('00:00');
 
@@ -24,10 +24,10 @@ export class AddLessonComponent implements OnInit {
   }
 
   public createLesson(): void {
-    this.startDate = fixMissingTimeStampHere(this.startDate, this.startTimeControl.value);
-    this.endDate = fixMissingTimeStampHere(this.endDate, this.endTimeControl.value);
+    const startDate = fixMissingTimeStampHere(this.startDateControl.value, this.startTimeControl.value);
+    const endDate = fixMissingTimeStampHere(this.endDateControl.value, this.endTimeControl.value);
     const courseId = this.route.snapshot.params.courseId;
-    this.courseservice.createLesson(this.title, this.startDate, this.endDate, courseId)
+    this.courseservice.createLesson(this.titleControl.value, startDate, endDate, courseId)
       .subscribe(() => {
         this.snackbar.open('Lesson Created', '', {
           duration: 5000,
