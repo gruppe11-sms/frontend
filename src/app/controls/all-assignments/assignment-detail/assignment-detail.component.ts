@@ -1,9 +1,9 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import {MatSnackBar} from '@angular/material';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {Assignment} from '../../../models/assignment';
-import {AssignmentService, UploadTask} from '../../../services/services/assignment.service';
+import {AssignmentService} from '../../../services/services/assignment.service';
 
 
 @Component({
@@ -14,8 +14,6 @@ import {AssignmentService, UploadTask} from '../../../services/services/assignme
 export class AssignmentDetailComponent implements OnInit {
   @Input()
   public assignment: Assignment;
-  @Output()
-  public handInAssignment = new EventEmitter<UploadTask>();
 
   private loaded = false;
 
@@ -31,7 +29,6 @@ export class AssignmentDetailComponent implements OnInit {
       file: files[files.length - 1],
       assignmentId: this.assignment.id,
     };
-    this.handInAssignment.emit(task);
 
     this.assignmentService.uploadAssignment(task)
       .subscribe(event => {
@@ -44,6 +41,7 @@ export class AssignmentDetailComponent implements OnInit {
               // TODO something
             }
             this.snackBar.open('Assignment was uploaded', 'ok', {duration: 2000});
+            this.reloadAssignment();
           }
         },
         err => {
@@ -54,15 +52,11 @@ export class AssignmentDetailComponent implements OnInit {
   public openedPanel() {
     if (!this.loaded) {
       this.loaded = !this.loaded;
-      this.assignmentService.getOneAssignment(this.assignment.id).subscribe(assignment => this.assignment = assignment);
+      this.reloadAssignment();
     }
   }
-}
 
-/*
-this.assignmentService.uploadAssignment(task)
-.subscribe(event => {this.snackBar.open('Assignment was uploaded', 'ok', {duration: 2000}),
-err => {
-this.snackBar.open('Assignment was no uploaded', 'ok', {duration: 2000});
-console.error('Error uploading assignment', err);
-}); */
+  private reloadAssignment() {
+    this.assignmentService.getOneAssignment(this.assignment.id).subscribe(assignment => this.assignment = assignment);
+  }
+}
