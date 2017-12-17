@@ -6,3 +6,13 @@
   margin-top: 30px;
   text-align: center;
 }
+
+:host {
+  display: block;
+  width: 100%;
+  height: 90vh;
+}
+
+.week-label {
+  padding: 1rem;
+}
