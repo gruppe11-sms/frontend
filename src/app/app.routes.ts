@@ -3,6 +3,9 @@ import {HomeComponent} from './home/home.component';
 import {AuthenticationGuard} from './services/guards/authentication.guard';
 import {RoleGuard} from './services/guards/role.guard';
 import {AuditViewRole} from './consts';
+import {MeResolver} from './services/resolvers/me.resolver';
+import {ComingAssignmentsResolver} from './home/coming-assignments.resolver';
+import {CourseListResolver} from './services/resolvers/course-list.resolver';
 
 const appRoutes: Routes = [
   {
@@ -10,10 +13,21 @@ const appRoutes: Routes = [
     pathMatch: 'full',
     component: HomeComponent,
     canActivate: [AuthenticationGuard],
+    data: {
+      animation: 'home',
+    },
+    resolve: {
+      me: MeResolver,
+      assignments: ComingAssignmentsResolver,
+      courses: CourseListResolver,
+    },
   },
   {
     path: 'login',
     loadChildren: 'app/login/login.module#LoginModule',
+    data: {
+      animation: 'login',
+    },
   },
   {
     path: 'user',

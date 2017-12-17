@@ -8,8 +8,10 @@ const week = day * 7;
 const month = day * 30;
 const year = day * 365;
 
+const maxEntries = 2;
+
 @Pipe({
-  name: 'remainingTime'
+  name: 'remainingTime',
 })
 export class RemainingTimePipe implements PipeTransform {
 
@@ -41,10 +43,33 @@ export class RemainingTimePipe implements PipeTransform {
     const seconds = Math.floor(value / second);
     value %= second;
 
-    return `${isNegative ? 'Overdue by' : 'Due in'}
-    ${years !== 0 ? years + ' years' : ''} ${months !== 0 ? months + ' months' : ''} ${weeks !== 0 ? weeks + ' weeks' : ''} 
-    ${days !== 0 ? days + ' days' : ''} ${hours !== 0 ? hours + ' hours' : ''} 
-    ${minutes !== 0 ? minutes + ' minutes' : ''} ${seconds !== 0 ? seconds + ' seconds' : ''}`;
+    let responseString = '';
+    if (isNegative) {
+      responseString += 'Overdue by';
+    } else {
+      responseString += 'Due in';
+    }
 
+    let valuesPrinted = 0;
+
+    function addOutput(v: number, text: string) {
+      if (v !== 0 && valuesPrinted < maxEntries) {
+        valuesPrinted++;
+        responseString += ` ${v} ${text}`;
+        if (v > 0) {
+          responseString += 's';
+        }
+      }
+    }
+
+    addOutput(years, 'year');
+    addOutput(months, 'month');
+    addOutput(weeks, 'week');
+    addOutput(days, 'day');
+    addOutput(hours, 'hour');
+    addOutput(minutes, 'minute');
+    addOutput(seconds, 'second');
+
+    return responseString;
   }
 }

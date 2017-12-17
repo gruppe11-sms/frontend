@@ -12,6 +12,7 @@ import {FormsModule} from '@angular/forms';
 import {HomeUserdetailComponent} from './home/home-userdetail/home-userdetail.component';
 import {ControlsModule} from './controls/controls.module';
 import {HomeCourseDetailComponent} from './home/home-course-detail/home-course-detail.component';
+import {ComingAssignmentsResolver} from './home/coming-assignments.resolver';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,9 @@ import {HomeCourseDetailComponent} from './home/home-course-detail/home-course-d
     ServicesModule,
     ControlsModule,
     routes,
+  ],
+  providers: [
+    ComingAssignmentsResolver,
   ],
   bootstrap: [AppComponent],
 })

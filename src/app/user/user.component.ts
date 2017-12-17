@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {User} from '../models/user';
-import {UserService} from '../services/services/user.service';
 import 'rxjs/add/operator/mergeMap';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/observable/of';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -14,10 +14,10 @@ import 'rxjs/add/observable/of';
 export class UserComponent implements OnInit {
   user: Observable<User>;
 
-  constructor(private userService: UserService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.user = this.userService.getMe();
+    this.user = this.route.data.map(data => data.me);
   }
 }

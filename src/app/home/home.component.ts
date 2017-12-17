@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {AssignmentService} from '../services/services/assignment.service';
 import {Assignment} from '../models/assignment';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../models/user';
-import {MeService} from '../services/services/me.service';
 import {Course} from '../models/course';
-import {CourseService} from '../services/services/course.service';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -21,15 +19,13 @@ export class HomeComponent implements OnInit {
 
   public courses: Observable<Course[]>;
 
-  constructor(private meService: MeService,
-              private assignmentService: AssignmentService,
-              private courseService: CourseService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.user = this.meService.me;
-    this.assignments = this.assignmentService.getComingAssignments();
-    this.courses = this.courseService.getCourses();
+    this.user = this.route.data.map(data => data.me);
+    this.assignments = this.route.data.map(data => data.assignments);
+    this.courses = this.route.data.map(data => data.courses);
   }
 
 
