@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from './home/home.component';
-import {AuthenticationGuard} from './services/authentication.guard';
-import {RoleGuard} from './services/role.guard';
+import {AuthenticationGuard} from './services/guards/authentication.guard';
+import {RoleGuard} from './services/guards/role.guard';
 import {AuditViewRole} from './consts';
 
 const appRoutes: Routes = [

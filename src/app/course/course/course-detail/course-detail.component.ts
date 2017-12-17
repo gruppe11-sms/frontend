@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {Course} from '../../models/course';
-import {CourseService} from '../../../services/course.service';
+import {CourseService} from '../../../services/services/course.service';
 import {ActivatedRoute} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/filter';
@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/startWith';
 import {Participant} from '../../models/participant';
-import {UserService} from '../../../services/user.service';
+import {UserService} from '../../../services/services/user.service';
 
 @Component({
   selector: 'app-course-detail',

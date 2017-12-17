@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CourseService} from '../../../services/course.service';
+import {CourseService} from '../../../services/services/course.service';
 import {ActivatedRoute} from '@angular/router';
 import {MatSnackBar} from '@angular/material';
 import {FormControl} from '@angular/forms';

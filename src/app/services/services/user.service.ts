@@ -3,9 +3,9 @@ import {Injectable} from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/toPromise';
 import {Observable} from 'rxjs/Observable';
-import {User} from '../models/user';
-import {toHttpParams} from '../helpers';
-import {Participant} from '../course/models/participant';
+import {User} from '../../models/user';
+import {toHttpParams} from '../../helpers/index';
+import {Participant} from '../../course/models/participant';
 
 export interface IUsersNames {
   [id: number]: string;

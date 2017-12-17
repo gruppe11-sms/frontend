@@ -3,7 +3,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {Assignment} from '../../../course/models/assignment';
-import {AssignmentService, UploadTask} from '../../../services/assignment.service';
+import {AssignmentService, UploadTask} from '../../../services/services/assignment.service';
 
 
 @Component({

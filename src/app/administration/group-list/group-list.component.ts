@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Group} from '../../models/group';
 import {Observable} from 'rxjs/Observable';
-import {GroupService} from '../../services/group.service';
+import {GroupService} from '../../services/services/group.service';
 import {MatSnackBar} from '@angular/material';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {animate, query, style, transition, trigger} from '@angular/animations';
+import {ActivatedRoute} from '@angular/router';
+import 'rxjs/add/operator/merge';
 
 @Component({
   selector: 'app-group-list',
@@ -32,11 +34,12 @@ export class GroupListComponent implements OnInit {
   public groups: Observable<Group[]>;
   private trigger = new BehaviorSubject(1);
 
-  constructor(private groupService: GroupService, private snackBar: MatSnackBar) {
+  constructor(private groupService: GroupService, private route: ActivatedRoute, private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
-    this.groups = this.trigger.switchMap(() => this.groupService.getGroups());
+    this.groups = this.trigger.switchMap(() => this.groupService.getGroups())
+      .merge(this.route.data.map(data => data.groups));
   }
 
   public remove(group: Group) {
@@ -47,7 +50,7 @@ export class GroupListComponent implements OnInit {
         },
         (err) => {
           if (err.error && err.error.message) {
-            this.snackBar.open('Failed to delete group: ' + err.error.message);
+            this.snackBar.open('Failed to delete group: ' + err.error.message, '', {duration: 2000});
           } else {
             this.snackBar.open('Failed to delete group', '', {duration: 2000});
           }

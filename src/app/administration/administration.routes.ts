@@ -6,6 +6,11 @@ import {EditUserComponent} from './edit-user-filter/edit-user/edit-user.componen
 import {AddGroupComponent} from './add-group/add-group.component';
 import {EditGroupComponent} from './edit-group/edit-group.component';
 import {GroupListComponent} from './group-list/group-list.component';
+import {GroupListResolver} from '../services/resolvers/group-list.resolver';
+import {MeResolver} from '../services/resolvers/me.resolver';
+import {UserListResolver} from '../services/resolvers/user-list.resolver';
+import {UserResolver} from '../services/resolvers/user.resolver';
+import {RoleListResolver} from '../services/resolvers/role-list.resolver';
 
 export const administrationRoutes: Routes = [
   {
@@ -21,6 +26,11 @@ export const administrationRoutes: Routes = [
     data: {
       animation: 'edituser',
     },
+    resolve: {
+      user: UserResolver,
+      roles: RoleListResolver,
+      groups: GroupListResolver,
+    },
   },
   {
     path: 'users',
@@ -28,12 +38,18 @@ export const administrationRoutes: Routes = [
     data: {
       animation: 'userlist',
     },
+    resolve: {
+      users: UserListResolver,
+    },
   },
   {
     path: '',
     component: AdministrationComponent,
     data: {
       animation: 'administration',
+    },
+    resolve: {
+      me: MeResolver,
     },
   },
   {
@@ -56,8 +72,10 @@ export const administrationRoutes: Routes = [
     data: {
       animation: 'grouplist',
     },
+    resolve: {
+      groups: GroupListResolver,
+    },
   },
-
 ];
 
 export const routes = RouterModule.forChild(administrationRoutes);

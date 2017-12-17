@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivityService} from '../../services/activity.service';
+import {ActivityService} from '../../services/services/activity.service';
 import {Activity} from '../../models/activity';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 
 
 import {Assignment} from '../../course/models/assignment';
-import {AssignmentService, UploadTask} from '../../services/assignment.service';
+import {AssignmentService, UploadTask} from '../../services/services/assignment.service';
 
 @Component({
   selector: 'app-all-assignments',

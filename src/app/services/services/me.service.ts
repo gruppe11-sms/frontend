@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {TokenService} from './token.service';
 import {UserService} from './user.service';
-import {User} from '../models/user';
+import {User} from '../../models/user';
 
 @Injectable()
 export class MeService {

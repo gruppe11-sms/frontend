@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {AssignmentService} from '../services/assignment.service';
+import {AssignmentService} from '../services/services/assignment.service';
 import {Assignment} from '../course/models/assignment';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../models/user';
-import {MeService} from '../services/me.service';
+import {MeService} from '../services/services/me.service';
 import {Course} from '../course/models/course';
-import {CourseService} from '../services/course.service';
+import {CourseService} from '../services/services/course.service';
 
 
 @Component({

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {PermissionService} from '../../services/permission.service';
+import {PermissionService} from '../../services/services/permission.service';
 import {Observable} from 'rxjs/Observable';
 import {GroupManagerRole, UserManagerRole} from '../../consts';
 

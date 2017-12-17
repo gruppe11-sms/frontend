@@ -1,9 +1,9 @@
-import {Component, OnInit} from "@angular/core";
-import {User} from "../models/user";
-import {UserService} from "../services/user.service";
-import "rxjs/add/operator/mergeMap";
-import {Observable} from "rxjs/Observable";
-import "rxjs/add/operator/filter";
+import {Component, OnInit} from '@angular/core';
+import {User} from '../models/user';
+import {UserService} from '../services/services/user.service';
+import 'rxjs/add/operator/mergeMap';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/observable/of';
 
 @Component({

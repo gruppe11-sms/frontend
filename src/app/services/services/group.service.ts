@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Group} from '../models/group';
+import {Group} from '../../models/group';
 
 @Injectable()
 export class GroupService {

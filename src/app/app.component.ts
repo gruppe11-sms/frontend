@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {AuthService} from './services/auth.service';
-import {PermissionService} from './services/permission.service';
+import {AuthService} from './services/services/auth.service';
+import {PermissionService} from './services/services/permission.service';
 import {AuditViewRole, GroupManagerRole, UserManagerRole} from './consts';
-import {TokenService} from './services/token.service';
+import {TokenService} from './services/services/token.service';
 import {MatSnackBar} from '@angular/material';
-import {MeService} from './services/me.service';
+import {MeService} from './services/services/me.service';
 import {User} from './models/user';
 import {animate, animateChild, query, style, transition, trigger} from '@angular/animations';
 import {RouterOutlet} from '@angular/router';
@@ -23,11 +23,11 @@ import {RouterOutlet} from '@angular/router';
         query(':leave', [
           style({height: '*', width: '*'}),
           animate('200ms', style({opacity: 0})),
-          animate('500ms', style({height: 0, width: 0})),
+          animate('500ms ease-in-out', style({height: 0, width: 0})),
         ], {optional: true}),
         query(':enter', [
-          animate('500ms', style({height: '*', width: '*'})),
-          animate('500ms', style({opacity: 1})),
+          animate('500ms ease-in-out', style({height: '*', width: '*'})),
+          animate('200ms', style({opacity: 1})),
           animateChild(),
         ], {optional: true}),
       ]),

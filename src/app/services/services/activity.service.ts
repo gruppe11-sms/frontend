@@ -1,8 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Activity} from '../models/activity';
-import {CalenderExport} from '../models/calenderExport';
+import {Activity} from '../../models/activity';
+import {CalenderExport} from '../../models/calenderExport';
 
 @Injectable()
 export class ActivityService {

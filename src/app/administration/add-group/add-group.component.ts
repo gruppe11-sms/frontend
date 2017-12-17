@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {GroupService} from '../../services/group.service';
+import {GroupService} from '../../services/services/group.service';
 import {MatSnackBar} from '@angular/material';
 
 @Component({

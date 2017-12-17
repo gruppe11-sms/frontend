@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {UserService} from '../../services/user.service';
 import {User} from '../../models/user';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/zip';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-edit-user-filter',
@@ -15,11 +15,11 @@ export class EditUserFilterComponent implements OnInit {
 
   public users: Observable<User[]>;
 
-  constructor(private userService: UserService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.users = this.userService.getUsers();
+    this.users = this.route.data.map(data => data.users);
   }
 }
 

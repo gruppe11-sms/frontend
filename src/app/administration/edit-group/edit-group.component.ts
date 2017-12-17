@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
-import {GroupService} from '../../services/group.service';
+import {GroupService} from '../../services/services/group.service';
 import {Observable} from 'rxjs/Observable';
 import {Group} from '../../models/group';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {User} from '../../models/user';
 import {Role} from '../../models/role';
-import {RoleService} from '../../services/role.service';
-import {UserService} from '../../services/user.service';
+import {RoleService} from '../../services/services/role.service';
+import {UserService} from '../../services/services/user.service';
 import {MatSnackBar} from '@angular/material';
 
 @Component({

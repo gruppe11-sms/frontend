@@ -1,7 +1,7 @@
 <mat-card-header><h2>Administration</h2></mat-card-header>
 
 <mat-card-content>
-  <div fxLayout="row" fxLayoutGap="2rem" fxLayoutWrap>
+  <div fxLayout="row" fxLayoutGap="2rem">
     <a [routerLink]="['users','new']" *ngIf="isUserManager|async">
       <mat-card class="card" fxFlex="160px">
         <mat-card-title>Add User</mat-card-title>

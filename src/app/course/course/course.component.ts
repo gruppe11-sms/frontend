@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
-import {CourseService} from '../../services/course.service';
+import {CourseService} from '../../services/services/course.service';
 import {Course} from '../models/course';
-import {PermissionService} from '../../services/permission.service';
+import {PermissionService} from '../../services/services/permission.service';
 import {CourseManagerRole} from '../../consts';
 
 @Component({

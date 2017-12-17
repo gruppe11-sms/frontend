@@ -1,10 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {Assignment} from '../course/models/assignment';
+import {Assignment} from '../../course/models/assignment';
 import 'rxjs/add/operator/share';
-import {toHttpParams} from '../helpers/index';
-import {HandInAssignment} from '../course/models/handInAssignment';
+import {toHttpParams} from '../../helpers/index';
+import {HandInAssignment} from '../../course/models/handInAssignment';
 
 export interface UploadTask {
   file: File;

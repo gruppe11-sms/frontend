@@ -9,8 +9,8 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../../../models/user';
 import '../../../operators/behaviorSubject';
-import {UserService} from '../../../services/user.service';
-import {CourseService} from '../../../services/course.service';
+import {UserService} from '../../../services/services/user.service';
+import {CourseService} from '../../../services/services/course.service';
 import {Course} from '../../models/course';
 import {Participant} from '../../models/participant';
 
