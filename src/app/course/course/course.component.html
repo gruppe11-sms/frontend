@@ -1,43 +1,25 @@
-<div fxLayout="row">
-  <div fxFlex="100%">
-    <mat-card class="course-card">
-      <mat-card-header fxLayout="row">
-        <mat-card-title>
-          <div fxLayout="row">
-            <div fxFlex="70%">
-              <h1 fxFlex>Courses</h1>
-            </div>
-            <div fxFlex="30%">
-              <a mat-icon-button *ngIf="isCourseManager|async" [routerLink]="['new']">
-                <mat-icon>add</mat-icon>
-              </a>
-            </div>
-          </div>
-        </mat-card-title>
-      </mat-card-header>
+<mat-card-header>
+  <mat-card-title>
+    <h2>Courses</h2>
+  </mat-card-title>
+</mat-card-header>
 
-      <mat-card-content>
-        <div fxLayout="row" *ngFor="let course of courses|async">
-          <div fxFlex="70%">
-            <mat-nav-list>
-              <a [routerLink]="[course.id]">
-                <mat-list-item>{{course.title}}</mat-list-item>
-                <mat-card-subtitle>Start Date: {{course.startDate|date:"dd/MM/y - HH:mm:ss"}}
-                </mat-card-subtitle>
-                <mat-card-subtitle>End Date: {{course.endDate|date:"dd/MM/y - HH:mm:ss"}}
-                </mat-card-subtitle>
+<mat-card-content>
+  <mat-nav-list>
+    <a mat-list-item *ngFor="let course of courses|async" [routerLink]="[course.id]">
+      <p matLine>{{course.title}}</p>
+      <p matLine class="secondary">Start Date: {{course.startDate|date:"dd/MM/y - HH:mm:ss"}}</p>
+      <p matLine class="secondary">End Date: {{course.endDate|date:"dd/MM/y - HH:mm:ss"}}</p>
+      <a mat-icon-button *ngIf="isCourseManager|async" [routerLink]="[course.id, 'update']"
+         (click)="$event.stopPropagation()">
+        <mat-icon>mode edit</mat-icon>
+      </a>
+    </a>
+  </mat-nav-list>
+</mat-card-content>
 
-              </a>
-            </mat-nav-list>
-          </div>
-          <div fxFlex="30%" *ngIf="isCourseManager|async">
-            <a [routerLink]="[course.id, 'update']">
-              <mat-icon>mode edit</mat-icon>
-            </a>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-</div>
-
+<mat-card-actions>
+  <a mat-button *ngIf="isCourseManager|async" [routerLink]="['new']">
+    Create course
+  </a>
+</mat-card-actions>

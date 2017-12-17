@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Lesson} from '../../models/lesson';
+import {Lesson} from '../../../models/lesson';
 import {CourseService} from '../../../services/services/course.service';
 import {Observable} from 'rxjs/Observable';
 import {ActivatedRoute} from '@angular/router';

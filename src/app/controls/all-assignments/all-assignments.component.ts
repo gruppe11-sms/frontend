@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 
 
-import {Assignment} from '../../course/models/assignment';
+import {Assignment} from '../../models/assignment';
 import {AssignmentService, UploadTask} from '../../services/services/assignment.service';
 
 @Component({

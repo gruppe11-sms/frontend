@@ -11,8 +11,8 @@ import {User} from '../../../models/user';
 import '../../../operators/behaviorSubject';
 import {UserService} from '../../../services/services/user.service';
 import {CourseService} from '../../../services/services/course.service';
-import {Course} from '../../models/course';
-import {Participant} from '../../models/participant';
+import {Course} from '../../../models/course';
+import {Participant} from '../../../models/participant';
 
 @Component({
   selector: 'app-edit-course',
@@ -37,10 +37,7 @@ export class EditCourseComponent implements OnInit {
 
 
   ngOnInit() {
-    this.course = this.route.params
-      .map(params => Number(params.id))
-      .switchMap(id => this.courseService.getCourse(id))
-      .behaviorSubject(new Course());
+    this.course = this.route.data.map(data => data.course).behaviorSubject(new Course());
 
     this.course.subscribe(course => {
       this.courseTitleInput.setValue(course.title);
@@ -49,7 +46,7 @@ export class EditCourseComponent implements OnInit {
       this.courseEndDate.setValue(course.endDate);
     });
 
-    this.users = this.userService.getUsers();
+    this.users = this.route.data.map(data => data.users);
 
 
     this.participants = this.course

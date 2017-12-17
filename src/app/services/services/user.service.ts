@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../../models/user';
 import {toHttpParams} from '../../helpers/index';
-import {Participant} from '../../course/models/participant';
+import {Participant} from '../../models/participant';
 
 export interface IUsersNames {
   [id: number]: string;

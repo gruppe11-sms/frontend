@@ -5,7 +5,7 @@ export class UploadedFile {
 }
 
 export class HandInAssignment {
-  handInIds: UploadedFile[]
+  handInIds: UploadedFile[];
   evaluations: Evaluation[];
   fileNames: string[];
   id: number;

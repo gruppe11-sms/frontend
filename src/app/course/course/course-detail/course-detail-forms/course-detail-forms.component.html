@@ -1,5 +1,5 @@
 <div class="course-detail-format" *ngIf="course">
-  <mat-card class="course-detail">
+  <mat-card class="content">
     <mat-list>
       <h3>Course Information</h3>
       <!--Title-->
@@ -18,7 +18,7 @@
   </mat-card>
 
 
-  <mat-card class="course-detail-lesson">
+  <mat-card class="content">
     <!--Assignments-->
     <h3>Assignments</h3>
     <mat-card-actions>
@@ -29,7 +29,7 @@
     <app-all-assignments [assignments]="course.assignments"> </app-all-assignments>
   </mat-card>
 
-  <mat-card class="course-detail-lesson">
+  <mat-card class="content">
     <h3>Lessons</h3>
     <mat-list-item>
       <mat-list>
@@ -47,7 +47,7 @@
   </mat-card>
 
 
-  <mat-card class="course-detail-lesson">
+  <mat-card class="content">
     <div fxLayout="row">
       <div fxFlex="50%">
         <h3>Participants</h3>

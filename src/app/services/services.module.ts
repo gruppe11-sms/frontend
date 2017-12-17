@@ -20,6 +20,8 @@ import {GroupListResolver} from './resolvers/group-list.resolver';
 import {UserListResolver} from './resolvers/user-list.resolver';
 import {UserResolver} from './resolvers/user.resolver';
 import {RoleListResolver} from './resolvers/role-list.resolver';
+import {CourseListResolver} from './resolvers/course-list.resolver';
+import {CourseResolver} from './resolvers/course.resolver';
 
 @NgModule({
   imports: [
@@ -48,6 +50,8 @@ import {RoleListResolver} from './resolvers/role-list.resolver';
     UserListResolver,
     UserResolver,
     RoleListResolver,
+    CourseListResolver,
+    CourseResolver,
   ],
 })
 export class ServicesModule {

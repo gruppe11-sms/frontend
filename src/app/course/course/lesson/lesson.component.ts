@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CourseService} from '../../../services/services/course.service';
 import {Observable} from 'rxjs/Observable';
-import {Lesson} from '../../models/lesson';
+import {Lesson} from '../../../models/lesson';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({

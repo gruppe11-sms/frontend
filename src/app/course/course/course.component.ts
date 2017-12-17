@@ -1,10 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-
-import {CourseService} from '../../services/services/course.service';
-import {Course} from '../models/course';
+import {Course} from '../../models/course';
 import {PermissionService} from '../../services/services/permission.service';
 import {CourseManagerRole} from '../../consts';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-course',
@@ -16,11 +15,11 @@ export class CourseComponent implements OnInit {
   public courses: Observable<Course[]>;
   public isCourseManager: Observable<boolean>;
 
-  constructor(private courseService: CourseService, private permissionService: PermissionService) {
+  constructor(private route: ActivatedRoute, private permissionService: PermissionService) {
   }
 
   ngOnInit() {
-    this.courses = this.courseService.getCourses();
+    this.courses = this.route.data.map(data => data.courses);
     this.isCourseManager = this.permissionService.hasAllRoles(CourseManagerRole);
   }
 }

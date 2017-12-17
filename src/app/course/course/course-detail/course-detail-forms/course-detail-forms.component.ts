@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Course} from '../../../models/course';
-import {Participant} from '../../../models/participant';
+import {Course} from '../../../../models/course';
+import {Participant} from '../../../../models/participant';
 
 @Component({
   selector: 'app-course-detail-forms',

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {AssignmentService} from '../services/services/assignment.service';
-import {Assignment} from '../course/models/assignment';
+import {Assignment} from '../models/assignment';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../models/user';
 import {MeService} from '../services/services/me.service';
-import {Course} from '../course/models/course';
+import {Course} from '../models/course';
 import {CourseService} from '../services/services/course.service';
 
 
