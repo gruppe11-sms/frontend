@@ -30,7 +30,7 @@ import {ComingAssignmentsResolver} from './home/coming-assignments.resolver';
     FlexLayoutModule,
     MatSidenavModule,
     MatListModule,
-    ServicesModule,
+    ServicesModule.forRoot(),
     ControlsModule,
     routes,
   ],

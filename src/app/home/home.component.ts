@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import {User} from '../models/user';
 import {Course} from '../models/course';
 import {ActivatedRoute} from '@angular/router';
+import {MeService} from '../services/services/me.service';
 
 
 @Component({
@@ -19,11 +20,11 @@ export class HomeComponent implements OnInit {
 
   public courses: Observable<Course[]>;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private meService: MeService) {
   }
 
   ngOnInit() {
-    this.user = this.route.data.map(data => data.me);
+    this.user = this.meService.me;
     this.assignments = this.route.data.map(data => data.assignments);
     this.courses = this.route.data.map(data => data.courses);
   }

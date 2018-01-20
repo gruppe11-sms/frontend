@@ -1,6 +1,6 @@
 import {CommonModule} from '@angular/common';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
+import {ModuleWithProviders, NgModule} from '@angular/core';
 import {AuthService} from './services/auth.service';
 import {UserService} from './services/user.service';
 import {GroupService} from './services/group.service';
@@ -29,30 +29,35 @@ import {CourseResolver} from './resolvers/course.resolver';
     HttpClientModule,
   ],
   declarations: [],
-  providers: [
-    AuthService,
-    UserService,
-    GroupService,
-    RoleService,
-    GroupService,
-    TokenService,
-    JwtHelper,
-    AuthenticationGuard,
-    RoleGuard,
-    PermissionService,
-    ActivityService,
-    AssignmentService,
-    MeService,
-    CourseService,
-    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-    MeResolver,
-    GroupListResolver,
-    UserListResolver,
-    UserResolver,
-    RoleListResolver,
-    CourseListResolver,
-    CourseResolver,
-  ],
 })
 export class ServicesModule {
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: ServicesModule,
+      providers: [
+        AuthService,
+        UserService,
+        GroupService,
+        RoleService,
+        GroupService,
+        TokenService,
+        JwtHelper,
+        AuthenticationGuard,
+        RoleGuard,
+        PermissionService,
+        ActivityService,
+        AssignmentService,
+        MeService,
+        CourseService,
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+        MeResolver,
+        GroupListResolver,
+        UserListResolver,
+        UserResolver,
+        RoleListResolver,
+        CourseListResolver,
+        CourseResolver,
+      ],
+    };
+  }
 }

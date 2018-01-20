@@ -3,20 +3,24 @@ import {Observable} from 'rxjs/Observable';
 import {TokenService} from './token.service';
 import {UserService} from './user.service';
 import {User} from '../../models/user';
+import 'rxjs/add/operator/shareReplay';
+import 'rxjs/add/operator/share';
+import '../../operators/sharedNewest';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class MeService {
+  public readonly me: Observable<User>;
+
   constructor(private tokenService: TokenService, private userService: UserService) {
-    this._me = this.tokenService
+    this.me = this.tokenService
       .token
-      .switchMap(() => userService.getMe())
-      // Only do this emit once, all of them should share values, and have the same value
-      .shareReplay();
-  }
-
-  private _me: Observable<User>;
-
-  get me(): Observable<User> {
-    return this._me;
+      .sharedNewest(token => {
+        if (token) {
+          return userService.getMe();
+        } else {
+          return of(new User());
+        }
+      });
   }
 }

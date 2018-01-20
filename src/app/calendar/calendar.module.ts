@@ -6,7 +6,6 @@ import {routes} from './calendar.routes';
 import {DayFilter} from './day-filter';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ServicesModule} from '../services/services.module';
 
 
 @NgModule({
@@ -20,7 +19,7 @@ import {ServicesModule} from '../services/services.module';
     routes,
     FormsModule,
     ReactiveFormsModule,
-    ServicesModule,
+    // ServicesModule,
     MatInputModule,
   ],
   declarations: [

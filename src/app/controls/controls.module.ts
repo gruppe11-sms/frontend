@@ -14,7 +14,6 @@ import {
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AllAssignmentsComponent} from './all-assignments/all-assignments.component';
 import {AssignmentDetailComponent} from './all-assignments/assignment-detail/assignment-detail.component';
-import {ServicesModule} from '../services/services.module';
 import {RemainingTimePipe} from './remaining-time.pipe';
 import {TimeStampInputComponent} from './time-stamp-input/time-stamp-input.component';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -32,7 +31,7 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatCardModule,
     MatExpansionModule,
     MatSnackBarModule,
-    ServicesModule,
+    // ServicesModule,
     FlexLayoutModule,
   ],
   declarations: [
